@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HR_DOCUMENT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HrDocument" table="HR_DOCUMENT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="documentId" column="DOCUMENT_ID" type="java.lang.Double"></id>
+
+		<property name="approveRejectComments" column="APPROVE_REJECT_COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="assignedTo" column="ASSIGNED_TO" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="500"/>
+		<property name="documentFileName" column="DOCUMENT_FILE_NAME" type="java.lang.String" length="200"/>
+		<property name="documentName" column="DOCUMENT_NAME" type="java.lang.String" length="500"/>
+		<property name="documentSource" column="DOCUMENT_SOURCE" type="java.lang.String" length="300"/>
+		<property name="documentSubType" column="DOCUMENT_SUB_TYPE" type="java.lang.String" length="150"/>
+		<property name="documentType" column="DOCUMENT_TYPE" type="java.lang.String" length="150"/>
+		<property name="dueDate" column="DUE_DATE" type="java.util.Date"/>
+		<property name="expiryDate" column="EXPIRY_DATE" type="java.util.Date"/>
+		<property name="financialYear" column="FINANCIAL_YEAR" type="java.lang.String" length="30"/>
+		<property name="followUpDate" column="FOLLOW_UP_DATE" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="isAvailableInPortal" column="IS_AVAILABLE_IN_PORTAL" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="masterDocumentId" column="MASTER_DOCUMENT_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="profileDId" column="PROFILE_D_ID" type="java.lang.Double"/>
+		<property name="receivedBy" column="RECEIVED_BY" type="java.lang.Double"/>
+		<property name="receivedDate" column="RECEIVED_DATE" type="java.util.Date"/>
+		<property name="receiveComments" column="RECEIVE_COMMENTS" type="java.lang.String" length="1000"/>
+		<property name="sentBy" column="SENT_BY" type="java.lang.Double"/>
+		<property name="sentDate" column="SENT_DATE" type="java.util.Date"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="300"/>
+		<property name="statusDetail" column="STATUS_DETAIL" type="java.lang.String" length="300"/>
+	</class>
+
+	<sql-query name="hrDocument.selectAll">
+	<![CDATA[
+		SELECT DOCUMENT_ID,
+		       APPROVE_REJECT_COMMENTS,
+		       ASSIGNED_TO,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DESCRIPTION,
+		       DOCUMENT_FILE_NAME,
+		       DOCUMENT_NAME,
+		       DOCUMENT_SOURCE,
+		       DOCUMENT_SUB_TYPE,
+		       DOCUMENT_TYPE,
+		       TO_CHAR(DUE_DATE, 'yyyymmddhh24miss') AS DUE_DATE,
+		       TO_CHAR(EXPIRY_DATE, 'yyyymmddhh24miss') AS EXPIRY_DATE,
+		       FINANCIAL_YEAR,
+		       TO_CHAR(FOLLOW_UP_DATE, 'yyyymmddhh24miss') AS FOLLOW_UP_DATE,
+		       IS_ACTIVE,
+		       IS_AVAILABLE_IN_PORTAL,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       MASTER_DOCUMENT_ID,
+		       ORGANISATION_ID,
+		       PERSON_ID,
+		       PROFILE_D_ID,
+		       RECEIVED_BY,
+		       TO_CHAR(RECEIVED_DATE, 'yyyymmddhh24miss') AS RECEIVED_DATE,
+		       RECEIVE_COMMENTS,
+		       SENT_BY,
+		       TO_CHAR(SENT_DATE, 'yyyymmddhh24miss') AS SENT_DATE,
+		       STATUS,
+		       STATUS_DETAIL
+		  FROM HR_DOCUMENT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="hrDocument.insert">
+	<![CDATA[
+		INSERT INTO HR_DOCUMENT (
+		       DOCUMENT_ID,
+		       APPROVE_REJECT_COMMENTS,
+		       ASSIGNED_TO,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DESCRIPTION,
+		       DOCUMENT_FILE_NAME,
+		       DOCUMENT_NAME,
+		       DOCUMENT_SOURCE,
+		       DOCUMENT_SUB_TYPE,
+		       DOCUMENT_TYPE,
+		       DUE_DATE,
+		       EXPIRY_DATE,
+		       FINANCIAL_YEAR,
+		       FOLLOW_UP_DATE,
+		       IS_ACTIVE,
+		       IS_AVAILABLE_IN_PORTAL,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       MASTER_DOCUMENT_ID,
+		       ORGANISATION_ID,
+		       PERSON_ID,
+		       PROFILE_D_ID,
+		       RECEIVED_BY,
+		       RECEIVED_DATE,
+		       RECEIVE_COMMENTS,
+		       SENT_BY,
+		       SENT_DATE,
+		       STATUS,
+		       STATUS_DETAIL
+		       )
+		VALUES (
+		       ${DOCUMENT_ID},
+		       ${APPROVE_REJECT_COMMENTS},
+		       ${ASSIGNED_TO},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DESCRIPTION},
+		       ${DOCUMENT_FILE_NAME},
+		       ${DOCUMENT_NAME},
+		       ${DOCUMENT_SOURCE},
+		       ${DOCUMENT_SUB_TYPE},
+		       ${DOCUMENT_TYPE},
+		       ${DUE_DATE},
+		       ${EXPIRY_DATE},
+		       ${FINANCIAL_YEAR},
+		       ${FOLLOW_UP_DATE},
+		       ${IS_ACTIVE},
+		       ${IS_AVAILABLE_IN_PORTAL},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${MASTER_DOCUMENT_ID},
+		       ${ORGANISATION_ID},
+		       ${PERSON_ID},
+		       ${PROFILE_D_ID},
+		       ${RECEIVED_BY},
+		       ${RECEIVED_DATE},
+		       ${RECEIVE_COMMENTS},
+		       ${SENT_BY},
+		       ${SENT_DATE},
+		       ${STATUS},
+		       ${STATUS_DETAIL}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hrDocument.update">
+	<![CDATA[
+		UPDATE HR_DOCUMENT
+		   SET APPROVE_REJECT_COMMENTS = ${APPROVE_REJECT_COMMENTS},
+		       ASSIGNED_TO = ${ASSIGNED_TO},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       DOCUMENT_FILE_NAME = ${DOCUMENT_FILE_NAME},
+		       DOCUMENT_NAME = ${DOCUMENT_NAME},
+		       DOCUMENT_SOURCE = ${DOCUMENT_SOURCE},
+		       DOCUMENT_SUB_TYPE = ${DOCUMENT_SUB_TYPE},
+		       DOCUMENT_TYPE = ${DOCUMENT_TYPE},
+		       DUE_DATE = ${DUE_DATE},
+		       EXPIRY_DATE = ${EXPIRY_DATE},
+		       FINANCIAL_YEAR = ${FINANCIAL_YEAR},
+		       FOLLOW_UP_DATE = ${FOLLOW_UP_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       IS_AVAILABLE_IN_PORTAL = ${IS_AVAILABLE_IN_PORTAL},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       MASTER_DOCUMENT_ID = ${MASTER_DOCUMENT_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERSON_ID = ${PERSON_ID},
+		       PROFILE_D_ID = ${PROFILE_D_ID},
+		       RECEIVED_BY = ${RECEIVED_BY},
+		       RECEIVED_DATE = ${RECEIVED_DATE},
+		       RECEIVE_COMMENTS = ${RECEIVE_COMMENTS},
+		       SENT_BY = ${SENT_BY},
+		       SENT_DATE = ${SENT_DATE},
+		       STATUS = ${STATUS},
+		       STATUS_DETAIL = ${STATUS_DETAIL}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hrDocument.updateColumns">
+	<![CDATA[
+		UPDATE HR_DOCUMENT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hrDocument.delete">
+	<![CDATA[
+		DELETE HR_DOCUMENT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

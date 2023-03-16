@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_BILLING_CODE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpBillingCode" table="HP_BILLING_CODE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="billingCodeId" column="BILLING_CODE_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="billingOrganizationId" column="BILLING_ORGANIZATION_ID" type="java.lang.Double"/>
+		<property name="active" column="ACTIVE" type="java.lang.String" length="1"/>
+		<property name="attention" column="ATTENTION" type="java.lang.String" length="100"/>
+		<property name="autoTimesheetReminder" column="AUTO_TIMESHEET_REMINDER" type="java.lang.String" length="1"/>
+		<property name="billingCode" column="BILLING_CODE" type="java.lang.String" length="30"/>
+		<property name="cashOnDelivery" column="CASH_ON_DELIVERY" type="java.lang.String" length="1"/>
+		<property name="customerEmailCode" column="CUSTOMER_EMAIL_CODE" type="java.lang.String" length="500"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="0"/>
+		<property name="displayComments" column="DISPLAY_COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="empOrganizationId" column="EMP_ORGANIZATION_ID" type="java.lang.Double"/>
+		<property name="firstInvoiceDueDate" column="FIRST_INVOICE_DUE_DATE" type="java.util.Date"/>
+		<property name="firstInvPeriodEndDate" column="FIRST_INV_PERIOD_END_DATE" type="java.util.Date"/>
+		<property name="firstPeriodEndDate" column="FIRST_PERIOD_END_DATE" type="java.util.Date"/>
+		<property name="firstTimesheetTimeDueDate" column="FIRST_TIMESHEET_TIME_DUE_DATE" type="java.util.Date"/>
+		<property name="invoiceCycle" column="INVOICE_CYCLE" type="java.lang.String" length="30"/>
+		<property name="invoiceRecipientEmail" column="INVOICE_RECIPIENT_EMAIL" type="java.lang.String" length="200"/>
+		<property name="invoiceSendMode" column="INVOICE_SEND_MODE" type="java.lang.String" length="20"/>
+		<property name="invoiceTimeDue" column="INVOICE_TIME_DUE" type="java.lang.String" length="11"/>
+		<property name="invoiceType" column="INVOICE_TYPE" type="java.lang.String" length="100"/>
+		<property name="invoiceWithTimesheet" column="INVOICE_WITH_TIMESHEET" type="java.lang.String" length="1"/>
+		<property name="invDateOffset" column="INV_DATE_OFFSET" type="java.lang.Double"/>
+		<property name="invTemplateId" column="INV_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="newSaleDate" column="NEW_SALE_DATE" type="java.util.Date"/>
+		<property name="paymentCycle" column="PAYMENT_CYCLE" type="java.lang.String" length="30"/>
+		<property name="payslipTemplateId" column="PAYSLIP_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="payDateOffset" column="PAY_DATE_OFFSET" type="java.lang.Double"/>
+		<property name="periodsCreationType" column="PERIODS_CREATION_TYPE" type="java.lang.String" length="10"/>
+		<property name="rctiTemplateId" column="RCTI_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="relationshipConsultantId" column="RELATIONSHIP_CONSULTANT_ID" type="java.lang.Double"/>
+		<property name="remittanceAdviceTemplateId" column="REMITTANCE_ADVICE_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="terms" column="TERMS" type="java.lang.String" length="100"/>
+		<property name="termsDayType" column="TERMS_DAY_TYPE" type="java.lang.String" length="30"/>
+		<property name="termsOffsetType" column="TERMS_OFFSET_TYPE" type="java.lang.String" length="30"/>
+		<property name="timesheetCycle" column="TIMESHEET_CYCLE" type="java.lang.String" length="30"/>
+		<property name="timeSheetCycleOffset" column="TIME_SHEET_CYCLE_OFFSET" type="java.lang.Double"/>
+		<property name="timeSheetTimeDue" column="TIME_SHEET_TIME_DUE" type="java.lang.String" length="11"/>
+	</class>
+
+	<sql-query name="hpBillingCode.selectAll">
+	<![CDATA[
+		SELECT BILLING_CODE_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       BILLING_ORGANIZATION_ID,
+		       ACTIVE,
+		       ATTENTION,
+		       AUTO_TIMESHEET_REMINDER,
+		       BILLING_CODE,
+		       CASH_ON_DELIVERY,
+		       CUSTOMER_EMAIL_CODE,
+		       DESCRIPTION,
+		       DISPLAY_COMMENTS,
+		       EMP_ORGANIZATION_ID,
+		       TO_CHAR(FIRST_INVOICE_DUE_DATE, 'yyyymmddhh24miss') AS FIRST_INVOICE_DUE_DATE,
+		       TO_CHAR(FIRST_INV_PERIOD_END_DATE, 'yyyymmddhh24miss') AS FIRST_INV_PERIOD_END_DATE,
+		       TO_CHAR(FIRST_PERIOD_END_DATE, 'yyyymmddhh24miss') AS FIRST_PERIOD_END_DATE,
+		       TO_CHAR(FIRST_TIMESHEET_TIME_DUE_DATE, 'yyyymmddhh24miss') AS FIRST_TIMESHEET_TIME_DUE_DATE,
+		       INVOICE_CYCLE,
+		       INVOICE_RECIPIENT_EMAIL,
+		       INVOICE_SEND_MODE,
+		       INVOICE_TIME_DUE,
+		       INVOICE_TYPE,
+		       INVOICE_WITH_TIMESHEET,
+		       INV_DATE_OFFSET,
+		       INV_TEMPLATE_ID,
+		       TO_CHAR(NEW_SALE_DATE, 'yyyymmddhh24miss') AS NEW_SALE_DATE,
+		       PAYMENT_CYCLE,
+		       PAYSLIP_TEMPLATE_ID,
+		       PAY_DATE_OFFSET,
+		       PERIODS_CREATION_TYPE,
+		       RCTI_TEMPLATE_ID,
+		       RELATIONSHIP_CONSULTANT_ID,
+		       REMITTANCE_ADVICE_TEMPLATE_ID,
+		       TERMS,
+		       TERMS_DAY_TYPE,
+		       TERMS_OFFSET_TYPE,
+		       TIMESHEET_CYCLE,
+		       TIME_SHEET_CYCLE_OFFSET,
+		       TIME_SHEET_TIME_DUE
+		  FROM HP_BILLING_CODE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBillingCode.insert">
+	<![CDATA[
+		INSERT INTO HP_BILLING_CODE (
+		       BILLING_CODE_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       BILLING_ORGANIZATION_ID,
+		       ACTIVE,
+		       ATTENTION,
+		       AUTO_TIMESHEET_REMINDER,
+		       BILLING_CODE,
+		       CASH_ON_DELIVERY,
+		       CUSTOMER_EMAIL_CODE,
+		       DESCRIPTION,
+		       DISPLAY_COMMENTS,
+		       EMP_ORGANIZATION_ID,
+		       FIRST_INVOICE_DUE_DATE,
+		       FIRST_INV_PERIOD_END_DATE,
+		       FIRST_PERIOD_END_DATE,
+		       FIRST_TIMESHEET_TIME_DUE_DATE,
+		       INVOICE_CYCLE,
+		       INVOICE_RECIPIENT_EMAIL,
+		       INVOICE_SEND_MODE,
+		       INVOICE_TIME_DUE,
+		       INVOICE_TYPE,
+		       INVOICE_WITH_TIMESHEET,
+		       INV_DATE_OFFSET,
+		       INV_TEMPLATE_ID,
+		       NEW_SALE_DATE,
+		       PAYMENT_CYCLE,
+		       PAYSLIP_TEMPLATE_ID,
+		       PAY_DATE_OFFSET,
+		       PERIODS_CREATION_TYPE,
+		       RCTI_TEMPLATE_ID,
+		       RELATIONSHIP_CONSULTANT_ID,
+		       REMITTANCE_ADVICE_TEMPLATE_ID,
+		       TERMS,
+		       TERMS_DAY_TYPE,
+		       TERMS_OFFSET_TYPE,
+		       TIMESHEET_CYCLE,
+		       TIME_SHEET_CYCLE_OFFSET,
+		       TIME_SHEET_TIME_DUE
+		       )
+		VALUES (
+		       ${BILLING_CODE_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${BILLING_ORGANIZATION_ID},
+		       ${ACTIVE},
+		       ${ATTENTION},
+		       ${AUTO_TIMESHEET_REMINDER},
+		       ${BILLING_CODE},
+		       ${CASH_ON_DELIVERY},
+		       ${CUSTOMER_EMAIL_CODE},
+		       ${DESCRIPTION},
+		       ${DISPLAY_COMMENTS},
+		       ${EMP_ORGANIZATION_ID},
+		       ${FIRST_INVOICE_DUE_DATE},
+		       ${FIRST_INV_PERIOD_END_DATE},
+		       ${FIRST_PERIOD_END_DATE},
+		       ${FIRST_TIMESHEET_TIME_DUE_DATE},
+		       ${INVOICE_CYCLE},
+		       ${INVOICE_RECIPIENT_EMAIL},
+		       ${INVOICE_SEND_MODE},
+		       ${INVOICE_TIME_DUE},
+		       ${INVOICE_TYPE},
+		       ${INVOICE_WITH_TIMESHEET},
+		       ${INV_DATE_OFFSET},
+		       ${INV_TEMPLATE_ID},
+		       ${NEW_SALE_DATE},
+		       ${PAYMENT_CYCLE},
+		       ${PAYSLIP_TEMPLATE_ID},
+		       ${PAY_DATE_OFFSET},
+		       ${PERIODS_CREATION_TYPE},
+		       ${RCTI_TEMPLATE_ID},
+		       ${RELATIONSHIP_CONSULTANT_ID},
+		       ${REMITTANCE_ADVICE_TEMPLATE_ID},
+		       ${TERMS},
+		       ${TERMS_DAY_TYPE},
+		       ${TERMS_OFFSET_TYPE},
+		       ${TIMESHEET_CYCLE},
+		       ${TIME_SHEET_CYCLE_OFFSET},
+		       ${TIME_SHEET_TIME_DUE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBillingCode.update">
+	<![CDATA[
+		UPDATE HP_BILLING_CODE
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       BILLING_ORGANIZATION_ID = ${BILLING_ORGANIZATION_ID},
+		       ACTIVE = ${ACTIVE},
+		       ATTENTION = ${ATTENTION},
+		       AUTO_TIMESHEET_REMINDER = ${AUTO_TIMESHEET_REMINDER},
+		       BILLING_CODE = ${BILLING_CODE},
+		       CASH_ON_DELIVERY = ${CASH_ON_DELIVERY},
+		       CUSTOMER_EMAIL_CODE = ${CUSTOMER_EMAIL_CODE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       DISPLAY_COMMENTS = ${DISPLAY_COMMENTS},
+		       EMP_ORGANIZATION_ID = ${EMP_ORGANIZATION_ID},
+		       FIRST_INVOICE_DUE_DATE = ${FIRST_INVOICE_DUE_DATE},
+		       FIRST_INV_PERIOD_END_DATE = ${FIRST_INV_PERIOD_END_DATE},
+		       FIRST_PERIOD_END_DATE = ${FIRST_PERIOD_END_DATE},
+		       FIRST_TIMESHEET_TIME_DUE_DATE = ${FIRST_TIMESHEET_TIME_DUE_DATE},
+		       INVOICE_CYCLE = ${INVOICE_CYCLE},
+		       INVOICE_RECIPIENT_EMAIL = ${INVOICE_RECIPIENT_EMAIL},
+		       INVOICE_SEND_MODE = ${INVOICE_SEND_MODE},
+		       INVOICE_TIME_DUE = ${INVOICE_TIME_DUE},
+		       INVOICE_TYPE = ${INVOICE_TYPE},
+		       INVOICE_WITH_TIMESHEET = ${INVOICE_WITH_TIMESHEET},
+		       INV_DATE_OFFSET = ${INV_DATE_OFFSET},
+		       INV_TEMPLATE_ID = ${INV_TEMPLATE_ID},
+		       NEW_SALE_DATE = ${NEW_SALE_DATE},
+		       PAYMENT_CYCLE = ${PAYMENT_CYCLE},
+		       PAYSLIP_TEMPLATE_ID = ${PAYSLIP_TEMPLATE_ID},
+		       PAY_DATE_OFFSET = ${PAY_DATE_OFFSET},
+		       PERIODS_CREATION_TYPE = ${PERIODS_CREATION_TYPE},
+		       RCTI_TEMPLATE_ID = ${RCTI_TEMPLATE_ID},
+		       RELATIONSHIP_CONSULTANT_ID = ${RELATIONSHIP_CONSULTANT_ID},
+		       REMITTANCE_ADVICE_TEMPLATE_ID = ${REMITTANCE_ADVICE_TEMPLATE_ID},
+		       TERMS = ${TERMS},
+		       TERMS_DAY_TYPE = ${TERMS_DAY_TYPE},
+		       TERMS_OFFSET_TYPE = ${TERMS_OFFSET_TYPE},
+		       TIMESHEET_CYCLE = ${TIMESHEET_CYCLE},
+		       TIME_SHEET_CYCLE_OFFSET = ${TIME_SHEET_CYCLE_OFFSET},
+		       TIME_SHEET_TIME_DUE = ${TIME_SHEET_TIME_DUE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBillingCode.updateColumns">
+	<![CDATA[
+		UPDATE HP_BILLING_CODE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBillingCode.delete">
+	<![CDATA[
+		DELETE HP_BILLING_CODE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

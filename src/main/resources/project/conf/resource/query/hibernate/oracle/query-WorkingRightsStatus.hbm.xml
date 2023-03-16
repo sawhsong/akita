@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - WORKING_RIGHTS_STATUS - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.WorkingRightsStatus.getWorkingRightsStatusListByPersonId">
+	<![CDATA[
+		select working_rights_status_id,
+		       person_id,
+		       (select full_name from hp_person_d where person_id = working_rights_status.person_id) as person_name,
+		       visa_status,
+		       (select meaning from sys_common_lookups where lookup_type = 'PORTAL_RESIDENCY_TYPE' and lookup_code = working_rights_status.visa_status) as visa_status_meaning,
+		       visa_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'PORTAL_VISA_TYPE' and lookup_code = working_rights_status.visa_type) as visa_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PORTAL_PR_TYPE' and lookup_code = working_rights_status.visa_type) as pr_type_meaning,
+		       to_char(date_issued, '${dateFormat}') as date_issued,
+		       to_char(expiry_date, '${dateFormat}') as expiry_date,
+		       additional_notes,
+		       is_active,
+		       created_by,
+		       (select full_name from hp_person_d where person_id = working_rights_status.created_by) as created_by_name,
+		       to_char(creation_date, '${dateFormat}') as creation_date,
+		       last_updated_by,
+		       (select full_name from hp_person_d where person_id = working_rights_status.last_updated_by) as last_updated_by_name,
+		       to_char(last_update_date, '${dateFormat}') as last_update_date
+		  from working_rights_status
+		 where 1 = 1
+		   and person_id = '${personId}'
+		 order by is_active desc, creation_date desc
+	]]>
+	</sql-query>
+</hibernate-mapping>

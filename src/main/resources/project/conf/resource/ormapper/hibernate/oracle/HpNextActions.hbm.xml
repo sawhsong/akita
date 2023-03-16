@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_NEXT_ACTIONS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpNextActions" table="HP_NEXT_ACTIONS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="nextActionId" column="NEXT_ACTION_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="actionClosedBy" column="ACTION_CLOSED_BY" type="java.lang.Double"/>
+		<property name="actionClosedDate" column="ACTION_CLOSED_DATE" type="java.util.Date"/>
+		<property name="actionComments" column="ACTION_COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="actionDate" column="ACTION_DATE" type="java.util.Date"/>
+		<property name="actionDateChangedCount" column="ACTION_DATE_CHANGED_COUNT" type="java.lang.Double"/>
+		<property name="actionDateOriginal" column="ACTION_DATE_ORIGINAL" type="java.util.Date"/>
+		<property name="actionStatus" column="ACTION_STATUS" type="java.lang.String" length="30"/>
+		<property name="actionTime" column="ACTION_TIME" type="java.lang.String" length="10"/>
+		<property name="actionType" column="ACTION_TYPE" type="java.lang.String" length="30"/>
+		<property name="assignedPersonId" column="ASSIGNED_PERSON_ID" type="java.lang.Double"/>
+		<property name="forOrganisation" column="FOR_ORGANISATION" type="java.lang.Double"/>
+		<property name="forPerson" column="FOR_PERSON" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpNextActions.selectAll">
+	<![CDATA[
+		SELECT NEXT_ACTION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ACTION_CLOSED_BY,
+		       TO_CHAR(ACTION_CLOSED_DATE, 'yyyymmddhh24miss') AS ACTION_CLOSED_DATE,
+		       ACTION_COMMENTS,
+		       TO_CHAR(ACTION_DATE, 'yyyymmddhh24miss') AS ACTION_DATE,
+		       ACTION_DATE_CHANGED_COUNT,
+		       TO_CHAR(ACTION_DATE_ORIGINAL, 'yyyymmddhh24miss') AS ACTION_DATE_ORIGINAL,
+		       ACTION_STATUS,
+		       ACTION_TIME,
+		       ACTION_TYPE,
+		       ASSIGNED_PERSON_ID,
+		       FOR_ORGANISATION,
+		       FOR_PERSON,
+		       ORGANISATION_ID,
+		       PERSON_ID
+		  FROM HP_NEXT_ACTIONS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpNextActions.insert">
+	<![CDATA[
+		INSERT INTO HP_NEXT_ACTIONS (
+		       NEXT_ACTION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ACTION_CLOSED_BY,
+		       ACTION_CLOSED_DATE,
+		       ACTION_COMMENTS,
+		       ACTION_DATE,
+		       ACTION_DATE_CHANGED_COUNT,
+		       ACTION_DATE_ORIGINAL,
+		       ACTION_STATUS,
+		       ACTION_TIME,
+		       ACTION_TYPE,
+		       ASSIGNED_PERSON_ID,
+		       FOR_ORGANISATION,
+		       FOR_PERSON,
+		       ORGANISATION_ID,
+		       PERSON_ID
+		       )
+		VALUES (
+		       ${NEXT_ACTION_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ACTION_CLOSED_BY},
+		       ${ACTION_CLOSED_DATE},
+		       ${ACTION_COMMENTS},
+		       ${ACTION_DATE},
+		       ${ACTION_DATE_CHANGED_COUNT},
+		       ${ACTION_DATE_ORIGINAL},
+		       ${ACTION_STATUS},
+		       ${ACTION_TIME},
+		       ${ACTION_TYPE},
+		       ${ASSIGNED_PERSON_ID},
+		       ${FOR_ORGANISATION},
+		       ${FOR_PERSON},
+		       ${ORGANISATION_ID},
+		       ${PERSON_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpNextActions.update">
+	<![CDATA[
+		UPDATE HP_NEXT_ACTIONS
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ACTION_CLOSED_BY = ${ACTION_CLOSED_BY},
+		       ACTION_CLOSED_DATE = ${ACTION_CLOSED_DATE},
+		       ACTION_COMMENTS = ${ACTION_COMMENTS},
+		       ACTION_DATE = ${ACTION_DATE},
+		       ACTION_DATE_CHANGED_COUNT = ${ACTION_DATE_CHANGED_COUNT},
+		       ACTION_DATE_ORIGINAL = ${ACTION_DATE_ORIGINAL},
+		       ACTION_STATUS = ${ACTION_STATUS},
+		       ACTION_TIME = ${ACTION_TIME},
+		       ACTION_TYPE = ${ACTION_TYPE},
+		       ASSIGNED_PERSON_ID = ${ASSIGNED_PERSON_ID},
+		       FOR_ORGANISATION = ${FOR_ORGANISATION},
+		       FOR_PERSON = ${FOR_PERSON},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERSON_ID = ${PERSON_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpNextActions.updateColumns">
+	<![CDATA[
+		UPDATE HP_NEXT_ACTIONS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpNextActions.delete">
+	<![CDATA[
+		DELETE HP_NEXT_ACTIONS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

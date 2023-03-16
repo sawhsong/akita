@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - SYS_FAVORITE_MENU - Favorite menu by user
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.SysFavoriteMenu.getDataSetByUserId">
+	<![CDATA[
+		select smd.menu_path,
+		       smd.menu_path_name_ko,
+		       smd.menu_path_name_en,
+		       smd.menu_id as left_menu_id,
+		       smd.menu_name_ko as left_menu_name_ko,
+		       smd.menu_name_en as left_menu_name_en,
+		       smd.menu_url as left_menu_url,
+		       header_menu.menu_id as header_menu_id,
+		       header_menu.menu_name_ko as header_menu_name_ko,
+		       header_menu.menu_name_en as header_menu_name_en,
+		       header_menu.menu_url as header_menu_url
+		  from sys_favorite_menu sfm,
+		       ( select connect_by_root menu_id as root_menu,
+		                level as menu_level,
+		                connect_by_isleaf as is_leaf,
+		                substr(sys_connect_by_path(menu_id, ' > '), 4) as menu_path,
+		                substr(sys_connect_by_path(menu_name_ko, ' > '), 4) as menu_path_name_ko,
+		                substr(sys_connect_by_path(menu_name_en, ' > '), 4) as menu_path_name_en,
+		                sys_menu.*
+		           from sys_menu
+		          where is_active = 'Y'
+		        connect by prior menu_id = parent_menu_id
+		          start with parent_menu_id is null
+		          order siblings by sort_order
+		       ) smd,
+		       sys_menu header_menu
+		 where sfm.user_id = '${userId}'
+		   and header_menu.parent_menu_id is null
+		   and sfm.menu_id = smd.menu_id
+		   and smd.root_menu = header_menu.menu_id
+		 order by smd.sort_order
+	]]>
+	</sql-query>
+</hibernate-mapping>

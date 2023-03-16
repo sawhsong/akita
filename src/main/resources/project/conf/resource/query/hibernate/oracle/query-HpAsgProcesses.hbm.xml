@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_ASG_PROCESSES - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpAsgProcesses.getPayslipListByPersonId">
+	<![CDATA[
+		select hap.assignment_process_id,
+		       had.assignment_id,
+		       hap.invoice_id,
+		       hb.payment_id,
+		       had.assignment_number,
+		       per.person_id,
+		       per.person_number,
+		       per.full_name as person_name,
+		       to_char(had.assignment_start_date, '${dateFormat}') as asg_start_date,
+		       to_char(had.assignment_end_date, '${dateFormat}') as asg_end_date,
+		       to_char(hpp.period_start_date, '${dateFormat}') as period_start_date,
+		       to_char(hpp.effective_date, '${dateFormat}') as period_end_date,
+		       to_char(hb.date_earned, '${dateFormat}') as date_earned,
+		       to_char(hpp.actual_pay_date, '${dateFormat}') as actual_pay_date,
+		       (select value
+		          from hp_balance_lines hbl
+		         where hbl.assignment_action_id = hap.assignment_process_id
+		           and hbl.balance_type_id = 1
+		       ) as total_consulting_revenue,
+		       (select sum(hbl.value)
+		          from hp_balance_lines hbl,
+		               hp_balance hb,
+		               hp_balance_types hbt
+		         where hbl.assignment_action_id = hb.assignment_action_id
+		           and hb.person_id = hpd.person_id
+		           and trunc(hb.date_earned) = trunc(hb.date_earned)
+		           and hbt.balance_name in (select element_name
+		                                      from hp_elements_d
+		                                     where classifications_id in ('1', '6')
+		                                       and ear_element is null
+		                                   )
+		           and hbl.balance_type_id = hbt.balance_id
+		           and hbl.assignment_action_id = hap.assignment_process_id
+		       ) as direct_Reimbursement,
+		       (select value
+		          from hp_balance_lines hbl
+		         where hbl.assignment_action_id = hap.assignment_process_id
+		           and hbl.balance_type_id = 3
+		       ) as gross_taxable,
+		       (select sum(value)
+		          from hp_balance_lines hbl
+		         where hbl.assignment_action_id = hap.assignment_process_id
+		           and hbl.balance_type_id in (4, 1619)
+		       ) as transfered_amt,
+		       (select value
+		          from hp_balance_lines hbl,
+		               hp_balance_types hbt
+		         where hbl.assignment_action_id = hap.assignment_process_id
+		           and hbl.balance_type_id = hbt.balance_id
+		           and hbt.balance_name = 'PayG'
+		       ) payg_tax,
+		       hod.organisation_name as employment_org_name,
+		       billing_org.organisation_name as billing_org_name,
+		       asg_rate.units as asg_unit,
+		       asg_rate.amount as asg_rates,
+		       (select nvl(round(sum(nvl(units, 0)), 2), 0)
+		          from hp_invoice_details
+		         where assignment_id = had.assignment_id
+		           and invoice_id = hap.invoice_id
+		           and element_id in (select element_id from payment_element where payment_id = hb.payment_id and source = 'INVOICE_ELEMENT' and alternate_name = 'Consulting Fee')
+		       ) as units,
+		       (select nvl(round(sum(nvl(rate, 0)), 2), 0)
+		          from hp_invoice_details
+		         where assignment_id = had.assignment_id
+		           and invoice_id = hap.invoice_id
+		           and element_id in (select element_id from payment_element where payment_id = hb.payment_id and source = 'INVOICE_ELEMENT' and alternate_name = 'Consulting Fee')
+		       ) as rates,
+		       (select nvl(round(sum(nvl(units, 0)), 2), 0)
+		          from hp_invoice_details
+		         where assignment_id = had.assignment_id
+		           and invoice_id = hap.invoice_id
+		           and element_id in (select element_id from payment_element where payment_id = hb.payment_id and source = 'INVOICE_ELEMENT' and alternate_name <> 'Consulting Fee')
+		       ) as units_overtime_leave,
+		       (select nvl(round(sum(nvl(rate, 0)), 2), 0)
+		          from hp_invoice_details
+		         where assignment_id = had.assignment_id
+		           and invoice_id = hap.invoice_id
+		           and element_id in (select element_id from payment_element where payment_id = hb.payment_id and source = 'INVOICE_ELEMENT' and alternate_name <> 'Consulting Fee')
+		       ) as rates_overtime_leave,
+		       pay.payroll_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAYROLL_TYPES' and lookup_code = pay.payroll_type) as payroll_type_meaning,
+		       hod.tax_invoice_acceptance_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'TAX_INVOICE_ACCEPTANCE_TYPE' and lookup_code = hod.tax_invoice_acceptance_type) as tax_invoice_acceptance_type_meaning,
+		       hod.accept_rcti,
+		       (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.payslip_template_id) as payslip_template_name,
+		       (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.rcti_template_id) as rcti_template_name,
+		       (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.remittance_advice_template_id) as remittance_template_name,
+		       case when pay.payroll_type is not null then
+		                 case
+		                      when pay.payroll_type = 'ICRCTI' or pay.payroll_type = 'ICNRCTI' then
+		                           (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.rcti_template_id)
+		                      when pay.payroll_type = 'STG' or pay.payroll_type = 'STNG' then
+		                           case when hod.accept_rcti = 'Y' then
+		                                     (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.rcti_template_id)
+		                                else (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.remittance_advice_template_id)
+		                           end
+		                      else (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.payslip_template_id)
+		                 end
+		            else (select template_name from hp_remittance_advice_template where remittance_advice_template_id = hbc.payslip_template_id)
+		       end as template_name
+		  from hp_asg_processes hap,
+		       hp_balance hb,
+		       payment pay,
+		       hp_assignments_d had,
+		       hp_person_d hpd,
+		       hp_payroll_processes hpp,
+		       hp_organisation_d hod,
+		       hp_organisation_d billing_org,
+		       hp_assignment_rates asg_rate,
+		       hp_billing_code hbc,
+		       hp_person_d per
+		 where 1 = 1
+		 ${where_clause}
+		   and hap.process_status = 'S'
+		   and asg_rate.preferred = 'Y'
+		   and hpp.effective_date between hpd.from_date and hpd.to_date
+		   and hpp.effective_date between hod.from_date and hod.to_date
+		   and hap.assignment_process_id = hb.assignment_action_id
+		   and hap.payment_id = pay.payment_id
+		   and hap.assignment_id = had.assignment_id
+		   and hap.payroll_process_id = hpp.payroll_process_id
+		   and hb.person_id = hpd.person_id
+		   and had.assignment_id = asg_rate.assigment_id
+		   and hb.tax_unit_id = hod.organisation_id
+		   and had.billing_organisation_id = billing_org.organisation_id
+		   and had.billing_code_id = hbc.billing_code_id
+		   and hb.person_id = per.person_id(+)
+		 order by hpp.actual_pay_date desc, per.full_name
+	]]>
+	</sql-query>
+</hibernate-mapping>

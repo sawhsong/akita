@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - EO_EXPENSE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.EoExpense" table="EO_EXPENSE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="eoExpenseId" column="EO_EXPENSE_ID" type="java.lang.Double"></id>
+
+		<property name="approverId" column="APPROVER_ID" not-null="true" type="java.lang.Double"/>
+		<property name="assignmentId" column="ASSIGNMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="approveRejectComments" column="APPROVE_REJECT_COMMENTS" type="java.lang.String" length="2000"/>
+		<property name="approveRejectDateTime" column="APPROVE_REJECT_DATE_TIME" type="java.util.Date"/>
+		<property name="approveRejectIp" column="APPROVE_REJECT_IP" type="java.lang.String" length="30"/>
+		<property name="approveRejectPersonId" column="APPROVE_REJECT_PERSON_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="1000"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="50"/>
+		<property name="submitDateTime" column="SUBMIT_DATE_TIME" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="eoExpense.selectAll">
+	<![CDATA[
+		SELECT EO_EXPENSE_ID,
+		       APPROVER_ID,
+		       ASSIGNMENT_ID,
+		       APPROVE_REJECT_COMMENTS,
+		       TO_CHAR(APPROVE_REJECT_DATE_TIME, 'yyyymmddhh24miss') AS APPROVE_REJECT_DATE_TIME,
+		       APPROVE_REJECT_IP,
+		       APPROVE_REJECT_PERSON_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DESCRIPTION,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       STATUS,
+		       TO_CHAR(SUBMIT_DATE_TIME, 'yyyymmddhh24miss') AS SUBMIT_DATE_TIME
+		  FROM EO_EXPENSE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpense.insert">
+	<![CDATA[
+		INSERT INTO EO_EXPENSE (
+		       EO_EXPENSE_ID,
+		       APPROVER_ID,
+		       ASSIGNMENT_ID,
+		       APPROVE_REJECT_COMMENTS,
+		       APPROVE_REJECT_DATE_TIME,
+		       APPROVE_REJECT_IP,
+		       APPROVE_REJECT_PERSON_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DESCRIPTION,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       STATUS,
+		       SUBMIT_DATE_TIME
+		       )
+		VALUES (
+		       ${EO_EXPENSE_ID},
+		       ${APPROVER_ID},
+		       ${ASSIGNMENT_ID},
+		       ${APPROVE_REJECT_COMMENTS},
+		       ${APPROVE_REJECT_DATE_TIME},
+		       ${APPROVE_REJECT_IP},
+		       ${APPROVE_REJECT_PERSON_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DESCRIPTION},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${STATUS},
+		       ${SUBMIT_DATE_TIME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpense.update">
+	<![CDATA[
+		UPDATE EO_EXPENSE
+		   SET APPROVER_ID = ${APPROVER_ID},
+		       ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       APPROVE_REJECT_COMMENTS = ${APPROVE_REJECT_COMMENTS},
+		       APPROVE_REJECT_DATE_TIME = ${APPROVE_REJECT_DATE_TIME},
+		       APPROVE_REJECT_IP = ${APPROVE_REJECT_IP},
+		       APPROVE_REJECT_PERSON_ID = ${APPROVE_REJECT_PERSON_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       STATUS = ${STATUS},
+		       SUBMIT_DATE_TIME = ${SUBMIT_DATE_TIME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpense.updateColumns">
+	<![CDATA[
+		UPDATE EO_EXPENSE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpense.delete">
+	<![CDATA[
+		DELETE EO_EXPENSE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

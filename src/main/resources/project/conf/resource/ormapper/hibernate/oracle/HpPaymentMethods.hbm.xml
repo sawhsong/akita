@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_PAYMENT_METHODS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpPaymentMethods" table="HP_PAYMENT_METHODS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="payMethodId" column="PAY_METHOD_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="accountName" column="ACCOUNT_NAME" type="java.lang.String" length="100"/>
+		<property name="accountNumber" column="ACCOUNT_NUMBER" type="java.lang.String" length="50"/>
+		<property name="accountType" column="ACCOUNT_TYPE" type="java.lang.String" length="50"/>
+		<property name="apcaIdentificationNo" column="APCA_IDENTIFICATION_NO" type="java.lang.String" length="300"/>
+		<property name="bankBranch" column="BANK_BRANCH" type="java.lang.String" length="100"/>
+		<property name="bankName" column="BANK_NAME" type="java.lang.String" length="100"/>
+		<property name="bsbNumber" column="BSB_NUMBER" type="java.lang.String" length="10"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="name" column="NAME" type="java.lang.String" length="100"/>
+		<property name="nameOfUser" column="NAME_OF_USER" type="java.lang.String" length="300"/>
+		<property name="paymentType" column="PAYMENT_TYPE" type="java.lang.String" length="50"/>
+		<property name="selfDebit" column="SELF_DEBIT" type="java.lang.Double"/>
+		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		<property name="userFinancialInst" column="USER_FINANCIAL_INST" type="java.lang.String" length="300"/>
+	</class>
+
+	<sql-query name="hpPaymentMethods.selectAll">
+	<![CDATA[
+		SELECT PAY_METHOD_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ACCOUNT_NAME,
+		       ACCOUNT_NUMBER,
+		       ACCOUNT_TYPE,
+		       APCA_IDENTIFICATION_NO,
+		       BANK_BRANCH,
+		       BANK_NAME,
+		       BSB_NUMBER,
+		       BUSINESS_GROUP_ID,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       NAME,
+		       NAME_OF_USER,
+		       PAYMENT_TYPE,
+		       SELF_DEBIT,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       USER_FINANCIAL_INST
+		  FROM HP_PAYMENT_METHODS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentMethods.insert">
+	<![CDATA[
+		INSERT INTO HP_PAYMENT_METHODS (
+		       PAY_METHOD_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ACCOUNT_NAME,
+		       ACCOUNT_NUMBER,
+		       ACCOUNT_TYPE,
+		       APCA_IDENTIFICATION_NO,
+		       BANK_BRANCH,
+		       BANK_NAME,
+		       BSB_NUMBER,
+		       BUSINESS_GROUP_ID,
+		       FROM_DATE,
+		       NAME,
+		       NAME_OF_USER,
+		       PAYMENT_TYPE,
+		       SELF_DEBIT,
+		       TO_DATE,
+		       USER_FINANCIAL_INST
+		       )
+		VALUES (
+		       ${PAY_METHOD_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ACCOUNT_NAME},
+		       ${ACCOUNT_NUMBER},
+		       ${ACCOUNT_TYPE},
+		       ${APCA_IDENTIFICATION_NO},
+		       ${BANK_BRANCH},
+		       ${BANK_NAME},
+		       ${BSB_NUMBER},
+		       ${BUSINESS_GROUP_ID},
+		       ${FROM_DATE},
+		       ${NAME},
+		       ${NAME_OF_USER},
+		       ${PAYMENT_TYPE},
+		       ${SELF_DEBIT},
+		       ${TO_DATE},
+		       ${USER_FINANCIAL_INST}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentMethods.update">
+	<![CDATA[
+		UPDATE HP_PAYMENT_METHODS
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ACCOUNT_NAME = ${ACCOUNT_NAME},
+		       ACCOUNT_NUMBER = ${ACCOUNT_NUMBER},
+		       ACCOUNT_TYPE = ${ACCOUNT_TYPE},
+		       APCA_IDENTIFICATION_NO = ${APCA_IDENTIFICATION_NO},
+		       BANK_BRANCH = ${BANK_BRANCH},
+		       BANK_NAME = ${BANK_NAME},
+		       BSB_NUMBER = ${BSB_NUMBER},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       FROM_DATE = ${FROM_DATE},
+		       NAME = ${NAME},
+		       NAME_OF_USER = ${NAME_OF_USER},
+		       PAYMENT_TYPE = ${PAYMENT_TYPE},
+		       SELF_DEBIT = ${SELF_DEBIT},
+		       TO_DATE = ${TO_DATE},
+		       USER_FINANCIAL_INST = ${USER_FINANCIAL_INST}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentMethods.updateColumns">
+	<![CDATA[
+		UPDATE HP_PAYMENT_METHODS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentMethods.delete">
+	<![CDATA[
+		DELETE HP_PAYMENT_METHODS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

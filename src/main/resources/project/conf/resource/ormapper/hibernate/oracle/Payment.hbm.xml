@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PAYMENT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.Payment" table="PAYMENT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="paymentId" column="PAYMENT_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="grossAmount" column="GROSS_AMOUNT" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="netAmount" column="NET_AMOUNT" not-null="true" type="java.lang.Double"/>
+		<property name="paymentDate" column="PAYMENT_DATE" not-null="true" type="java.util.Date"/>
+		<property name="periodEnd" column="PERIOD_END" not-null="true" type="java.util.Date"/>
+		<property name="periodStart" column="PERIOD_START" not-null="true" type="java.util.Date"/>
+		<property name="source" column="SOURCE" not-null="true" type="java.lang.String" length="25"/>
+		<property name="sourceId" column="SOURCE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="status" column="STATUS" not-null="true" type="java.lang.String" length="1"/>
+		<property name="cessationDate" column="CESSATION_DATE" type="java.util.Date"/>
+		<property name="cessationType" column="CESSATION_TYPE" type="java.lang.String" length="50"/>
+		<property name="payrollType" column="PAYROLL_TYPE" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="payment.selectAll">
+	<![CDATA[
+		SELECT PAYMENT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       GROSS_AMOUNT,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       NET_AMOUNT,
+		       TO_CHAR(PAYMENT_DATE, 'yyyymmddhh24miss') AS PAYMENT_DATE,
+		       TO_CHAR(PERIOD_END, 'yyyymmddhh24miss') AS PERIOD_END,
+		       TO_CHAR(PERIOD_START, 'yyyymmddhh24miss') AS PERIOD_START,
+		       SOURCE,
+		       SOURCE_ID,
+		       STATUS,
+		       TO_CHAR(CESSATION_DATE, 'yyyymmddhh24miss') AS CESSATION_DATE,
+		       CESSATION_TYPE,
+		       PAYROLL_TYPE
+		  FROM PAYMENT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="payment.insert">
+	<![CDATA[
+		INSERT INTO PAYMENT (
+		       PAYMENT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       GROSS_AMOUNT,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       NET_AMOUNT,
+		       PAYMENT_DATE,
+		       PERIOD_END,
+		       PERIOD_START,
+		       SOURCE,
+		       SOURCE_ID,
+		       STATUS,
+		       CESSATION_DATE,
+		       CESSATION_TYPE,
+		       PAYROLL_TYPE
+		       )
+		VALUES (
+		       ${PAYMENT_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${GROSS_AMOUNT},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${NET_AMOUNT},
+		       ${PAYMENT_DATE},
+		       ${PERIOD_END},
+		       ${PERIOD_START},
+		       ${SOURCE},
+		       ${SOURCE_ID},
+		       ${STATUS},
+		       ${CESSATION_DATE},
+		       ${CESSATION_TYPE},
+		       ${PAYROLL_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="payment.update">
+	<![CDATA[
+		UPDATE PAYMENT
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       GROSS_AMOUNT = ${GROSS_AMOUNT},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       NET_AMOUNT = ${NET_AMOUNT},
+		       PAYMENT_DATE = ${PAYMENT_DATE},
+		       PERIOD_END = ${PERIOD_END},
+		       PERIOD_START = ${PERIOD_START},
+		       SOURCE = ${SOURCE},
+		       SOURCE_ID = ${SOURCE_ID},
+		       STATUS = ${STATUS},
+		       CESSATION_DATE = ${CESSATION_DATE},
+		       CESSATION_TYPE = ${CESSATION_TYPE},
+		       PAYROLL_TYPE = ${PAYROLL_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="payment.updateColumns">
+	<![CDATA[
+		UPDATE PAYMENT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="payment.delete">
+	<![CDATA[
+		DELETE PAYMENT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

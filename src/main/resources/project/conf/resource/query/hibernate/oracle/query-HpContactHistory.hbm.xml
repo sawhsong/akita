@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_CONTACT_HISTORY - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpContactHistory.getContactHistoryForPersonalInfoByPersonId">
+	<![CDATA[
+		with src as (
+			select hpch.contact_date as contact_date,
+			       hpch.contact_time as contact_time,
+			       (select full_name from hp_person_d where person_id = hpch.entity_employee_id) as entity_employee_name,
+			       (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = hpch.activity_type) as activity_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = hpch.contact_type) as contact_type,
+			       copy_to_person.person_name as copy_to_person_name,
+			       copy_to_org.org_name as copy_to_org_name,
+			       hp_contact_history_api.getlongvalue(hpch.contact_id) as comments
+			  from hp_comms_person_link hcpl,
+			       hp_contact_history hpch,
+			       (select a.contact_id,
+			               listagg(b.full_name, ' - ') within group(order by a.is_primary desc, b.full_name) person_name
+			          from hp_comms_person_link a,
+			               hp_person_d b
+			         where a.contact_id in (select contact_id from hp_comms_person_link where person_id = '${personId}')
+			           and a.person_id = b.person_id
+			         group by a.contact_id
+			       ) copy_to_person,
+			       (select a.contact_id,
+			               listagg(b.organisation_name, ' - ') within group(order by a.is_primary desc, b.organisation_name) org_name
+			          from hp_comms_org_link a,
+			               hp_organisation_d b
+			         where a.contact_id in (select contact_id from hp_comms_person_link where person_id = '${personId}')
+			           and a.organisation_id = b.organisation_id
+			         group by a.contact_id
+			       ) copy_to_org
+			 where hcpl.person_id = '${personId}'
+			   and hcpl.contact_id = hpch.contact_id(+)
+			   and hcpl.contact_id = copy_to_person.contact_id(+)
+			   and hcpl.contact_id = copy_to_org.contact_id(+)
+			union
+			select hpch.contact_date as contact_date,
+			       hpch.contact_time as contact_time,
+			       (select full_name from hp_person_d where person_id = hpch.entity_employee_id) as entity_employee_name,
+			       (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = hpch.activity_type) as activity_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = hpch.contact_type) as contact_type,
+			       copy_to_person.person_name as copy_to_person_name,
+			       copy_to_org.org_name as copy_to_org_name,
+			       hp_contact_history_api.getlongvalue(hpch.contact_id) as comments
+			  from hp_contact_history hpch,
+			       (select a.contact_id,
+			               listagg(b.full_name, ' - ') within group(order by a.is_primary desc, b.full_name) person_name
+			          from hp_comms_person_link a,
+			               hp_person_d b
+			         where a.contact_id in (select contact_id from hp_contact_history where entity_employee_id = '${personId}')
+			           and a.person_id = b.person_id
+			         group by a.contact_id
+			       ) copy_to_person,
+			       (select a.contact_id,
+			               listagg(b.organisation_name, ' - ') within group(order by a.is_primary desc, b.organisation_name) org_name
+			          from hp_comms_org_link a,
+			               hp_organisation_d b
+			         where a.contact_id in (select contact_id from hp_contact_history where entity_employee_id = '${personId}')
+			           and a.organisation_id = b.organisation_id
+			         group by a.contact_id
+			       ) copy_to_org
+			 where hpch.entity_employee_id = '${personId}'
+			   and hpch.contact_id = copy_to_person.contact_id(+)
+			   and hpch.contact_id = copy_to_org.contact_id(+)
+			 order by contact_date desc,
+			       contact_time desc,
+			       contact_type,
+			       activity_type
+		)
+		select to_char(contact_date, '${dateFormat}') || ' ' || contact_time || ' | ' || entity_employee_name || ' | ' || activity_type || ' | ' || contact_type || ' | ' || copy_to_person_name || ' | ' || copy_to_org_name as con_date, comments
+		  from src
+		 where rownum <= 50
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpContactHistory.getContactHistoryForCommunicationListByPersonId">
+	<![CDATA[
+		with src as (
+			select mst.contact_id,
+			       hch.contact_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = hch.contact_type) as contact_type_meaning,
+			       hch.activity_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = hch.activity_type) as activity_type_meaning,
+			       to_char(hch.contact_date, '${dateFormat}') || ' ' || nvl(hch.contact_time, '00:00') as contact_date_time,
+			       hp_contact_history_api.getlongvalue(mst.contact_id) as comments,
+			       hch.entity_employee_id,
+			       (select full_name from hp_person_d where person_id = hch.entity_employee_id) as entity_employee_name
+			  from hp_comms_person_link mst,
+			       hp_contact_history hch
+			 where 1 = 1
+			   and mst.contact_id = hch.contact_id
+			   and mst.person_id = '${personId}'
+			union
+			select hch.contact_id,
+			       hch.contact_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = hch.contact_type) as contact_type_meaning,
+			       hch.activity_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = hch.activity_type) as activity_type_meaning,
+			       to_char(hch.contact_date, '${dateFormat}') || ' ' || nvl(hch.contact_time, '00:00') as contact_date_time,
+			       hp_contact_history_api.getlongvalue(hch.contact_id) as comments,
+			       hch.entity_employee_id,
+			       (select full_name from hp_person_d where person_id = hch.entity_employee_id) as entity_employee_name
+			  from hp_contact_history hch
+			 where 1 = 1
+			   and entity_employee_id = '${personId}'
+		)
+		select *
+		  from src
+		 order by to_date(contact_date_time, '${dateFormat} hh24:mi') desc,
+		       contact_id desc
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpContactHistory.getDataSetForOrgCommsHistoryByOrganisationId">
+	<![CDATA[
+		select *
+		  from (select contact.contact_id,
+		               contact.contact_type,
+		               (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = contact.contact_type) as contact_type_meaning,
+		               contact.activity_type,
+		               (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = contact.activity_type) as activity_type_meaning,
+		               to_char(contact.contact_date, '${dateFormat}') as contact_date,
+		               contact.entity_employee_id,
+		               (select full_name from hp_person_d where person_id = contact.entity_employee_id) as entity_employee_name,
+		               contact.copy_to_person,
+		               contact.copy_to_organisation,
+		               contact.comments,
+		               contact.person_id,
+		               contact.organisation_id,
+		               contact.contact_time
+		          from hp_comms_org_link orglink,
+		               hp_contact_history contact
+		         where orglink.organisation_id = '${organisationId}'
+		           and orglink.contact_id = contact.contact_id
+		         order by contact.contact_date desc,
+		               contact.contact_time desc,
+		               contact.contact_type,
+		               contact.activity_type
+		       )
+		 where rownum <= ${numberOfRows}
+	]]>
+	</sql-query>
+</hibernate-mapping>

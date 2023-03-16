@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--Qm10 - Select Database-->
+    <bean class="${name.package.project}.app.qm.qm10.Qm10Action" id="qm10Action" name="qm10Action"/>
+    <bean class="${name.package.project}.app.qm.qm10.Qm10BizImpl" id="qm10Biz" name="qm10Biz" parent="baseBiz"/>
+    <!--Qm20 - Find Person-->
+    <bean class="${name.package.project}.app.qm.qm20.Qm20Action" id="qm20Action" name="qm20Action"/>
+    <bean class="${name.package.project}.app.qm.qm20.Qm20BizImpl" id="qm20Biz" name="qm20Biz" parent="baseBiz"/>
+    <!--Qm30 - Find Organisation-->
+    <bean class="${name.package.project}.app.qm.qm30.Qm30Action" id="qm30Action" name="qm30Action"/>
+    <bean class="${name.package.project}.app.qm.qm30.Qm30BizImpl" id="qm30Biz" name="qm30Biz" parent="baseBiz"/>
+    <!--Qm40 - Find Assignment-->
+    <bean class="${name.package.project}.app.qm.qm40.Qm40Action" id="qm40Action" name="qm40Action"/>
+    <bean class="${name.package.project}.app.qm.qm40.Qm40BizImpl" id="qm40Biz" name="qm40Biz" parent="baseBiz"/>
+</beans>

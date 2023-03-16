@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_BALANCE_LINES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpBalanceLines" table="HP_BALANCE_LINES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="assignmentActionId" column="ASSIGNMENT_ACTION_ID" type="java.lang.Double"/>
+		<property name="balanceLineId" column="BALANCE_LINE_ID" type="java.lang.Double"/>
+		<property name="balanceTypeId" column="BALANCE_TYPE_ID" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="dbItemSuffix" column="DB_ITEM_SUFFIX" type="java.lang.String" length="30"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="jurisdictionCode" column="JURISDICTION_CODE" type="java.lang.String" length="20"/>
+		<property name="mtd" column="MTD" type="java.lang.Double"/>
+		<property name="paymentId" column="PAYMENT_ID" type="java.lang.Double"/>
+		<property name="ptd" column="PTD" type="java.lang.Double"/>
+		<property name="qtd" column="QTD" type="java.lang.Double"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="1"/>
+		<property name="taxBalanceId" column="TAX_BALANCE_ID" type="java.lang.Double"/>
+		<property name="value" column="VALUE" type="java.lang.Double"/>
+		<property name="ytd" column="YTD" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpBalanceLines.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_ACTION_ID,
+		       BALANCE_LINE_ID,
+		       BALANCE_TYPE_ID,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DB_ITEM_SUFFIX,
+		       ELEMENT_ID,
+		       JURISDICTION_CODE,
+		       MTD,
+		       PAYMENT_ID,
+		       PTD,
+		       QTD,
+		       STATUS,
+		       TAX_BALANCE_ID,
+		       VALUE,
+		       YTD
+		  FROM HP_BALANCE_LINES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceLines.insert">
+	<![CDATA[
+		INSERT INTO HP_BALANCE_LINES (
+		       ASSIGNMENT_ACTION_ID,
+		       BALANCE_LINE_ID,
+		       BALANCE_TYPE_ID,
+		       CREATION_DATE,
+		       DB_ITEM_SUFFIX,
+		       ELEMENT_ID,
+		       JURISDICTION_CODE,
+		       MTD,
+		       PAYMENT_ID,
+		       PTD,
+		       QTD,
+		       STATUS,
+		       TAX_BALANCE_ID,
+		       VALUE,
+		       YTD
+		       )
+		VALUES (
+		       ${ASSIGNMENT_ACTION_ID},
+		       ${BALANCE_LINE_ID},
+		       ${BALANCE_TYPE_ID},
+		       ${CREATION_DATE},
+		       ${DB_ITEM_SUFFIX},
+		       ${ELEMENT_ID},
+		       ${JURISDICTION_CODE},
+		       ${MTD},
+		       ${PAYMENT_ID},
+		       ${PTD},
+		       ${QTD},
+		       ${STATUS},
+		       ${TAX_BALANCE_ID},
+		       ${VALUE},
+		       ${YTD}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceLines.update">
+	<![CDATA[
+		UPDATE HP_BALANCE_LINES
+		   SET ASSIGNMENT_ACTION_ID = ${ASSIGNMENT_ACTION_ID},
+		       BALANCE_LINE_ID = ${BALANCE_LINE_ID},
+		       BALANCE_TYPE_ID = ${BALANCE_TYPE_ID},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DB_ITEM_SUFFIX = ${DB_ITEM_SUFFIX},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       JURISDICTION_CODE = ${JURISDICTION_CODE},
+		       MTD = ${MTD},
+		       PAYMENT_ID = ${PAYMENT_ID},
+		       PTD = ${PTD},
+		       QTD = ${QTD},
+		       STATUS = ${STATUS},
+		       TAX_BALANCE_ID = ${TAX_BALANCE_ID},
+		       VALUE = ${VALUE},
+		       YTD = ${YTD}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceLines.updateColumns">
+	<![CDATA[
+		UPDATE HP_BALANCE_LINES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceLines.delete">
+	<![CDATA[
+		DELETE HP_BALANCE_LINES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

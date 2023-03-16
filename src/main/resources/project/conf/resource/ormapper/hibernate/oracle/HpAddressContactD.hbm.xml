@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ADDRESS_CONTACT_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAddressContactD" table="HP_ADDRESS_CONTACT_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="addressId" column="ADDRESS_ID" type="java.lang.Double"></id>
+
+		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="fromDate" column="FROM_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="toDate" column="TO_DATE" not-null="true" type="java.util.Date"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="emailHome" column="EMAIL_HOME" type="java.lang.String" length="100"/>
+		<property name="emailWork" column="EMAIL_WORK" type="java.lang.String" length="100"/>
+		<property name="emerContactAddressLine" column="EMER_CONTACT_ADDRESS_LINE" type="java.lang.String" length="200"/>
+		<property name="emerContactCountry" column="EMER_CONTACT_COUNTRY" type="java.lang.String" length="30"/>
+		<property name="emerContactEmail" column="EMER_CONTACT_EMAIL" type="java.lang.String" length="100"/>
+		<property name="emerContactName" column="EMER_CONTACT_NAME" type="java.lang.String" length="150"/>
+		<property name="emerContactPhone" column="EMER_CONTACT_PHONE" type="java.lang.String" length="50"/>
+		<property name="emerContactPostCode" column="EMER_CONTACT_POST_CODE" type="java.lang.String" length="30"/>
+		<property name="emerContactRelationship" column="EMER_CONTACT_RELATIONSHIP" type="java.lang.String" length="30"/>
+		<property name="emerContactState" column="EMER_CONTACT_STATE" type="java.lang.String" length="30"/>
+		<property name="emerContactSuburb" column="EMER_CONTACT_SUBURB" type="java.lang.String" length="50"/>
+		<property name="exclFrmBulkEmail" column="EXCL_FRM_BULK_EMAIL" type="java.lang.String" length="1"/>
+		<property name="executiveRelation" column="EXECUTIVE_RELATION" type="java.lang.String" length="5"/>
+		<property name="faxHome" column="FAX_HOME" type="java.lang.String" length="50"/>
+		<property name="faxWork" column="FAX_WORK" type="java.lang.String" length="100"/>
+		<property name="homeAddressLine" column="HOME_ADDRESS_LINE" type="java.lang.String" length="200"/>
+		<property name="homeCountry" column="HOME_COUNTRY" type="java.lang.String" length="50"/>
+		<property name="homePostCode" column="HOME_POST_CODE" type="java.lang.String" length="30"/>
+		<property name="homeState" column="HOME_STATE" type="java.lang.String" length="30"/>
+		<property name="homeSuburb" column="HOME_SUBURB" type="java.lang.String" length="50"/>
+		<property name="operationalRelation" column="OPERATIONAL_RELATION" type="java.lang.String" length="5"/>
+		<property name="otherAddressLine" column="OTHER_ADDRESS_LINE" type="java.lang.String" length="200"/>
+		<property name="otherCountry" column="OTHER_COUNTRY" type="java.lang.String" length="30"/>
+		<property name="otherPostCode" column="OTHER_POST_CODE" type="java.lang.String" length="30"/>
+		<property name="otherState" column="OTHER_STATE" type="java.lang.String" length="30"/>
+		<property name="otherSuburb" column="OTHER_SUBURB" type="java.lang.String" length="50"/>
+		<property name="preferred" column="PREFERRED" type="java.lang.String" length="1"/>
+		<property name="telephoneHome" column="TELEPHONE_HOME" type="java.lang.String" length="50"/>
+		<property name="telephoneMobile" column="TELEPHONE_MOBILE" type="java.lang.String" length="50"/>
+		<property name="telephoneWork" column="TELEPHONE_WORK" type="java.lang.String" length="50"/>
+	</class>
+
+	<sql-query name="hpAddressContactD.selectAll">
+	<![CDATA[
+		SELECT ADDRESS_ID,
+		       PERSON_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       BUSINESS_GROUP_ID,
+		       EMAIL_HOME,
+		       EMAIL_WORK,
+		       EMER_CONTACT_ADDRESS_LINE,
+		       EMER_CONTACT_COUNTRY,
+		       EMER_CONTACT_EMAIL,
+		       EMER_CONTACT_NAME,
+		       EMER_CONTACT_PHONE,
+		       EMER_CONTACT_POST_CODE,
+		       EMER_CONTACT_RELATIONSHIP,
+		       EMER_CONTACT_STATE,
+		       EMER_CONTACT_SUBURB,
+		       EXCL_FRM_BULK_EMAIL,
+		       EXECUTIVE_RELATION,
+		       FAX_HOME,
+		       FAX_WORK,
+		       HOME_ADDRESS_LINE,
+		       HOME_COUNTRY,
+		       HOME_POST_CODE,
+		       HOME_STATE,
+		       HOME_SUBURB,
+		       OPERATIONAL_RELATION,
+		       OTHER_ADDRESS_LINE,
+		       OTHER_COUNTRY,
+		       OTHER_POST_CODE,
+		       OTHER_STATE,
+		       OTHER_SUBURB,
+		       PREFERRED,
+		       TELEPHONE_HOME,
+		       TELEPHONE_MOBILE,
+		       TELEPHONE_WORK
+		  FROM HP_ADDRESS_CONTACT_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAddressContactD.insert">
+	<![CDATA[
+		INSERT INTO HP_ADDRESS_CONTACT_D (
+		       ADDRESS_ID,
+		       PERSON_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       FROM_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       TO_DATE,
+		       BUSINESS_GROUP_ID,
+		       EMAIL_HOME,
+		       EMAIL_WORK,
+		       EMER_CONTACT_ADDRESS_LINE,
+		       EMER_CONTACT_COUNTRY,
+		       EMER_CONTACT_EMAIL,
+		       EMER_CONTACT_NAME,
+		       EMER_CONTACT_PHONE,
+		       EMER_CONTACT_POST_CODE,
+		       EMER_CONTACT_RELATIONSHIP,
+		       EMER_CONTACT_STATE,
+		       EMER_CONTACT_SUBURB,
+		       EXCL_FRM_BULK_EMAIL,
+		       EXECUTIVE_RELATION,
+		       FAX_HOME,
+		       FAX_WORK,
+		       HOME_ADDRESS_LINE,
+		       HOME_COUNTRY,
+		       HOME_POST_CODE,
+		       HOME_STATE,
+		       HOME_SUBURB,
+		       OPERATIONAL_RELATION,
+		       OTHER_ADDRESS_LINE,
+		       OTHER_COUNTRY,
+		       OTHER_POST_CODE,
+		       OTHER_STATE,
+		       OTHER_SUBURB,
+		       PREFERRED,
+		       TELEPHONE_HOME,
+		       TELEPHONE_MOBILE,
+		       TELEPHONE_WORK
+		       )
+		VALUES (
+		       ${ADDRESS_ID},
+		       ${PERSON_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${FROM_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${TO_DATE},
+		       ${BUSINESS_GROUP_ID},
+		       ${EMAIL_HOME},
+		       ${EMAIL_WORK},
+		       ${EMER_CONTACT_ADDRESS_LINE},
+		       ${EMER_CONTACT_COUNTRY},
+		       ${EMER_CONTACT_EMAIL},
+		       ${EMER_CONTACT_NAME},
+		       ${EMER_CONTACT_PHONE},
+		       ${EMER_CONTACT_POST_CODE},
+		       ${EMER_CONTACT_RELATIONSHIP},
+		       ${EMER_CONTACT_STATE},
+		       ${EMER_CONTACT_SUBURB},
+		       ${EXCL_FRM_BULK_EMAIL},
+		       ${EXECUTIVE_RELATION},
+		       ${FAX_HOME},
+		       ${FAX_WORK},
+		       ${HOME_ADDRESS_LINE},
+		       ${HOME_COUNTRY},
+		       ${HOME_POST_CODE},
+		       ${HOME_STATE},
+		       ${HOME_SUBURB},
+		       ${OPERATIONAL_RELATION},
+		       ${OTHER_ADDRESS_LINE},
+		       ${OTHER_COUNTRY},
+		       ${OTHER_POST_CODE},
+		       ${OTHER_STATE},
+		       ${OTHER_SUBURB},
+		       ${PREFERRED},
+		       ${TELEPHONE_HOME},
+		       ${TELEPHONE_MOBILE},
+		       ${TELEPHONE_WORK}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAddressContactD.update">
+	<![CDATA[
+		UPDATE HP_ADDRESS_CONTACT_D
+		   SET PERSON_ID = ${PERSON_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       FROM_DATE = ${FROM_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       TO_DATE = ${TO_DATE},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       EMAIL_HOME = ${EMAIL_HOME},
+		       EMAIL_WORK = ${EMAIL_WORK},
+		       EMER_CONTACT_ADDRESS_LINE = ${EMER_CONTACT_ADDRESS_LINE},
+		       EMER_CONTACT_COUNTRY = ${EMER_CONTACT_COUNTRY},
+		       EMER_CONTACT_EMAIL = ${EMER_CONTACT_EMAIL},
+		       EMER_CONTACT_NAME = ${EMER_CONTACT_NAME},
+		       EMER_CONTACT_PHONE = ${EMER_CONTACT_PHONE},
+		       EMER_CONTACT_POST_CODE = ${EMER_CONTACT_POST_CODE},
+		       EMER_CONTACT_RELATIONSHIP = ${EMER_CONTACT_RELATIONSHIP},
+		       EMER_CONTACT_STATE = ${EMER_CONTACT_STATE},
+		       EMER_CONTACT_SUBURB = ${EMER_CONTACT_SUBURB},
+		       EXCL_FRM_BULK_EMAIL = ${EXCL_FRM_BULK_EMAIL},
+		       EXECUTIVE_RELATION = ${EXECUTIVE_RELATION},
+		       FAX_HOME = ${FAX_HOME},
+		       FAX_WORK = ${FAX_WORK},
+		       HOME_ADDRESS_LINE = ${HOME_ADDRESS_LINE},
+		       HOME_COUNTRY = ${HOME_COUNTRY},
+		       HOME_POST_CODE = ${HOME_POST_CODE},
+		       HOME_STATE = ${HOME_STATE},
+		       HOME_SUBURB = ${HOME_SUBURB},
+		       OPERATIONAL_RELATION = ${OPERATIONAL_RELATION},
+		       OTHER_ADDRESS_LINE = ${OTHER_ADDRESS_LINE},
+		       OTHER_COUNTRY = ${OTHER_COUNTRY},
+		       OTHER_POST_CODE = ${OTHER_POST_CODE},
+		       OTHER_STATE = ${OTHER_STATE},
+		       OTHER_SUBURB = ${OTHER_SUBURB},
+		       PREFERRED = ${PREFERRED},
+		       TELEPHONE_HOME = ${TELEPHONE_HOME},
+		       TELEPHONE_MOBILE = ${TELEPHONE_MOBILE},
+		       TELEPHONE_WORK = ${TELEPHONE_WORK}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAddressContactD.updateColumns">
+	<![CDATA[
+		UPDATE HP_ADDRESS_CONTACT_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAddressContactD.delete">
+	<![CDATA[
+		DELETE HP_ADDRESS_CONTACT_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

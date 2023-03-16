@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WC_SA_ORG_CODE_RATE_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WcSaOrgCodeRateLink" table="WC_SA_ORG_CODE_RATE_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="addressLine" column="ADDRESS_LINE" type="java.lang.String" length="200"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" length="50"/>
+		<property name="industryRateId" column="INDUSTRY_RATE_ID" type="java.lang.Double"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="linkId" column="LINK_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="postCode" column="POST_CODE" type="java.lang.String" length="10"/>
+		<property name="state" column="STATE" type="java.lang.String" length="50"/>
+		<property name="suburb" column="SUBURB" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="wcSaOrgCodeRateLink.selectAll">
+	<![CDATA[
+		SELECT ADDRESS_LINE,
+		       COMMENTS,
+		       COUNTRY,
+		       INDUSTRY_RATE_ID,
+		       IS_ACTIVE,
+		       LINK_ID,
+		       ORGANISATION_ID,
+		       POST_CODE,
+		       STATE,
+		       SUBURB
+		  FROM WC_SA_ORG_CODE_RATE_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaOrgCodeRateLink.insert">
+	<![CDATA[
+		INSERT INTO WC_SA_ORG_CODE_RATE_LINK (
+		       ADDRESS_LINE,
+		       COMMENTS,
+		       COUNTRY,
+		       INDUSTRY_RATE_ID,
+		       IS_ACTIVE,
+		       LINK_ID,
+		       ORGANISATION_ID,
+		       POST_CODE,
+		       STATE,
+		       SUBURB
+		       )
+		VALUES (
+		       ${ADDRESS_LINE},
+		       ${COMMENTS},
+		       ${COUNTRY},
+		       ${INDUSTRY_RATE_ID},
+		       ${IS_ACTIVE},
+		       ${LINK_ID},
+		       ${ORGANISATION_ID},
+		       ${POST_CODE},
+		       ${STATE},
+		       ${SUBURB}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaOrgCodeRateLink.update">
+	<![CDATA[
+		UPDATE WC_SA_ORG_CODE_RATE_LINK
+		   SET ADDRESS_LINE = ${ADDRESS_LINE},
+		       COMMENTS = ${COMMENTS},
+		       COUNTRY = ${COUNTRY},
+		       INDUSTRY_RATE_ID = ${INDUSTRY_RATE_ID},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LINK_ID = ${LINK_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       POST_CODE = ${POST_CODE},
+		       STATE = ${STATE},
+		       SUBURB = ${SUBURB}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaOrgCodeRateLink.updateColumns">
+	<![CDATA[
+		UPDATE WC_SA_ORG_CODE_RATE_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaOrgCodeRateLink.delete">
+	<![CDATA[
+		DELETE WC_SA_ORG_CODE_RATE_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,65 @@
+/**************************************************************************************************
+* Tabs CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * tab holder
+ */
+.tabHolder {padding-top:0px;}
+.tabHolder:after {content:".";display:block;line-height:0px;font-size:1px;clear:both;}
+
+/**
+ * tab list holder (ul)
+ */
+.tabListHolder {padding:0px 5px;}
+.tabList {font-weight:bold;}
+
+/**
+ * overriden from bootstrap
+ */
+.nav > li > a > img {}
+.nav-tabs > li {}
+.nav-tabs > li > a {margin-right:1px;padding:5px 14px;transition:all .3s;
+	color:#4c3000;
+	border:1px solid #D19405;
+	background:#FECE2F url("/shared/resource/css/jquery-ui/theme005/images/ui-bg_gloss-wave_60_fece2f_500x100.png") 50% 50% repeat-x;
+}
+.nav-tabs > li > a:hover {cursor:pointer;transition:all .3s;
+	color:#381f00;
+	border:1px solid #A45B13;
+	background:#FFDD57 url("/shared/resource/css/jquery-ui/theme005/images/ui-bg_gloss-wave_70_ffdd57_500x100.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.active > a {cursor:pointer;
+	color:#0074c7;
+	border-top:1px solid #655e4e;
+	border-left:1px solid #655e4e;
+	border-right:1px solid #655e4e;
+	background-color:#FFFFFF;
+	background-image:none;
+}
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {cursor:pointer;
+	color:#0074c7;
+	border-top:1px solid #655e4e;
+	border-left:1px solid #655e4e;
+	border-right:1px solid #655e4e;
+	background-color:#FFFFFF;
+	background-image:none;
+}
+
+.nav > li.disabled > a {opacity:0.6;color:#4c3000;}
+.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {opacity:0.6;
+	color:#4c3000;
+	border:1px solid #D19405;
+	background:#FECE2F url("/shared/resource/css/jquery-ui/theme005/images/ui-bg_gloss-wave_60_fece2f_500x100.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.disabled.active > a {opacity:0.6;}
+.nav-tabs > li.disabled.active > a, .nav-tabs > li.disabled.active > a:hover, .nav-tabs > li.disabled.active > a:focus {opacity:0.6;cursor:not-allowed;
+	color:#0074c7;
+	border-top:1px solid #655e4e;
+	border-left:1px solid #655e4e;
+	border-right:1px solid #655e4e;
+	border-bottom:0px solid #655e4e;
+	background-color:#FFFFFF;
+	background-image:none;
+}

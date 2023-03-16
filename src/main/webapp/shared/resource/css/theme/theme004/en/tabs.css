@@ -1,0 +1,65 @@
+/**************************************************************************************************
+* Tabs CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * tab holder
+ */
+.tabHolder {padding-top:0px;}
+.tabHolder:after {content:".";display:block;line-height:0px;font-size:1px;clear:both;}
+
+/**
+ * tab list holder (ul)
+ */
+.tabListHolder {padding:0px 5px;}
+.tabList {font-weight:bold;}
+
+/**
+ * overriden from bootstrap
+ */
+.nav > li > a > img {}
+.nav-tabs > li {}
+.nav-tabs > li > a {margin-right:1px;padding:5px 14px;transition:all .3s;
+	color:#FFFFFF;
+	border:1px solid #77D5F7;
+	background:#0078AE url("/shared/resource/css/jquery-ui/theme004/images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+}
+.nav-tabs > li > a:hover {cursor:pointer;transition:all .3s;
+	color:#026890;
+	border:1px solid #448DAE;
+	background:#79C9EC url("/shared/resource/css/jquery-ui/theme004/images/ui-bg_glass_75_79c9ec_1x400.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.active > a {cursor:pointer;
+	color:#026890;
+	border-top:1px solid #448DAE;
+	border-left:1px solid #448DAE;
+	border-right:1px solid #448DAE;
+	background-color:#FFFFFF;
+	background-image:none;
+}
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {cursor:pointer;
+	color:#026890;
+	border-top:1px solid #448DAE;
+	border-left:1px solid #448DAE;
+	border-right:1px solid #448DAE;
+	background-color:#FFFFFF;
+	background-image:none;
+}
+
+.nav > li.disabled > a {opacity:0.6;color:#FFFFFF;}
+.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {opacity:0.6;
+	color:#FFFFFF;
+	border:1px solid #77D5F7;
+	background:#0078AE url("/shared/resource/css/jquery-ui/theme004/images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.disabled.active > a {opacity:0.6;}
+.nav-tabs > li.disabled.active > a, .nav-tabs > li.disabled.active > a:hover, .nav-tabs > li.disabled.active > a:focus {opacity:0.6;cursor:not-allowed;
+	color:#026890;
+	border-top:1px solid #448DAE;
+	border-left:1px solid #448DAE;
+	border-right:1px solid #448DAE;
+	border-bottom:0px solid #448DAE;
+	background-color:#FFFFFF;
+	background-image:none;
+}

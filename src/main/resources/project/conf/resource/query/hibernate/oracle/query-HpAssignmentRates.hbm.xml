@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_ASSIGNMENT_RATES - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpAssignmentRates.getDataSetByAssignmentId">
+	<![CDATA[
+		select har.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAY_BASIS' and lookup_code = har.period) as period_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAY_BASIS' and lookup_code = har.charge_period) as charge_period_meaning,
+		       (select element_name from hp_elements_d where element_id = har.element_id) as element_name,
+		       decode(har.gst_exempt, 'Y', 'N', 'Y') as gst_yn
+		  from hp_assignment_rates har
+		 where har.assigment_id = '${assignmentId}'
+		 order by har.preferred desc, har.assignment_rate_id desc
+	]]>
+	</sql-query>
+</hibernate-mapping>

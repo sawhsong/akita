@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ASG_PROCESSES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAsgProcesses" table="HP_ASG_PROCESSES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="assignmentProcessId" column="ASSIGNMENT_PROCESS_ID" type="java.lang.Double"></id>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="payrollProcessId" column="PAYROLL_PROCESS_ID" not-null="true" type="java.lang.Double"/>
+		<property name="actionLog" column="ACTION_LOG" type="java.lang.String" length="4000"/>
+		<property name="assignmentPayrollNotes" column="ASSIGNMENT_PAYROLL_NOTES" type="java.lang.String" length="4000"/>
+		<property name="confirmCommentsStatus" column="CONFIRM_COMMENTS_STATUS" type="java.lang.String" length="20"/>
+		<property name="invoiceId" column="INVOICE_ID" type="java.lang.Double"/>
+		<property name="paymentId" column="PAYMENT_ID" type="java.lang.Double"/>
+		<property name="payrollNotes" column="PAYROLL_NOTES" type="java.lang.String" length="4000"/>
+		<property name="processStatus" column="PROCESS_STATUS" type="java.lang.String" length="1"/>
+		<property name="scheduledPayrollNotes" column="SCHEDULED_PAYROLL_NOTES" type="java.lang.String" length="4000"/>
+		<property name="vendorInvoiceNo" column="VENDOR_INVOICE_NO" type="java.lang.String" length="20"/>
+	</class>
+
+	<sql-query name="hpAsgProcesses.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_PROCESS_ID,
+		       ASSIGNMENT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PAYROLL_PROCESS_ID,
+		       ACTION_LOG,
+		       ASSIGNMENT_PAYROLL_NOTES,
+		       CONFIRM_COMMENTS_STATUS,
+		       INVOICE_ID,
+		       PAYMENT_ID,
+		       PAYROLL_NOTES,
+		       PROCESS_STATUS,
+		       SCHEDULED_PAYROLL_NOTES,
+		       VENDOR_INVOICE_NO
+		  FROM HP_ASG_PROCESSES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAsgProcesses.insert">
+	<![CDATA[
+		INSERT INTO HP_ASG_PROCESSES (
+		       ASSIGNMENT_PROCESS_ID,
+		       ASSIGNMENT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PAYROLL_PROCESS_ID,
+		       ACTION_LOG,
+		       ASSIGNMENT_PAYROLL_NOTES,
+		       CONFIRM_COMMENTS_STATUS,
+		       INVOICE_ID,
+		       PAYMENT_ID,
+		       PAYROLL_NOTES,
+		       PROCESS_STATUS,
+		       SCHEDULED_PAYROLL_NOTES,
+		       VENDOR_INVOICE_NO
+		       )
+		VALUES (
+		       ${ASSIGNMENT_PROCESS_ID},
+		       ${ASSIGNMENT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PAYROLL_PROCESS_ID},
+		       ${ACTION_LOG},
+		       ${ASSIGNMENT_PAYROLL_NOTES},
+		       ${CONFIRM_COMMENTS_STATUS},
+		       ${INVOICE_ID},
+		       ${PAYMENT_ID},
+		       ${PAYROLL_NOTES},
+		       ${PROCESS_STATUS},
+		       ${SCHEDULED_PAYROLL_NOTES},
+		       ${VENDOR_INVOICE_NO}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAsgProcesses.update">
+	<![CDATA[
+		UPDATE HP_ASG_PROCESSES
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PAYROLL_PROCESS_ID = ${PAYROLL_PROCESS_ID},
+		       ACTION_LOG = ${ACTION_LOG},
+		       ASSIGNMENT_PAYROLL_NOTES = ${ASSIGNMENT_PAYROLL_NOTES},
+		       CONFIRM_COMMENTS_STATUS = ${CONFIRM_COMMENTS_STATUS},
+		       INVOICE_ID = ${INVOICE_ID},
+		       PAYMENT_ID = ${PAYMENT_ID},
+		       PAYROLL_NOTES = ${PAYROLL_NOTES},
+		       PROCESS_STATUS = ${PROCESS_STATUS},
+		       SCHEDULED_PAYROLL_NOTES = ${SCHEDULED_PAYROLL_NOTES},
+		       VENDOR_INVOICE_NO = ${VENDOR_INVOICE_NO}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAsgProcesses.updateColumns">
+	<![CDATA[
+		UPDATE HP_ASG_PROCESSES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAsgProcesses.delete">
+	<![CDATA[
+		DELETE HP_ASG_PROCESSES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

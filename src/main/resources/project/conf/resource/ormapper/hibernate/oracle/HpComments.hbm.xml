@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_COMMENTS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpComments" table="HP_COMMENTS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="commentId" column="COMMENT_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="0"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpComments.selectAll">
+	<![CDATA[
+		SELECT COMMENT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       DESCRIPTION,
+		       PERSON_ID
+		  FROM HP_COMMENTS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpComments.insert">
+	<![CDATA[
+		INSERT INTO HP_COMMENTS (
+		       COMMENT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       DESCRIPTION,
+		       PERSON_ID
+		       )
+		VALUES (
+		       ${COMMENT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${DESCRIPTION},
+		       ${PERSON_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpComments.update">
+	<![CDATA[
+		UPDATE HP_COMMENTS
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       PERSON_ID = ${PERSON_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpComments.updateColumns">
+	<![CDATA[
+		UPDATE HP_COMMENTS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpComments.delete">
+	<![CDATA[
+		DELETE HP_COMMENTS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PRT_ASSIGNMENT_SETUP - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PrtAssignmentSetup" table="PRT_ASSIGNMENT_SETUP" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="prtAssignmentSetupId" column="PRT_ASSIGNMENT_SETUP_ID" type="java.lang.Double"></id>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="prtCohScenarioId" column="PRT_COH_SCENARIO_ID" type="java.lang.Double"/>
+		<property name="prtOrganisationId" column="PRT_ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="prtWorkingState" column="PRT_WORKING_STATE" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="prtAssignmentSetup.selectAll">
+	<![CDATA[
+		SELECT PRT_ASSIGNMENT_SETUP_ID,
+		       ASSIGNMENT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       IS_ACTIVE,
+		       PRT_COH_SCENARIO_ID,
+		       PRT_ORGANISATION_ID,
+		       PRT_WORKING_STATE
+		  FROM PRT_ASSIGNMENT_SETUP
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="prtAssignmentSetup.insert">
+	<![CDATA[
+		INSERT INTO PRT_ASSIGNMENT_SETUP (
+		       PRT_ASSIGNMENT_SETUP_ID,
+		       ASSIGNMENT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       IS_ACTIVE,
+		       PRT_COH_SCENARIO_ID,
+		       PRT_ORGANISATION_ID,
+		       PRT_WORKING_STATE
+		       )
+		VALUES (
+		       ${PRT_ASSIGNMENT_SETUP_ID},
+		       ${ASSIGNMENT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${IS_ACTIVE},
+		       ${PRT_COH_SCENARIO_ID},
+		       ${PRT_ORGANISATION_ID},
+		       ${PRT_WORKING_STATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="prtAssignmentSetup.update">
+	<![CDATA[
+		UPDATE PRT_ASSIGNMENT_SETUP
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       PRT_COH_SCENARIO_ID = ${PRT_COH_SCENARIO_ID},
+		       PRT_ORGANISATION_ID = ${PRT_ORGANISATION_ID},
+		       PRT_WORKING_STATE = ${PRT_WORKING_STATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtAssignmentSetup.updateColumns">
+	<![CDATA[
+		UPDATE PRT_ASSIGNMENT_SETUP
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtAssignmentSetup.delete">
+	<![CDATA[
+		DELETE PRT_ASSIGNMENT_SETUP
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - ASG_DELIVERABLES_RATES - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.AsgDeliverablesRates.getDataSetByAssignmentId">
+	<![CDATA[
+		select adr.*,
+		       (select element_name from hp_elements_d where element_id = adr.element_id) as element_name,
+		       to_char(adr.due_date, '${dateFormat}') as due_date_format,
+		       (select meaning from sys_common_lookups where lookup_type = 'ASG_DELIVERABLES_STATUS' and lookup_code = adr.status) as status_meaning,
+		       (select full_name from hp_person_d where person_id = adr.created_by) as created_by_name,
+		       to_char(adr.creation_date, '${dateFormat}') as creation_date_format,
+		       (select full_name from hp_person_d where person_id = adr.last_updated_by) as last_updated_name,
+		       to_char(adr.last_update_date, '${dateFormat}') as last_update_date_format,
+		       adrd.action_date,
+		       to_char(adrd.action_date, '${dateTimeFormat}') as action_date_format,
+		       adrd.approve_reject_person_id,
+		       (select full_name from hp_person_d where person_id = adrd.approve_reject_person_id) as approve_reject_person_name,
+		       adrd.approve_reject_comments,
+		       adrd.approve_reject_ip,
+		       adrd.file_name,
+		       adrd.comments
+		  from asg_deliverables_rates adr,
+		       (select *
+		          from (select adrl.*, row_number() over (partition by adrl.asg_deliverables_rates_id order by adrl.log_id desc) as myrow
+		                  from asg_deliverables_rates_log adrl
+		               )
+		         where myrow = 1
+		       ) adrd
+		 where adr.assignment_id = '${assignmentId}'
+		   and adr.asg_deliverables_rates_id = adrd.asg_deliverables_rates_id(+)
+		 order by adr.asg_deliverables_rates_id desc
+	]]>
+	</sql-query>
+</hibernate-mapping>

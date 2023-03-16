@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WORKING_RIGHTS_STATUS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WorkingRightsStatus" table="WORKING_RIGHTS_STATUS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="workingRightsStatusId" column="WORKING_RIGHTS_STATUS_ID" type="java.lang.Double"></id>
+
+		<property name="additionalNotes" column="ADDITIONAL_NOTES" type="java.lang.String" length="4000"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="dateIssued" column="DATE_ISSUED" type="java.util.Date"/>
+		<property name="expiryDate" column="EXPIRY_DATE" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="visaStatus" column="VISA_STATUS" type="java.lang.String" length="100"/>
+		<property name="visaType" column="VISA_TYPE" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="workingRightsStatus.selectAll">
+	<![CDATA[
+		SELECT WORKING_RIGHTS_STATUS_ID,
+		       ADDITIONAL_NOTES,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(DATE_ISSUED, 'yyyymmddhh24miss') AS DATE_ISSUED,
+		       TO_CHAR(EXPIRY_DATE, 'yyyymmddhh24miss') AS EXPIRY_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       VISA_STATUS,
+		       VISA_TYPE
+		  FROM WORKING_RIGHTS_STATUS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="workingRightsStatus.insert">
+	<![CDATA[
+		INSERT INTO WORKING_RIGHTS_STATUS (
+		       WORKING_RIGHTS_STATUS_ID,
+		       ADDITIONAL_NOTES,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DATE_ISSUED,
+		       EXPIRY_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       VISA_STATUS,
+		       VISA_TYPE
+		       )
+		VALUES (
+		       ${WORKING_RIGHTS_STATUS_ID},
+		       ${ADDITIONAL_NOTES},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DATE_ISSUED},
+		       ${EXPIRY_DATE},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PERSON_ID},
+		       ${VISA_STATUS},
+		       ${VISA_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="workingRightsStatus.update">
+	<![CDATA[
+		UPDATE WORKING_RIGHTS_STATUS
+		   SET ADDITIONAL_NOTES = ${ADDITIONAL_NOTES},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DATE_ISSUED = ${DATE_ISSUED},
+		       EXPIRY_DATE = ${EXPIRY_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PERSON_ID = ${PERSON_ID},
+		       VISA_STATUS = ${VISA_STATUS},
+		       VISA_TYPE = ${VISA_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="workingRightsStatus.updateColumns">
+	<![CDATA[
+		UPDATE WORKING_RIGHTS_STATUS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="workingRightsStatus.delete">
+	<![CDATA[
+		DELETE WORKING_RIGHTS_STATUS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

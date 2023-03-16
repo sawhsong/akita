@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WC_WA_CODE_RATE_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WcWaCodeRateD" table="WC_WA_CODE_RATE_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="codeRateDId" column="CODE_RATE_D_ID" type="java.lang.Double"/>
+		<property name="codeRateId" column="CODE_RATE_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="percentage" column="PERCENTAGE" type="java.lang.Double"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="wcWaCodeRateD.selectAll">
+	<![CDATA[
+		SELECT CODE_RATE_D_ID,
+		       CODE_RATE_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PERCENTAGE,
+		       TO_CHAR(START_DATE, 'yyyymmddhh24miss') AS START_DATE
+		  FROM WC_WA_CODE_RATE_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcWaCodeRateD.insert">
+	<![CDATA[
+		INSERT INTO WC_WA_CODE_RATE_D (
+		       CODE_RATE_D_ID,
+		       CODE_RATE_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       END_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PERCENTAGE,
+		       START_DATE
+		       )
+		VALUES (
+		       ${CODE_RATE_D_ID},
+		       ${CODE_RATE_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${END_DATE},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PERCENTAGE},
+		       ${START_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="wcWaCodeRateD.update">
+	<![CDATA[
+		UPDATE WC_WA_CODE_RATE_D
+		   SET CODE_RATE_D_ID = ${CODE_RATE_D_ID},
+		       CODE_RATE_ID = ${CODE_RATE_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       END_DATE = ${END_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PERCENTAGE = ${PERCENTAGE},
+		       START_DATE = ${START_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcWaCodeRateD.updateColumns">
+	<![CDATA[
+		UPDATE WC_WA_CODE_RATE_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcWaCodeRateD.delete">
+	<![CDATA[
+		DELETE WC_WA_CODE_RATE_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

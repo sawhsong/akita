@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - SCHEDULED_PAYROLL_NOTES - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.ScheduledPayrollNotes.getScheduledPayrollNotiListByPersonId">
+	<![CDATA[
+		select spn.notification_id,
+		       spn.is_active,
+		       spn.notification_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAYROLL_NOTIFICATION_TYPE' and lookup_code = spn.notification_type) as notification_type_meaning,
+		       spn.notification_period,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAYROLL_NOTIFICATION_PERIOD' and lookup_code = spn.notification_period) as notification_period_meaning,
+		       to_char(spn.start_date, '${dateFormat}') as start_date,
+		       to_char(spn.end_date, '${dateFormat}') as end_date,
+		       spn.notification_text
+		  from scheduled_payroll_notes spn
+		 where 1 = 1
+		   and spn.person_id = '${personId}'
+		 order by spn.is_active desc,
+		       spn.notification_type
+	]]>
+	</sql-query>
+</hibernate-mapping>

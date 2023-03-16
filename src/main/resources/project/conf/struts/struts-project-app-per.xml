@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="default" name="per" namespace="/per" strict-method-invocation="false">
+        <default-interceptor-ref name="ZebraDefaultStack"/>
+        <!--PerBasicProfile - Person Profile (Old Type)-->
+        <action class="project.app.per.perBasicInfo.perBasicProfile.PerBasicProfileAction" method="{1}" name="perBasicInfo/perBasicProfile/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/List.jsp</result>
+            <result name="frameContainer" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/FrameContainer.jsp</result>
+            <result name="personal" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PersonalFrame.jsp</result>
+            <result name="contact" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/ContactFrame.jsp</result>
+            <result name="documentOutstanding" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/DocumentOutstandingFrame.jsp</result>
+            <result name="documentReceived" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/DocumentReceivedFrame.jsp</result>
+            <result name="additionalService" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/AdditionalServiceFrame.jsp</result>
+            <result name="communication" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/CommunicationFrame.jsp</result>
+            <result name="nextActions" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/NextActionsFrame.jsp</result>
+            <result name="general" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/GeneralFrame.jsp</result>
+            <result name="opportunity" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/OpportunityFrame.jsp</result>
+            <result name="editOpportunity" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/OpportunityEditPop.jsp</result>
+            <result name="opportunityDetail" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/OpportunityDetailPop.jsp</result>
+            <result name="assignmentList" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/AssignmentListFrame.jsp</result>
+            <result name="assignment" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/AssignmentFrame.jsp</result>
+            <result name="superannuation" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/SuperannuationFrame.jsp</result>
+            <result name="payslips" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PayslipsFrame.jsp</result>
+        </action>
+    </package>
+</struts>

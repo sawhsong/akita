@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ASSIGNMENT_ACCRUALS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAssignmentAccruals" table="HP_ASSIGNMENT_ACCRUALS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="assignmentPlanId" column="ASSIGNMENT_PLAN_ID" type="java.lang.Double"></id>
+
+		<property name="accrualPlanId" column="ACCRUAL_PLAN_ID" type="java.lang.Double"/>
+		<property name="activeFlag" column="ACTIVE_FLAG" type="java.lang.String" length="1"/>
+		<property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+		<property name="carryForwardFlag" column="CARRY_FORWARD_FLAG" type="java.lang.String" length="1"/>
+		<property name="commencementDate" column="COMMENCEMENT_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="hpAssignmentAccruals.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_PLAN_ID,
+		       ACCRUAL_PLAN_ID,
+		       ACTIVE_FLAG,
+		       ASSIGNMENT_ID,
+		       CARRY_FORWARD_FLAG,
+		       TO_CHAR(COMMENCEMENT_DATE, 'yyyymmddhh24miss') AS COMMENCEMENT_DATE
+		  FROM HP_ASSIGNMENT_ACCRUALS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccruals.insert">
+	<![CDATA[
+		INSERT INTO HP_ASSIGNMENT_ACCRUALS (
+		       ASSIGNMENT_PLAN_ID,
+		       ACCRUAL_PLAN_ID,
+		       ACTIVE_FLAG,
+		       ASSIGNMENT_ID,
+		       CARRY_FORWARD_FLAG,
+		       COMMENCEMENT_DATE
+		       )
+		VALUES (
+		       ${ASSIGNMENT_PLAN_ID},
+		       ${ACCRUAL_PLAN_ID},
+		       ${ACTIVE_FLAG},
+		       ${ASSIGNMENT_ID},
+		       ${CARRY_FORWARD_FLAG},
+		       ${COMMENCEMENT_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccruals.update">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_ACCRUALS
+		   SET ACCRUAL_PLAN_ID = ${ACCRUAL_PLAN_ID},
+		       ACTIVE_FLAG = ${ACTIVE_FLAG},
+		       ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       CARRY_FORWARD_FLAG = ${CARRY_FORWARD_FLAG},
+		       COMMENCEMENT_DATE = ${COMMENCEMENT_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccruals.updateColumns">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_ACCRUALS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccruals.delete">
+	<![CDATA[
+		DELETE HP_ASSIGNMENT_ACCRUALS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

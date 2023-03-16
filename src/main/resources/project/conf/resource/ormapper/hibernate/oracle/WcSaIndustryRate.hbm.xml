@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WC_SA_INDUSTRY_RATE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WcSaIndustryRate" table="WC_SA_INDUSTRY_RATE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="industryName" column="INDUSTRY_NAME" type="java.lang.String" length="150"/>
+		<property name="industryRateId" column="INDUSTRY_RATE_ID" type="java.lang.Double"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="predominantActivity" column="PREDOMINANT_ACTIVITY" type="java.lang.String" length="4000"/>
+		<property name="wic" column="WIC" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="wcSaIndustryRate.selectAll">
+	<![CDATA[
+		SELECT CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       INDUSTRY_NAME,
+		       INDUSTRY_RATE_ID,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PREDOMINANT_ACTIVITY,
+		       WIC
+		  FROM WC_SA_INDUSTRY_RATE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaIndustryRate.insert">
+	<![CDATA[
+		INSERT INTO WC_SA_INDUSTRY_RATE (
+		       CREATED_BY,
+		       CREATION_DATE,
+		       INDUSTRY_NAME,
+		       INDUSTRY_RATE_ID,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PREDOMINANT_ACTIVITY,
+		       WIC
+		       )
+		VALUES (
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${INDUSTRY_NAME},
+		       ${INDUSTRY_RATE_ID},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PREDOMINANT_ACTIVITY},
+		       ${WIC}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaIndustryRate.update">
+	<![CDATA[
+		UPDATE WC_SA_INDUSTRY_RATE
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       INDUSTRY_NAME = ${INDUSTRY_NAME},
+		       INDUSTRY_RATE_ID = ${INDUSTRY_RATE_ID},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PREDOMINANT_ACTIVITY = ${PREDOMINANT_ACTIVITY},
+		       WIC = ${WIC}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaIndustryRate.updateColumns">
+	<![CDATA[
+		UPDATE WC_SA_INDUSTRY_RATE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcSaIndustryRate.delete">
+	<![CDATA[
+		DELETE WC_SA_INDUSTRY_RATE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

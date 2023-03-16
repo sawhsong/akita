@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="default" name="sys" namespace="/sys" strict-method-invocation="false">
+        <default-interceptor-ref name="ZebraDefaultStack"/>
+        <!--SysCommonCode - Common Code-->
+        <action class="project.app.sys.sysBasicInfo.sysCommonCode.SysCommonCodeAction" method="{1}" name="sysBasicInfo/sysCommonCode/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCommonCode/SysCommonCodeList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCommonCode/SysCommonCodeEditPop.jsp</result>
+        </action>
+        <!--SysCountryCurrency - Country / Currency-->
+        <action class="project.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyAction" method="{1}" name="sysBasicInfo/sysCountryCurrency/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCountryCurrency/SysCountryCurrencyList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCountryCurrency/SysCountryCurrencyEditPop.jsp</result>
+        </action>
+        <!--SysMenu - Menu-->
+        <action class="project.app.sys.sysAdmin.sysMenu.SysMenuAction" method="{1}" name="sysAdmin/sysMenu/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuList.jsp</result>
+            <result name="editN" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditNPop.jsp</result>
+            <result name="editC" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditCPop.jsp</result>
+            <result name="updateSort" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuUpdateSortPop.jsp</result>
+        </action>
+        <!--SysAuthGroup - Authority Group-->
+        <action class="project.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupAction" method="{1}" name="sysAdmin/sysAuthGroup/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupEditPop.jsp</result>
+        </action>
+        <!--SysMenuAuth - Menu Authority Group-->
+        <action class="project.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthAction" method="{1}" name="sysAdmin/sysMenuAuth/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenuAuth/SysMenuAuthList.jsp</result>
+        </action>
+        <!--SysUser - User-->
+        <action class="project.app.sys.sysAdmin.sysUser.SysUserAction" method="{1}" name="sysAdmin/sysUser/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserDetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserInsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserUpdatePop.jsp</result>
+            <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserActionContextMenuPop.jsp</result>
+        </action>
+        <!--SysItSupportAssignment - Assignment-->
+        <action class="project.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentAction" method="{1}" name="sysItSupport/sysItSupportAssignment/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentDetailPop.jsp</result>
+            <result name="unlockPrt" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentUnlockPrtPop.jsp</result>
+            <result name="updateWorkingState" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentUpdateWorkingStatePop.jsp</result>
+            <result name="updateEndUser" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentUpdateEndUserPop.jsp</result>
+        </action>
+        <!--SysItSupportInvoice - Invoice-->
+        <action class="project.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceAction" method="{1}" name="sysItSupport/sysItSupportInvoice/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceDetailPop.jsp</result>
+            <result name="updateStatus" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceUpdateStatusPop.jsp</result>
+            <result name="updateInvoiceSubTotal" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceUpdateInvoiceSubTotalPop.jsp</result>
+        </action>
+        <!--SysItSupportEtc - ETC-->
+        <action class="project.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcAction" method="{1}" name="sysItSupport/sysItSupportEtc/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportEtc/SysItSupportEtcList.jsp</result>
+        </action>
+        <!--SysPerciSourceGenerator - PERCI Source Generator-->
+        <action class="project.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorAction" method="{1}" name="sysItSupport/sysPerciSourceGenerator/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysPerciSourceGenerator/SysPerciSourceGeneratorList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysPerciSourceGenerator/SysPerciSourceGeneratorDetailPop.jsp</result>
+            <result name="info" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysPerciSourceGenerator/SysPerciSourceGeneratorInfoPop.jsp</result>
+        </action>
+        <!--SysDbSessionMonitor - Databse Session Monitor-->
+        <action class="project.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorAction" method="{1}" name="sysItSupport/sysDbSessionMonitor/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysDbSessionMonitor/SysDbSessionMonitorList.jsp</result>
+            <result name="sqlText" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysDbSessionMonitor/SysDbSessionMonitorSqlTextPop.jsp</result>
+        </action>
+        <!--SysSiteRunningTest - Site Runnin Test-->
+        <action class="project.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestAction" method="{1}" name="sysItSupport/sysSiteRunningTest/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysSiteRunningTest/SysSiteRunningTestList.jsp</result>
+        </action>
+        <!--SysNotice - Notice-->
+        <action class="project.app.sys.sysBbs.sysNotice.SysNoticeAction" method="{1}" name="sysBbs/sysNotice/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeDetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeInsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeUpdatePop.jsp</result>
+        </action>
+        <!--SysFreeBoard - Free Board-->
+        <action class="project.app.sys.sysBbs.sysFreeBoard.SysFreeBoardAction" method="{1}" name="sysBbs/sysFreeBoard/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardDetail.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardInsert.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardUpdate.jsp</result>
+        </action>
+        <!--SysWcAct - ACT-->
+        <action class="project.app.sys.sysWc.sysWcAct.SysWcActAction" method="{1}" name="sysWc/sysWcAct/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcAct/SysWcActList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcAct/SysWcActEditPop.jsp</result>
+        </action>
+        <!--SysWcNsw - NSW-->
+        <action class="project.app.sys.sysWc.sysWcNsw.SysWcNswAction" method="{1}" name="sysWc/sysWcNsw/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcNsw/SysWcNswList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcNsw/SysWcNswEditPop.jsp</result>
+        </action>
+    </package>
+</struts>

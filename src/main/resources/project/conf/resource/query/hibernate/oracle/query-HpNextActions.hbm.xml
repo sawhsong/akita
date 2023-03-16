@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_NEXT_ACTIONS - 
+ */-->
+<hibernate-mapping>
+<sql-query name="query.HpNextActions.getNextActionsForNextActionsListByPersonId">
+	<![CDATA[
+		select hna.next_action_id,
+		       hna.assigned_person_id as assigned_person_id,
+		       (select full_name from hp_person_d where person_id = hna.assigned_person_id) as assigned_person_name,
+		       hna.action_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'NEXT_ACTION_TYPE' and lookup_code = hna.action_type) as action_type_meaning,
+		       hna.for_person as for_person_id,
+		       (select full_name from hp_person_d where person_id = hna.for_person) as for_person_name,
+		       hna.for_organisation as for_organisation_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = hna.for_organisation) as for_organisation_name,
+		       hna.action_comments as description,
+		       to_char(hna.action_date, '${dateFormat}') as action_date,
+		       hna.action_time,
+		       hna.action_status,
+		       (select meaning from sys_common_lookups where lookup_type = 'NEXT_ACTION_STATUS' and lookup_code = hna.action_status) as action_status_meaning
+		  from hp_next_actions hna
+		 where 1 = 1
+		   and hna.for_person = '${personId}'
+		   ${auto_fill}
+		 order by hna.action_date asc,
+		       hna.action_time asc,
+		       hna.next_action_id asc
+	]]>
+	</sql-query>
+</hibernate-mapping>

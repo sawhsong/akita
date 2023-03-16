@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_ASSIGNMENT_ACCRUALS - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpAssignmentAccruals.getLeaveAccrualsByAssignmentIdForPreview">
+	<![CDATA[
+		select distinct src.*,
+		       nvl(nvl(not_taken, 0) - nvl(taken, 0), 0) as units
+		  from (select haa.*,
+		               hap.display_name,
+		               (select nvl(sum(hours), 0) as hours
+		                  from hp_assignment_accruals_total
+		                 where assignment_accrual_type <> 'T'
+		                   and assignment_plan_id = haa.assignment_plan_id
+		                 group by assignment_plan_id
+		               ) as not_taken,
+		               (select nvl(sum(hours), 0) as hours
+		                  from hp_assignment_accruals_total
+		                 where assignment_accrual_type = 'T'
+		                   and assignment_plan_id = haa.assignment_plan_id
+		                 group by assignment_plan_id
+		               ) as taken
+		          from hp_assignment_accruals haa,
+		               hp_remitt_leave_acc_template hrt,
+		               hp_accrual_plans hap
+		         where haa.assignment_id = '${assignmentId}'
+		           and haa.active_flag = 'Y'
+		           and haa.accrual_plan_id = hrt.plan_id
+		           and haa.accrual_plan_id = hap.plan_id
+		       ) src
+	]]>
+	</sql-query>
+</hibernate-mapping>

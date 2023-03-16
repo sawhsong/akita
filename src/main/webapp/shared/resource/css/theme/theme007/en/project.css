@@ -1,0 +1,14 @@
+/**************************************************************************************************
+* Project dependent CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * Person Profile - Person info header
+ */
+.personInfoHeader {padding:8px;margin-bottom:0px;font-weight:bold;}
+
+/**
+ * Organisation Profile - Organisation info header
+ */
+.orgInfoHeader {padding:8px;margin-bottom:0px;font-weight:bold;}

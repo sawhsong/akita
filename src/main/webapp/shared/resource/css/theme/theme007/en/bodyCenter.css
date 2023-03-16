@@ -1,0 +1,63 @@
+/**************************************************************************************************
+* Body Center CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * Body Center Common
+ */
+#divBodyCenter {overflow:auto;
+	border-top:0px solid #2E95E5;
+	border-right:0px solid #2E95E5;
+	border-bottom:0px solid #2E95E5;
+	border-left:1px solid #2E95E5;
+	background:#FFFFFF;
+}
+
+/* Each 'Area' in Body Center must set this class('areaContainer') when it has its contents */
+.areaContainer {margin:4px 0px 4px 0px;}
+.areaContainerPopup {margin:4px 0px 4px 0px;}
+.areaContainerFrame {margin:4px 0px 4px 0px;}
+
+/**
+ * Layout
+ */
+#divFixedPanel{overflow:hidden;margin:4px 8px 4px 8px;}
+#divLocationPathArea {}
+#divTabArea {}
+#divButtonArea {display:table;width:100%;}
+#divButtonAreaLeft {float:left;}
+#divButtonAreaLeft div {float:left;}
+#divButtonAreaRight {float:right;}
+#divButtonAreaRight div {float:left;}
+#divButtonAreaCenter {margin:0px auto;text-align:center;}
+.divButtonAreaCenter {display:inline-block;}
+#divAdminToolArea {}
+#divSearchCriteriaArea {}
+#divInformArea {}
+#divScrollablePanel{overflow:auto;margin:0px 8px 4px 8px;}
+#divDataArea {}
+#divDataArea.areaContainer {margin:0px 0px 0px 0px;}
+#divDataArea.areaContainerPopup {margin:0px 0px 0px 0px;}
+#divDataArea.areaContainerFrame {margin:0px 0px 0px 0px;}
+#divPagingArea {}
+#divPagingArea.areaContainer {margin:0px 0px 0px 0px;}
+#divPagingArea.areaContainerPopup {margin:0px 0px 0px 0px;}
+#divPagingArea.areaContainerFrame {margin:0px 0px 0px 0px;padding-bottom:0px;}
+/* Set class attribute instead of id, if an area is needed to be used for exeption */
+.divTabArea {}
+.divButtonArea {display:table;width:100%;}
+.divButtonAreaLeft {float:left;}
+.divButtonAreaLeft div {float:left;}
+.divButtonAreaRight {float:right;}
+.divButtonAreaRight div {float:left;}
+.divButtonAreaCenter {margin:0px auto;text-align:center;}
+.divSearchCriteriaArea {}
+.divInformArea {}
+.divDataArea {}
+.divPagingArea {}
+
+/**
+ * Bootstrap panel in 'divSearchCriteriaArea'
+ */
+#divSearchCriteriaArea div.panel, #divInformArea div.panel {margin-bottom:0px;}

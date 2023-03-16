@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ORGANISATION_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpOrganisationD" table="HP_ORGANISATION_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="abn" column="ABN" type="java.lang.String" length="30"/>
+		<property name="acceptRcti" column="ACCEPT_RCTI" type="java.lang.String" length="1"/>
+		<property name="acn" column="ACN" type="java.lang.String" length="20"/>
+		<property name="addressLine" column="ADDRESS_LINE" type="java.lang.String" length="200"/>
+		<property name="anzicCode" column="ANZIC_CODE" type="java.lang.String" length="50"/>
+		<property name="authorizedPerson" column="AUTHORIZED_PERSON" type="java.lang.Double"/>
+		<property name="bankKeyWord" column="BANK_KEY_WORD" type="java.lang.String" length="50"/>
+		<property name="billingName" column="BILLING_NAME" type="java.lang.String" length="100"/>
+		<property name="branchNumber" column="BRANCH_NUMBER" type="java.lang.String" length="10"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" length="30"/>
+		<property name="csiExecutionDate" column="CSI_EXECUTION_DATE" type="java.util.Date"/>
+		<property name="csiReviewDate" column="CSI_REVIEW_DATE" type="java.util.Date"/>
+		<property name="customerCategory" column="CUSTOMER_CATEGORY" type="java.lang.String" length="30"/>
+		<property name="customerStream" column="CUSTOMER_STREAM" type="java.lang.String" length="200"/>
+		<property name="customerType" column="CUSTOMER_TYPE" type="java.lang.String" length="1000"/>
+		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
+		<property name="entityStaffContact" column="ENTITY_STAFF_CONTACT" type="java.lang.Double"/>
+		<property name="esAccountManager" column="ES_ACCOUNT_MANAGER" type="java.lang.Double"/>
+		<property name="esBdManager" column="ES_BD_MANAGER" type="java.lang.Double"/>
+		<property name="esCsConsultant" column="ES_CS_CONSULTANT" type="java.lang.Double"/>
+		<property name="esCustomerAdministrator" column="ES_CUSTOMER_ADMINISTRATOR" type="java.lang.Double"/>
+		<property name="esExecRelationship" column="ES_EXEC_RELATIONSHIP" type="java.lang.Double"/>
+		<property name="esMigrationAdministrator" column="ES_MIGRATION_ADMINISTRATOR" type="java.lang.Double"/>
+		<property name="esMigrationConsultant" column="ES_MIGRATION_CONSULTANT" type="java.lang.Double"/>
+		<property name="esPayrollConsultant" column="ES_PAYROLL_CONSULTANT" type="java.lang.Double"/>
+		<property name="fax1" column="FAX1" type="java.lang.String" length="20"/>
+		<property name="fax2" column="FAX2" type="java.lang.String" length="20"/>
+		<property name="firstContactDate" column="FIRST_CONTACT_DATE" type="java.util.Date"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="gstNumber" column="GST_NUMBER" type="java.lang.String" length="25"/>
+		<property name="gstReg" column="GST_REG" type="java.lang.String" length="1"/>
+		<property name="history" column="HISTORY" type="java.lang.String" length="4000"/>
+		<property name="jurisdiction" column="JURISDICTION" type="java.lang.String" length="200"/>
+		<property name="mainContact" column="MAIN_CONTACT" type="java.lang.Double"/>
+		<property name="mobile" column="MOBILE" type="java.lang.String" length="20"/>
+		<property name="msaEndDate" column="MSA_END_DATE" type="java.util.Date"/>
+		<property name="msaExecutionDate" column="MSA_EXECUTION_DATE" type="java.util.Date"/>
+		<property name="msaStartDate" column="MSA_START_DATE" type="java.util.Date"/>
+		<property name="newFlagDate" column="NEW_FLAG_DATE" type="java.util.Date"/>
+		<property name="organisationName" column="ORGANISATION_NAME" type="java.lang.String" length="200"/>
+		<property name="organisationOverview" column="ORGANISATION_OVERVIEW" type="java.lang.String" length="4000"/>
+		<property name="organisationType" column="ORGANISATION_TYPE" type="java.lang.String" length="50"/>
+		<property name="orgDormant" column="ORG_DORMANT" type="java.lang.String" length="1"/>
+		<property name="orgHierarchy" column="ORG_HIERARCHY" type="java.lang.String" length="30"/>
+		<property name="phone1" column="PHONE1" type="java.lang.String" length="20"/>
+		<property name="phone2" column="PHONE2" type="java.lang.String" length="20"/>
+		<property name="postalAddressLine" column="POSTAL_ADDRESS_LINE" type="java.lang.String" length="200"/>
+		<property name="postalCountry" column="POSTAL_COUNTRY" type="java.lang.String" length="50"/>
+		<property name="postalPostCode" column="POSTAL_POST_CODE" type="java.lang.String" length="30"/>
+		<property name="postalState" column="POSTAL_STATE" type="java.lang.String" length="30"/>
+		<property name="postalSuburb" column="POSTAL_SUBURB" type="java.lang.String" length="50"/>
+		<property name="postCode" column="POST_CODE" type="java.lang.String" length="30"/>
+		<property name="product" column="PRODUCT" type="java.lang.String" length="1000"/>
+		<property name="referenceNo1" column="REFERENCE_NO_1" type="java.lang.String" length="200"/>
+		<property name="referenceNo2" column="REFERENCE_NO_2" type="java.lang.String" length="200"/>
+		<property name="referenceNo3" column="REFERENCE_NO_3" type="java.lang.String" length="200"/>
+		<property name="relationship" column="RELATIONSHIP" type="java.lang.String" length="500"/>
+		<property name="reportingLine" column="REPORTING_LINE" type="java.lang.String" length="30"/>
+		<property name="role" column="ROLE" type="java.lang.String" length="1000"/>
+		<property name="specialRequirements" column="SPECIAL_REQUIREMENTS" type="java.lang.String" length="4000"/>
+		<property name="sroNumber" column="SRO_NUMBER" type="java.lang.String" length="15"/>
+		<property name="state" column="STATE" type="java.lang.String" length="30"/>
+		<property name="stpBmsId" column="STP_BMS_ID" type="java.lang.String" length="200"/>
+		<property name="suburb" column="SUBURB" type="java.lang.String" length="50"/>
+		<property name="swimLane" column="SWIM_LANE" type="java.lang.String" length="30"/>
+		<property name="taxInvoiceAcceptanceType" column="TAX_INVOICE_ACCEPTANCE_TYPE" type="java.lang.String" length="10"/>
+		<property name="terminationNotice" column="TERMINATION_NOTICE" type="java.lang.String" length="12"/>
+		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		<property name="webAddress" column="WEB_ADDRESS" type="java.lang.String" length="150"/>
+	</class>
+
+	<sql-query name="hpOrganisationD.selectAll">
+	<![CDATA[
+		SELECT ORGANISATION_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ABN,
+		       ACCEPT_RCTI,
+		       ACN,
+		       ADDRESS_LINE,
+		       ANZIC_CODE,
+		       AUTHORIZED_PERSON,
+		       BANK_KEY_WORD,
+		       BILLING_NAME,
+		       BRANCH_NUMBER,
+		       BUSINESS_GROUP_ID,
+		       COUNTRY,
+		       TO_CHAR(CSI_EXECUTION_DATE, 'yyyymmddhh24miss') AS CSI_EXECUTION_DATE,
+		       TO_CHAR(CSI_REVIEW_DATE, 'yyyymmddhh24miss') AS CSI_REVIEW_DATE,
+		       CUSTOMER_CATEGORY,
+		       CUSTOMER_STREAM,
+		       CUSTOMER_TYPE,
+		       EMAIL,
+		       ENTITY_STAFF_CONTACT,
+		       ES_ACCOUNT_MANAGER,
+		       ES_BD_MANAGER,
+		       ES_CS_CONSULTANT,
+		       ES_CUSTOMER_ADMINISTRATOR,
+		       ES_EXEC_RELATIONSHIP,
+		       ES_MIGRATION_ADMINISTRATOR,
+		       ES_MIGRATION_CONSULTANT,
+		       ES_PAYROLL_CONSULTANT,
+		       FAX1,
+		       FAX2,
+		       TO_CHAR(FIRST_CONTACT_DATE, 'yyyymmddhh24miss') AS FIRST_CONTACT_DATE,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       GST_NUMBER,
+		       GST_REG,
+		       HISTORY,
+		       JURISDICTION,
+		       MAIN_CONTACT,
+		       MOBILE,
+		       TO_CHAR(MSA_END_DATE, 'yyyymmddhh24miss') AS MSA_END_DATE,
+		       TO_CHAR(MSA_EXECUTION_DATE, 'yyyymmddhh24miss') AS MSA_EXECUTION_DATE,
+		       TO_CHAR(MSA_START_DATE, 'yyyymmddhh24miss') AS MSA_START_DATE,
+		       TO_CHAR(NEW_FLAG_DATE, 'yyyymmddhh24miss') AS NEW_FLAG_DATE,
+		       ORGANISATION_NAME,
+		       ORGANISATION_OVERVIEW,
+		       ORGANISATION_TYPE,
+		       ORG_DORMANT,
+		       ORG_HIERARCHY,
+		       PHONE1,
+		       PHONE2,
+		       POSTAL_ADDRESS_LINE,
+		       POSTAL_COUNTRY,
+		       POSTAL_POST_CODE,
+		       POSTAL_STATE,
+		       POSTAL_SUBURB,
+		       POST_CODE,
+		       PRODUCT,
+		       REFERENCE_NO_1,
+		       REFERENCE_NO_2,
+		       REFERENCE_NO_3,
+		       RELATIONSHIP,
+		       REPORTING_LINE,
+		       ROLE,
+		       SPECIAL_REQUIREMENTS,
+		       SRO_NUMBER,
+		       STATE,
+		       STP_BMS_ID,
+		       SUBURB,
+		       SWIM_LANE,
+		       TAX_INVOICE_ACCEPTANCE_TYPE,
+		       TERMINATION_NOTICE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       WEB_ADDRESS
+		  FROM HP_ORGANISATION_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="hpOrganisationD.insert">
+	<![CDATA[
+		INSERT INTO HP_ORGANISATION_D (
+		       ORGANISATION_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ABN,
+		       ACCEPT_RCTI,
+		       ACN,
+		       ADDRESS_LINE,
+		       ANZIC_CODE,
+		       AUTHORIZED_PERSON,
+		       BANK_KEY_WORD,
+		       BILLING_NAME,
+		       BRANCH_NUMBER,
+		       BUSINESS_GROUP_ID,
+		       COUNTRY,
+		       CSI_EXECUTION_DATE,
+		       CSI_REVIEW_DATE,
+		       CUSTOMER_CATEGORY,
+		       CUSTOMER_STREAM,
+		       CUSTOMER_TYPE,
+		       EMAIL,
+		       ENTITY_STAFF_CONTACT,
+		       ES_ACCOUNT_MANAGER,
+		       ES_BD_MANAGER,
+		       ES_CS_CONSULTANT,
+		       ES_CUSTOMER_ADMINISTRATOR,
+		       ES_EXEC_RELATIONSHIP,
+		       ES_MIGRATION_ADMINISTRATOR,
+		       ES_MIGRATION_CONSULTANT,
+		       ES_PAYROLL_CONSULTANT,
+		       FAX1,
+		       FAX2,
+		       FIRST_CONTACT_DATE,
+		       FROM_DATE,
+		       GST_NUMBER,
+		       GST_REG,
+		       HISTORY,
+		       JURISDICTION,
+		       MAIN_CONTACT,
+		       MOBILE,
+		       MSA_END_DATE,
+		       MSA_EXECUTION_DATE,
+		       MSA_START_DATE,
+		       NEW_FLAG_DATE,
+		       ORGANISATION_NAME,
+		       ORGANISATION_OVERVIEW,
+		       ORGANISATION_TYPE,
+		       ORG_DORMANT,
+		       ORG_HIERARCHY,
+		       PHONE1,
+		       PHONE2,
+		       POSTAL_ADDRESS_LINE,
+		       POSTAL_COUNTRY,
+		       POSTAL_POST_CODE,
+		       POSTAL_STATE,
+		       POSTAL_SUBURB,
+		       POST_CODE,
+		       PRODUCT,
+		       REFERENCE_NO_1,
+		       REFERENCE_NO_2,
+		       REFERENCE_NO_3,
+		       RELATIONSHIP,
+		       REPORTING_LINE,
+		       ROLE,
+		       SPECIAL_REQUIREMENTS,
+		       SRO_NUMBER,
+		       STATE,
+		       STP_BMS_ID,
+		       SUBURB,
+		       SWIM_LANE,
+		       TAX_INVOICE_ACCEPTANCE_TYPE,
+		       TERMINATION_NOTICE,
+		       TO_DATE,
+		       WEB_ADDRESS
+		       )
+		VALUES (
+		       ${ORGANISATION_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ABN},
+		       ${ACCEPT_RCTI},
+		       ${ACN},
+		       ${ADDRESS_LINE},
+		       ${ANZIC_CODE},
+		       ${AUTHORIZED_PERSON},
+		       ${BANK_KEY_WORD},
+		       ${BILLING_NAME},
+		       ${BRANCH_NUMBER},
+		       ${BUSINESS_GROUP_ID},
+		       ${COUNTRY},
+		       ${CSI_EXECUTION_DATE},
+		       ${CSI_REVIEW_DATE},
+		       ${CUSTOMER_CATEGORY},
+		       ${CUSTOMER_STREAM},
+		       ${CUSTOMER_TYPE},
+		       ${EMAIL},
+		       ${ENTITY_STAFF_CONTACT},
+		       ${ES_ACCOUNT_MANAGER},
+		       ${ES_BD_MANAGER},
+		       ${ES_CS_CONSULTANT},
+		       ${ES_CUSTOMER_ADMINISTRATOR},
+		       ${ES_EXEC_RELATIONSHIP},
+		       ${ES_MIGRATION_ADMINISTRATOR},
+		       ${ES_MIGRATION_CONSULTANT},
+		       ${ES_PAYROLL_CONSULTANT},
+		       ${FAX1},
+		       ${FAX2},
+		       ${FIRST_CONTACT_DATE},
+		       ${FROM_DATE},
+		       ${GST_NUMBER},
+		       ${GST_REG},
+		       ${HISTORY},
+		       ${JURISDICTION},
+		       ${MAIN_CONTACT},
+		       ${MOBILE},
+		       ${MSA_END_DATE},
+		       ${MSA_EXECUTION_DATE},
+		       ${MSA_START_DATE},
+		       ${NEW_FLAG_DATE},
+		       ${ORGANISATION_NAME},
+		       ${ORGANISATION_OVERVIEW},
+		       ${ORGANISATION_TYPE},
+		       ${ORG_DORMANT},
+		       ${ORG_HIERARCHY},
+		       ${PHONE1},
+		       ${PHONE2},
+		       ${POSTAL_ADDRESS_LINE},
+		       ${POSTAL_COUNTRY},
+		       ${POSTAL_POST_CODE},
+		       ${POSTAL_STATE},
+		       ${POSTAL_SUBURB},
+		       ${POST_CODE},
+		       ${PRODUCT},
+		       ${REFERENCE_NO_1},
+		       ${REFERENCE_NO_2},
+		       ${REFERENCE_NO_3},
+		       ${RELATIONSHIP},
+		       ${REPORTING_LINE},
+		       ${ROLE},
+		       ${SPECIAL_REQUIREMENTS},
+		       ${SRO_NUMBER},
+		       ${STATE},
+		       ${STP_BMS_ID},
+		       ${SUBURB},
+		       ${SWIM_LANE},
+		       ${TAX_INVOICE_ACCEPTANCE_TYPE},
+		       ${TERMINATION_NOTICE},
+		       ${TO_DATE},
+		       ${WEB_ADDRESS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpOrganisationD.update">
+	<![CDATA[
+		UPDATE HP_ORGANISATION_D
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ABN = ${ABN},
+		       ACCEPT_RCTI = ${ACCEPT_RCTI},
+		       ACN = ${ACN},
+		       ADDRESS_LINE = ${ADDRESS_LINE},
+		       ANZIC_CODE = ${ANZIC_CODE},
+		       AUTHORIZED_PERSON = ${AUTHORIZED_PERSON},
+		       BANK_KEY_WORD = ${BANK_KEY_WORD},
+		       BILLING_NAME = ${BILLING_NAME},
+		       BRANCH_NUMBER = ${BRANCH_NUMBER},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       COUNTRY = ${COUNTRY},
+		       CSI_EXECUTION_DATE = ${CSI_EXECUTION_DATE},
+		       CSI_REVIEW_DATE = ${CSI_REVIEW_DATE},
+		       CUSTOMER_CATEGORY = ${CUSTOMER_CATEGORY},
+		       CUSTOMER_STREAM = ${CUSTOMER_STREAM},
+		       CUSTOMER_TYPE = ${CUSTOMER_TYPE},
+		       EMAIL = ${EMAIL},
+		       ENTITY_STAFF_CONTACT = ${ENTITY_STAFF_CONTACT},
+		       ES_ACCOUNT_MANAGER = ${ES_ACCOUNT_MANAGER},
+		       ES_BD_MANAGER = ${ES_BD_MANAGER},
+		       ES_CS_CONSULTANT = ${ES_CS_CONSULTANT},
+		       ES_CUSTOMER_ADMINISTRATOR = ${ES_CUSTOMER_ADMINISTRATOR},
+		       ES_EXEC_RELATIONSHIP = ${ES_EXEC_RELATIONSHIP},
+		       ES_MIGRATION_ADMINISTRATOR = ${ES_MIGRATION_ADMINISTRATOR},
+		       ES_MIGRATION_CONSULTANT = ${ES_MIGRATION_CONSULTANT},
+		       ES_PAYROLL_CONSULTANT = ${ES_PAYROLL_CONSULTANT},
+		       FAX1 = ${FAX1},
+		       FAX2 = ${FAX2},
+		       FIRST_CONTACT_DATE = ${FIRST_CONTACT_DATE},
+		       FROM_DATE = ${FROM_DATE},
+		       GST_NUMBER = ${GST_NUMBER},
+		       GST_REG = ${GST_REG},
+		       HISTORY = ${HISTORY},
+		       JURISDICTION = ${JURISDICTION},
+		       MAIN_CONTACT = ${MAIN_CONTACT},
+		       MOBILE = ${MOBILE},
+		       MSA_END_DATE = ${MSA_END_DATE},
+		       MSA_EXECUTION_DATE = ${MSA_EXECUTION_DATE},
+		       MSA_START_DATE = ${MSA_START_DATE},
+		       NEW_FLAG_DATE = ${NEW_FLAG_DATE},
+		       ORGANISATION_NAME = ${ORGANISATION_NAME},
+		       ORGANISATION_OVERVIEW = ${ORGANISATION_OVERVIEW},
+		       ORGANISATION_TYPE = ${ORGANISATION_TYPE},
+		       ORG_DORMANT = ${ORG_DORMANT},
+		       ORG_HIERARCHY = ${ORG_HIERARCHY},
+		       PHONE1 = ${PHONE1},
+		       PHONE2 = ${PHONE2},
+		       POSTAL_ADDRESS_LINE = ${POSTAL_ADDRESS_LINE},
+		       POSTAL_COUNTRY = ${POSTAL_COUNTRY},
+		       POSTAL_POST_CODE = ${POSTAL_POST_CODE},
+		       POSTAL_STATE = ${POSTAL_STATE},
+		       POSTAL_SUBURB = ${POSTAL_SUBURB},
+		       POST_CODE = ${POST_CODE},
+		       PRODUCT = ${PRODUCT},
+		       REFERENCE_NO_1 = ${REFERENCE_NO_1},
+		       REFERENCE_NO_2 = ${REFERENCE_NO_2},
+		       REFERENCE_NO_3 = ${REFERENCE_NO_3},
+		       RELATIONSHIP = ${RELATIONSHIP},
+		       REPORTING_LINE = ${REPORTING_LINE},
+		       ROLE = ${ROLE},
+		       SPECIAL_REQUIREMENTS = ${SPECIAL_REQUIREMENTS},
+		       SRO_NUMBER = ${SRO_NUMBER},
+		       STATE = ${STATE},
+		       STP_BMS_ID = ${STP_BMS_ID},
+		       SUBURB = ${SUBURB},
+		       SWIM_LANE = ${SWIM_LANE},
+		       TAX_INVOICE_ACCEPTANCE_TYPE = ${TAX_INVOICE_ACCEPTANCE_TYPE},
+		       TERMINATION_NOTICE = ${TERMINATION_NOTICE},
+		       TO_DATE = ${TO_DATE},
+		       WEB_ADDRESS = ${WEB_ADDRESS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpOrganisationD.updateColumns">
+	<![CDATA[
+		UPDATE HP_ORGANISATION_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpOrganisationD.delete">
+	<![CDATA[
+		DELETE HP_ORGANISATION_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

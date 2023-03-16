@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - OPPORTUNITY - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.Opportunity.getOpportunityDataSetByOpportunityId">
+	<![CDATA[
+		select opp.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_TYPE' and lookup_code = opp.opportunity_type) as opportunity_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'SERVICE_STATUS' and lookup_code = opp.service_status) as service_status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'SERVICE_TYPE' and lookup_code = opp.service_type) as service_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_CLOSE_STATUS' and lookup_code = opp.close_as) as close_as_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_PRIORITY' and lookup_code = opp.priority) as priority_meaning,
+		       case opp.close_as
+		            when 'SALE' then (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_CLOSE_AS_SALE' and lookup_code = opp.close_reason)
+		            when 'NO_SALE' then (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_CLOSE_AS_NO_SALE' and lookup_code = opp.close_reason)
+		            else ''
+		       end as close_reason_meaning,
+		       to_char(opp.due_date, '${dateFormat}') as due_date_format,
+		       to_char(opp.creation_date, '${dateFormat}') as creation_date_format,
+		       to_char(opp.last_update_date, '${dateFormat}') as last_update_date_format,
+		       to_char(opp.close_date, '${dateFormat}') as close_date_format,
+		       (select full_name from hp_person_d where person_id = opp.assigned_person_id) as assigned_person_name,
+		       (select full_name from hp_person_d where person_id = opp.person_id) as person_name,
+		       (select full_name||' ('||person_number||')' from hp_person_d where person_id = opp.person_id) as person_name_with_number,
+		       (select full_name from hp_person_d where person_id = opp.close_by) as close_by_name,
+		       (select full_name from hp_person_d where person_id = opp.created_by) as created_by_name,
+		       (select full_name from hp_person_d where person_id = opp.last_updated_by) as last_updated_by_name,
+		       (select full_name from hp_person_d where person_id = opp.customer_relationship_mgr_id) as crm_name,
+		       (select full_name from hp_person_d where person_id = opp.customer_support_mgr_id) as csm_name
+		  from opportunity opp
+		 where opp.opportunity_id = '${opportunityId}'
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Opportunity.getOpportunityListByPersonId">
+	<![CDATA[
+		select opp.opportunity_id,
+		       opp.opportunity_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_TYPE' and lookup_code = opp.opportunity_type) as opportunity_type_meaning,
+		       to_char(opp.creation_date, '${dateFormat}') as creation_date,
+		       opp.status,
+		       to_char(asg.assignment_start_date, '${dateFormat}') as assignment_start_date,
+		       to_char(asg.assignment_end_date, '${dateFormat}') as assignment_end_date,
+		       asg.billing_org as billing_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.billing_org) as billing_org_name,
+		       asg.end_user_org,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.end_user_org) as end_user_org_name,
+		       (select full_name from hp_person_d where person_id = opp.customer_relationship_mgr_id) as crm_name,
+		       (select full_name from hp_person_d where person_id = opp.customer_support_mgr_id) as csm_name
+		  from opportunity opp,
+		       opportunity_assignment_details asg
+		 where 1 = 1
+		   and opp.person_id = '${personId}'
+		   and opp.opportunity_id = asg.opportunity_id(+)
+		 order by opp.creation_date desc
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Opportunity.getOpportunityDocumentDataSetByOpportunityId">
+	<![CDATA[
+		select odl.link_id,
+		       odl.opportunity_id,
+		       hdc.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_TYPE' and lookup_code = hdc.document_type) as document_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_SUB_TYPE' and lookup_code = hdc.document_sub_type) as document_sub_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS' and lookup_code = hdc.status) as status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hdc.status_detail) as status_detail_meaning,
+		       (select full_name from hp_person_d where person_id = hdc.person_id) as person_name,
+		       (select full_name||' ('||person_number||')' from hp_person_d where person_id = hdc.person_id) as person_name_with_number,
+		       (select full_name from hp_person_d where person_id = hdc.assigned_to) as assigned_to_name,
+		       (select full_name from hp_person_d where person_id = hdc.sent_by) as sent_by_name,
+		       (select full_name from hp_person_d where person_id = hdc.received_by) as received_by_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = hdc.organisation_id) as organisation_name,
+		       (select organisation_name||' ('||organisation_id||')' from hp_organisation_d where organisation_id = hdc.organisation_id) as organisation_name_with_id,
+		       (select full_name from hp_person_d where person_id = hdc.created_by) as created_by_name,
+		       (select full_name from hp_person_d where person_id = hdc.last_updated_by) as last_updated_by_name,
+		       to_char(hdc.creation_date, '${dateFormat}') as creation_date_format,
+		       to_char(hdc.last_update_date, '${dateFormat}') as last_update_date_format,
+		       to_char(hdc.creation_date, '${dateFormat}') as uploaded_date_format,
+		       to_char(hdc.due_date, '${dateFormat}') as due_date_format,
+		       to_char(hdc.follow_up_date, '${dateFormat}') as follow_up_date_format,
+		       to_char(hdc.sent_date, '${dateFormat}') as sent_date_format,
+		       to_char(hdc.received_date, '${dateFormat}') as received_date_format,
+		       to_char(hdc.expiry_date, '${dateFormat}') as expiry_date_format
+		  from opportunity_docs_link odl,
+		       hr_document hdc
+		 where opportunity_id = '${opportunityId}'
+		   and odl.document_id = hdc.document_id(+)
+		 order by odl.opportunity_id desc,
+		       hdc.document_id
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Opportunity.shiftAccount">
+	<![CDATA[
+		update opportunity
+		   set customer_relationship_mgr_id = '${shiftToId}',
+		       customer_support_mgr_id = '${shiftToId}',
+		       last_update_date = sysdate,
+		       last_updated_by = '1'
+		 where opportunity_id in (select opportunity_id
+		                            from opportunity
+		                           where status = 'Open'
+		                             and opportunity_id in (select opportunity_id
+		                                                      from opportunity_assignment_details
+		                                                     where billing_org in (select organisation_id
+		                                                                             from hp_organisation_d
+		                                                                            where organisation_id in (${organisationIds})
+		                                                                          )
+		                                                   )
+		                         )
+	]]>
+	</sql-query>
+</hibernate-mapping>

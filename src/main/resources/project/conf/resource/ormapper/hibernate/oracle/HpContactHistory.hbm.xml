@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_CONTACT_HISTORY - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpContactHistory" table="HP_CONTACT_HISTORY" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="contactId" column="CONTACT_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="activityType" column="ACTIVITY_TYPE" type="java.lang.String" length="30"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="0"/>
+		<property name="contactDate" column="CONTACT_DATE" type="java.util.Date"/>
+		<property name="contactTime" column="CONTACT_TIME" type="java.lang.String" length="5"/>
+		<property name="contactType" column="CONTACT_TYPE" type="java.lang.String" length="30"/>
+		<property name="copyToOrganisation" column="COPY_TO_ORGANISATION" type="java.lang.String" length="200"/>
+		<property name="copyToPerson" column="COPY_TO_PERSON" type="java.lang.String" length="200"/>
+		<property name="entityEmployeeId" column="ENTITY_EMPLOYEE_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpContactHistory.selectAll">
+	<![CDATA[
+		SELECT CONTACT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ACTIVITY_TYPE,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       TO_CHAR(CONTACT_DATE, 'yyyymmddhh24miss') AS CONTACT_DATE,
+		       CONTACT_TIME,
+		       CONTACT_TYPE,
+		       COPY_TO_ORGANISATION,
+		       COPY_TO_PERSON,
+		       ENTITY_EMPLOYEE_ID,
+		       ORGANISATION_ID,
+		       PERSON_ID
+		  FROM HP_CONTACT_HISTORY
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContactHistory.insert">
+	<![CDATA[
+		INSERT INTO HP_CONTACT_HISTORY (
+		       CONTACT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ACTIVITY_TYPE,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       CONTACT_DATE,
+		       CONTACT_TIME,
+		       CONTACT_TYPE,
+		       COPY_TO_ORGANISATION,
+		       COPY_TO_PERSON,
+		       ENTITY_EMPLOYEE_ID,
+		       ORGANISATION_ID,
+		       PERSON_ID
+		       )
+		VALUES (
+		       ${CONTACT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ACTIVITY_TYPE},
+		       ${BUSINESS_GROUP_ID},
+		       ${COMMENTS},
+		       ${CONTACT_DATE},
+		       ${CONTACT_TIME},
+		       ${CONTACT_TYPE},
+		       ${COPY_TO_ORGANISATION},
+		       ${COPY_TO_PERSON},
+		       ${ENTITY_EMPLOYEE_ID},
+		       ${ORGANISATION_ID},
+		       ${PERSON_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContactHistory.update">
+	<![CDATA[
+		UPDATE HP_CONTACT_HISTORY
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ACTIVITY_TYPE = ${ACTIVITY_TYPE},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       COMMENTS = ${COMMENTS},
+		       CONTACT_DATE = ${CONTACT_DATE},
+		       CONTACT_TIME = ${CONTACT_TIME},
+		       CONTACT_TYPE = ${CONTACT_TYPE},
+		       COPY_TO_ORGANISATION = ${COPY_TO_ORGANISATION},
+		       COPY_TO_PERSON = ${COPY_TO_PERSON},
+		       ENTITY_EMPLOYEE_ID = ${ENTITY_EMPLOYEE_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERSON_ID = ${PERSON_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContactHistory.updateColumns">
+	<![CDATA[
+		UPDATE HP_CONTACT_HISTORY
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContactHistory.delete">
+	<![CDATA[
+		DELETE HP_CONTACT_HISTORY
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

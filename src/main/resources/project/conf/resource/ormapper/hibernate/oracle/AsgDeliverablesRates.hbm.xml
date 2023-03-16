@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - ASG_DELIVERABLES_RATES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.AsgDeliverablesRates" table="ASG_DELIVERABLES_RATES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="asgDeliverablesRatesId" column="ASG_DELIVERABLES_RATES_ID" type="java.lang.Double"></id>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="alternateName" column="ALTERNATE_NAME" type="java.lang.String" length="100"/>
+		<property name="amount" column="AMOUNT" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="1000"/>
+		<property name="displayOnDeliverables" column="DISPLAY_ON_DELIVERABLES" type="java.lang.String" length="1"/>
+		<property name="dueDate" column="DUE_DATE" type="java.util.Date"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="fileRequired" column="FILE_REQUIRED" type="java.lang.String" length="1"/>
+		<property name="isInvoiced" column="IS_INVOICED" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="50"/>
+	</class>
+
+	<sql-query name="asgDeliverablesRates.selectAll">
+	<![CDATA[
+		SELECT ASG_DELIVERABLES_RATES_ID,
+		       ASSIGNMENT_ID,
+		       ALTERNATE_NAME,
+		       AMOUNT,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DESCRIPTION,
+		       DISPLAY_ON_DELIVERABLES,
+		       TO_CHAR(DUE_DATE, 'yyyymmddhh24miss') AS DUE_DATE,
+		       ELEMENT_ID,
+		       FILE_REQUIRED,
+		       IS_INVOICED,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       STATUS
+		  FROM ASG_DELIVERABLES_RATES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesRates.insert">
+	<![CDATA[
+		INSERT INTO ASG_DELIVERABLES_RATES (
+		       ASG_DELIVERABLES_RATES_ID,
+		       ASSIGNMENT_ID,
+		       ALTERNATE_NAME,
+		       AMOUNT,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DESCRIPTION,
+		       DISPLAY_ON_DELIVERABLES,
+		       DUE_DATE,
+		       ELEMENT_ID,
+		       FILE_REQUIRED,
+		       IS_INVOICED,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       STATUS
+		       )
+		VALUES (
+		       ${ASG_DELIVERABLES_RATES_ID},
+		       ${ASSIGNMENT_ID},
+		       ${ALTERNATE_NAME},
+		       ${AMOUNT},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DESCRIPTION},
+		       ${DISPLAY_ON_DELIVERABLES},
+		       ${DUE_DATE},
+		       ${ELEMENT_ID},
+		       ${FILE_REQUIRED},
+		       ${IS_INVOICED},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${STATUS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesRates.update">
+	<![CDATA[
+		UPDATE ASG_DELIVERABLES_RATES
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       ALTERNATE_NAME = ${ALTERNATE_NAME},
+		       AMOUNT = ${AMOUNT},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       DISPLAY_ON_DELIVERABLES = ${DISPLAY_ON_DELIVERABLES},
+		       DUE_DATE = ${DUE_DATE},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       FILE_REQUIRED = ${FILE_REQUIRED},
+		       IS_INVOICED = ${IS_INVOICED},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       STATUS = ${STATUS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesRates.updateColumns">
+	<![CDATA[
+		UPDATE ASG_DELIVERABLES_RATES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesRates.delete">
+	<![CDATA[
+		DELETE ASG_DELIVERABLES_RATES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

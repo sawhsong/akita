@@ -1,0 +1,1263 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - PAYMENT - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.Payment.getPayslipMasterICRCTIByPaymentId">
+	<![CDATA[
+		select pay.payment_id,
+		       hap.assignment_process_id,
+		       asg.assignment_id,
+		       asg.person_id,
+		       hbc.billing_code_id,
+		       hbc.billing_code,
+		       rat.remittance_advice_template_id,
+		       per.full_name||' ('||per.person_number||')' as person_name_number,
+		       rat.logo_name as logo_name,
+		       recipient_org.abn as recipient_org_abn,
+		       translate(recipient_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(recipient_org.state, '[^_]+', 1, 1)||' '||recipient_org.post_code as recipient_org_addr,
+		       recipient_org.organisation_name as recipient_org_name,
+		       supplier_org.organisation_name as supplier_org_name,
+		       supplier_org.abn as supplier_org_abn,
+		       asg.assignment_number,
+		       to_char(pay.period_start, '${dateFormat}') as period_start_format,
+		       to_char(pay.period_end, '${dateFormat}') as period_end_format,
+		       to_char(pay.payment_date, '${dateFormat}') as payment_date_format,
+		       to_char(pay.creation_date, '${dateFormat}') as payment_creation_date_format,
+		       rat.consulting_revenue_y_n,
+		       rat.deductions_y_n,
+		       rat.pay_advice_y_n,
+		       rat.payment_advice_y_n,
+		       rat.leave_accruals_y_n,
+		       (select fund_name
+		          from super_fund_detail
+		         where super_fund_id = (select super_fund_id
+		                                  from person_super_detail
+		                                 where person_id = asg.person_id
+		                               )
+		       ) as super_name
+		  from payment pay,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat,
+		       hp_person_d per,
+		       hp_organisation_d supplier_org,
+		       hp_organisation_d recipient_org
+		 where pay.payment_id = '${paymentId}'
+		   and pay.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.rcti_template_id = rat.remittance_advice_template_id
+		   and asg.person_id = per.person_id
+		   and per.employment_company_org_id = supplier_org.organisation_id
+		   and rat.recipient_company_id = recipient_org.organisation_id
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getPayslipMasterICNRCTIByPaymentId">
+	<![CDATA[
+		select pay.payment_id,
+		       hap.assignment_process_id,
+		       asg.assignment_id,
+		       asg.person_id,
+		       hbc.billing_code_id,
+		       hbc.billing_code,
+		       rat.remittance_advice_template_id,
+		       per.full_name||' ('||per.person_number||')' as person_name_number,
+		       rat.logo_name as logo_name,
+		       emp_org.organisation_name as emp_org_name,
+		       emp_org.abn as emp_org_abn,
+		       translate(emp_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(emp_org.state, '[^_]+', 1, 1)||' '||emp_org.post_code as emp_org_addr,
+		       billing_org.organisation_name as billing_org_name,
+		       billing_org.abn as billing_org_abn,
+		       translate(billing_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(billing_org.state, '[^_]+', 1, 1)||' '||billing_org.post_code as billing_org_addr,
+		       asg.assignment_number,
+		       to_char(pay.period_start, '${dateFormat}') as period_start_format,
+		       to_char(pay.period_end, '${dateFormat}') as period_end_format,
+		       to_char(pay.payment_date, '${dateFormat}') as payment_date_format,
+		       to_char(pay.creation_date, '${dateFormat}') as payment_creation_date_format,
+		       rat.consulting_revenue_y_n,
+		       rat.deductions_y_n,
+		       rat.pay_advice_y_n,
+		       rat.payment_advice_y_n,
+		       rat.leave_accruals_y_n,
+		       (select fund_name
+		          from super_fund_detail
+		         where super_fund_id = (select super_fund_id
+		                                  from person_super_detail
+		                                 where person_id = asg.person_id
+		                               )
+		       ) as super_name
+		  from payment pay,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat,
+		       hp_person_d per,
+		       hp_organisation_d billing_org,
+		       hp_organisation_d emp_org
+		 where pay.payment_id = '${paymentId}'
+		   and pay.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and asg.person_id = per.person_id
+		   and hbc.emp_organization_id = billing_org.organisation_id
+		   and per.employment_company_org_id = emp_org.organisation_id
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getPayslipMasterSTNGByPaymentId">
+	<![CDATA[
+		select pay.payment_id,
+		       hap.assignment_process_id,
+		       asg.assignment_id,
+		       asg.person_id,
+		       hbc.billing_code_id,
+		       hbc.billing_code,
+		       rat.remittance_advice_template_id,
+		       per.full_name||' ('||per.person_number||')' as person_name_number,
+		       rat.logo_name as logo_name,
+		       acd.home_address_line as person_addr_1,
+		       translate(acd.home_suburb, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(acd.home_state, '[^_]+', 1, 1)||' '||acd.home_post_code as person_addr_2,
+		       billing_org.organisation_name as billing_org_name,
+		       billing_org.abn as billing_org_abn,
+		       translate(billing_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(billing_org.state, '[^_]+', 1, 1)||' '||billing_org.post_code as billing_org_addr,
+		       asg.assignment_number,
+		       to_char(pay.period_start, '${dateFormat}') as period_start_format,
+		       to_char(pay.period_end, '${dateFormat}') as period_end_format,
+		       to_char(pay.payment_date, '${dateFormat}') as payment_date_format,
+		       to_char(pay.creation_date, '${dateFormat}') as payment_creation_date_format,
+		       rat.consulting_revenue_y_n,
+		       rat.deductions_y_n,
+		       rat.pay_advice_y_n,
+		       rat.payment_advice_y_n,
+		       rat.leave_accruals_y_n,
+		       (select fund_name
+		          from super_fund_detail
+		         where super_fund_id = (select super_fund_id
+		                                  from person_super_detail
+		                                 where person_id = asg.person_id
+		                               )
+		       ) as super_name
+		  from payment pay,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat,
+		       hp_person_d per,
+		       hp_organisation_d billing_org,
+		       hp_address_contact_d acd
+		 where pay.payment_id = '${paymentId}'
+		   and pay.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and asg.person_id = per.person_id
+		   and hbc.emp_organization_id = billing_org.organisation_id
+		   and asg.person_id = acd.person_id
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getPayslipMasterIPByPaymentId">
+	<![CDATA[
+		select pay.payment_id,
+		       hap.assignment_process_id,
+		       asg.assignment_id,
+		       asg.person_id,
+		       hbc.billing_code_id,
+		       hbc.billing_code,
+		       rat.remittance_advice_template_id,
+		       per.full_name||' ('||per.person_number||')' as person_name_number,
+		       rat.logo_name as logo_name,
+		       bilo.abn as billing_org_abn,
+		       translate(bilo.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(bilo.state, '[^_]+', 1, 1)||' '||bilo.post_code as billing_org_addr,
+		       case when empo.organisation_name = 'Entity Solutions Services Pty Ltd' then 'Payer'
+		            else 'Employer'
+		       end as employer_payer,
+		       empo.organisation_name as employer_name,
+		       asg.assignment_number,
+		       to_char(pay.period_start, '${dateFormat}') as period_start_format,
+		       to_char(pay.period_end, '${dateFormat}') as period_end_format,
+		       to_char(pay.payment_date, '${dateFormat}') as payment_date_format,
+		       rat.consulting_revenue_y_n,
+		       rat.deductions_y_n,
+		       rat.pay_advice_y_n,
+		       rat.payment_advice_y_n,
+		       rat.leave_accruals_y_n,
+		       (select fund_name
+		          from super_fund_detail
+		         where super_fund_id = (select super_fund_id
+		                                  from person_super_detail
+		                                 where person_id = asg.person_id
+		                               )
+		       ) as super_name
+		  from payment pay,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat,
+		       hp_person_d per,
+		       hp_organisation_d empo,
+		       hp_organisation_d bilo
+		 where pay.payment_id = '${paymentId}'
+		   and pay.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and asg.person_id = per.person_id
+		   and per.employment_company_org_id = empo.organisation_id
+		   and hbc.emp_organization_id = bilo.organisation_id
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getPayslipMasterBCTIByPaymentId">
+	<![CDATA[
+		select pay.payment_id,
+		       hap.assignment_process_id,
+		       asg.assignment_id,
+		       asg.person_id,
+		       hbc.billing_code_id,
+		       hbc.billing_code,
+		       rat.remittance_advice_template_id,
+		       pay.source_id as invoice_id,
+		       per.full_name||' ('||per.person_number||')' as person_name_number,
+		       rat.logo_name as logo_name,
+		       recipient_org.organisation_name as recipient_org_name,
+		       recipient_org.abn as recipient_org_abn,
+		       translate(recipient_org.address_line, chr(10)||chr(11)||chr(13), ' ') as recipient_org_addr_1,
+		       'Wellington, New Zealand'||' '||recipient_org.post_code as recipient_org_addr_2,
+		       emp_org.organisation_name as emp_org_name,
+		       emp_org.abn as emp_org_abn,
+		       translate(emp_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(emp_org.suburb, '[^_]+', 1, 1)||' '||emp_org.post_code as emp_org_addr,
+		       asg.assignment_number,
+		       emp_org.gst_number,
+		       (select to_char(invoice_date, '${dateFormat}') from hp_invoice where invoice_id = pay.source_id) as invoice_date_format,
+		       to_char(pay.period_start, '${dateFormat}') as period_start_format,
+		       to_char(pay.period_end, '${dateFormat}') as period_end_format,
+		       to_char(pay.payment_date, '${dateFormat}') as payment_date_format,
+		       to_char(pay.creation_date, '${dateFormat}') as payment_creation_date_format,
+		       rat.consulting_revenue_y_n,
+		       rat.deductions_y_n,
+		       rat.pay_advice_y_n,
+		       rat.payment_advice_y_n,
+		       rat.leave_accruals_y_n,
+		       (select fund_name
+		          from super_fund_detail
+		         where super_fund_id = (select super_fund_id
+		                                  from person_super_detail
+		                                 where person_id = asg.person_id
+		                               )
+		       ) as super_name
+		  from payment pay,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat,
+		       hp_person_d per,
+		       hp_organisation_d emp_org,
+		       hp_organisation_d recipient_org
+		 where pay.payment_id = '${paymentId}'
+		   and pay.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.rcti_template_id = rat.remittance_advice_template_id
+		   and asg.person_id = per.person_id
+		   and per.employment_company_org_id = emp_org.organisation_id
+		   and hbc.emp_organization_id = recipient_org.organisation_id
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getYtdAllByPersonIdForPreview">
+	<![CDATA[
+		with src as (
+			select 'Earnings' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Earnings')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'Deduction' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Pre-Tax Deductions', 'Pre-Tax-Payback Deductions')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'Superannuation' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Superannuation')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'SuperSalSac' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Super Sal Sac')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'PAYG' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Tax Deductions')
+			                                                               )
+			                                 )
+			           and hbl.element_id = '1571'
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'OtherTaxation' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Tax Deductions')
+			                                                               )
+			                                 )
+			           and hbl.element_id in ('1573', '1572')
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'AddBack' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Pre-Tax-Payback Deductions', 'Cash Payments', 'Others')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'PostDeduction' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Post-Tax Deductions')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+		)
+		select *
+		  from src
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getPaymentAllByPaymentIdForPreview">
+	<![CDATA[
+		with src as (
+			select 'Earnings' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       ''  as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Earnings')
+			                                                      )
+			                        )
+			union
+			select 'Deduction' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Pre-Tax Deductions', 'Pre-Tax-Payback Deductions')
+			                                                      )
+			                        )
+			union
+			select 'Superannuation' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = asg.person_id
+			                               )
+			       ) as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Superannuation')
+			                                                      )
+			                        )
+			union
+			select 'SuperSalSac' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Super Sal Sac')
+			                                                      )
+			                        )
+			union
+			select 'PAYG' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Tax Deductions')
+			                                                      )
+			                        )
+			   and pe.element_id = '1571'
+			union
+			select 'OtherTaxation' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Tax Deductions')
+			                                                      )
+			                        )
+			   and pe.element_id in ('1573', '1572')
+			union
+			select 'AddBack' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Pre-Tax-Payback Deductions', 'Cash Payments', 'Others')
+			                                                      )
+			                        )
+			union
+			select 'PostDeduction' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Post-Tax Deductions')
+			                                                      )
+			                        )
+		)
+		select *
+		  from src
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getEarningsByPaymentIdForPreview">
+	<![CDATA[
+		select pe.payment_id,
+		       pe.payment_element_id,
+		       pe.element_id,
+		       pe.source,
+		       pe.source_id,
+		       pe.period,
+		       pe.input_amount,
+		       pe.calculated_amount,
+		       pe.alternate_name,
+		       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Hours')
+		       ) as units,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Rate', 'Flat Amount')
+		       ) as rate,
+		       rat.show_zero_y_n
+		  from payment_element pe,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat
+		 where pe.payment_id = '${paymentId}'
+		   and pe.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and pe.element_id in (select element_id
+		                           from hp_elements_d
+		                          where classifications_id in (select classifications_id
+		                                                         from hp_classifications
+		                                                        where classifications_name in ('Earnings')
+		                                                      )
+		                        )
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getDeductionsByPaymentIdForPreview">
+	<![CDATA[
+		select pe.payment_id,
+		       pe.payment_element_id,
+		       pe.element_id,
+		       pe.source,
+		       pe.source_id,
+		       pe.period,
+		       pe.input_amount,
+		       pe.calculated_amount,
+		       pe.alternate_name,
+		       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Hours')
+		       ) as units,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Rate', 'Flat Amount')
+		       ) as rate,
+		       rat.show_zero_y_n
+		  from payment_element pe,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat
+		 where pe.payment_id = '${paymentId}'
+		   and pe.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and pe.element_id in (select element_id
+		                           from hp_elements_d
+		                          where classifications_id in (select classifications_id
+		                                                         from hp_classifications
+		                                                        where classifications_name in ('Pre-Tax Deductions', 'Pre-Tax-Payback Deductions')
+		                                                      )
+		                        )
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getCashPaymentsByPaymentIdForPreview">
+	<![CDATA[
+		select pe.payment_id,
+		       pe.payment_element_id,
+		       pe.element_id,
+		       pe.source,
+		       pe.source_id,
+		       pe.period,
+		       pe.input_amount,
+		       pe.calculated_amount,
+		       pe.alternate_name,
+		       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Hours')
+		       ) as units,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Rate', 'Flat Amount')
+		       ) as rate,
+		       rat.show_zero_y_n
+		  from payment_element pe,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat
+		 where pe.payment_id = '${paymentId}'
+		   and pe.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and pe.element_id in (select element_id
+		                           from hp_elements_d
+		                          where classifications_id in (select classifications_id
+		                                                         from hp_classifications
+		                                                        where classifications_name in ('Cash Payments')
+		                                                      )
+		                        )
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getEarningsForSTRemittanceByPaymentIdForPreview">
+	<![CDATA[
+		select pe.payment_id,
+		       pe.payment_element_id,
+		       pe.element_id,
+		       pe.source,
+		       pe.source_id,
+		       pe.period,
+		       pe.input_amount,
+		       pe.calculated_amount,
+		       pe.alternate_name,
+		       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Hours')
+		       ) as units,
+		       (select nvl(sum(pea.value), 0)
+		          from payment_element_attribute pea,
+		               hp_element_attributes_d hea
+		         where pea.payment_element_id = pe.payment_element_id
+		           and pea.element_attribute_id = hea.element_att_id
+		           and hea.name in ('Rate', 'Flat Amount')
+		       ) as rate,
+		       rat.show_zero_y_n
+		  from payment_element pe,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat
+		 where pe.payment_id = '${paymentId}'
+		   and pe.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and pe.element_id in (select element_id
+		                           from hp_elements_d
+		                          where classifications_id in (select classifications_id
+		                                                         from hp_classifications
+		                                                        where classifications_name in ('Earnings', 'Cash Payments')
+		                                                      )
+		                        )
+	]]>
+	</sql-query>
+
+	<sql-query name="query.Payment.getDeductionsBCTIByPaymentIdForPreview">
+	<![CDATA[
+			select pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Tax Deductions')
+			                                                      )
+			                        )
+	]]>
+	</sql-query>
+</hibernate-mapping>

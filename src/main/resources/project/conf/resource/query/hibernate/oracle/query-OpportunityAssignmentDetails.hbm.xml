@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - OPPORTUNITY_ASSIGNMENT_DETAILS - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.OpportunityAssignmentDetails.getOppAsgDetailsDataSetByOpportunityId">
+	<![CDATA[
+		select asg.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'AMOUNT_PERCENTAGE' and lookup_code = asg.management_fee_type) as management_fee_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'END_USER_TYPE' and lookup_code = asg.end_user_type) as end_user_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'ASG_TERM_NOTICE' and lookup_code = asg.termination_notice) as termination_notice_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'ASG_TERM_NOTICE_UNIT' and lookup_code = asg.termination_notice_unit) as termination_notice_unit_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'IPRO_FEE_UPON' and lookup_code = asg.ipro_fee_upon) as ipro_fee_upon_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAYMENT_ARRANGMENT' and lookup_code = asg.payment_arrangment) as payment_arrangment_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'WORKING_HOURS_BASIS' and lookup_code = asg.working_hours_basis) as working_hours_basis_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAY_BASIS' and lookup_code = asg.unit) as unit_meaning,
+		       to_char(asg.assignment_start_date, '${dateFormat}') as assignment_start_date_format,
+		       to_char(asg.assignment_end_date, '${dateFormat}') as assignment_end_date_format,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.billing_org) as billing_org_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.end_user_org) as end_user_org_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.payroll_tax_responsibilty) as prt_responsibilty_name,
+		       (select full_name from hp_person_d where person_id = asg.contact_person) as contact_person_name,
+		       case when instr(asg.work_start_time, ':') > 0 then regexp_substr(asg.work_start_time, '[^]+:[^]+', 1, 1)
+		            when instr(asg.work_start_time, ':') <= 0 then substr(asg.work_start_time, 1, 2)
+		            else ''
+		       end as work_start_hh,
+		       case when instr(asg.work_start_time, ':') > 0 then regexp_substr(asg.work_start_time, '[^]+:[^]+', 1, 2)
+		            when instr(asg.work_start_time, ':') <= 0 then substr(asg.work_start_time, 3, 4)
+		            else ''
+		       end as work_start_mm,
+		       case when instr(asg.work_end_time, ':') > 0 then regexp_substr(asg.work_end_time, '[^]+:[^]+', 1, 1)
+		            when instr(asg.work_end_time, ':') <= 0 then substr(asg.work_end_time, 1, 2)
+		            else ''
+		       end as work_end_hh,
+		       case when instr(asg.work_end_time, ':') > 0 then regexp_substr(asg.work_end_time, '[^]+:[^]+', 1, 2)
+		            when instr(asg.work_end_time, ':') <= 0 then substr(asg.work_end_time, 3, 4)
+		            else ''
+		       end as work_end_mm
+		  from opportunity_assignment_details asg
+		 where asg.opportunity_id = '${opportunityId}'
+	]]>
+	</sql-query>
+</hibernate-mapping>

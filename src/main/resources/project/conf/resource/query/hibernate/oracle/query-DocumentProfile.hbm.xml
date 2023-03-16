@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - DOCUMENT_PROFILE - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.DocumentProfile.getProfileForSelectbox">
+	<![CDATA[
+		select profile_id,
+		       profile_group,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_PROFILE_GROUP' and lookup_code = profile_group) as profile_group_meaning,
+		       profile_name
+		  from document_profile
+		 where is_active = 'Y'
+		 order by profile_group,
+		       profile_id
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - DOCUMENT_PROFILE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.DocumentProfile" table="DOCUMENT_PROFILE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="300"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="profileGroup" column="PROFILE_GROUP" type="java.lang.String" length="1000"/>
+		<property name="profileId" column="PROFILE_ID" type="java.lang.Double"/>
+		<property name="profileName" column="PROFILE_NAME" type="java.lang.String" length="300"/>
+	</class>
+
+	<sql-query name="documentProfile.selectAll">
+	<![CDATA[
+		SELECT CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PROFILE_GROUP,
+		       PROFILE_ID,
+		       PROFILE_NAME
+		  FROM DOCUMENT_PROFILE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="documentProfile.insert">
+	<![CDATA[
+		INSERT INTO DOCUMENT_PROFILE (
+		       CREATED_BY,
+		       CREATION_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PROFILE_GROUP,
+		       PROFILE_ID,
+		       PROFILE_NAME
+		       )
+		VALUES (
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PROFILE_GROUP},
+		       ${PROFILE_ID},
+		       ${PROFILE_NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="documentProfile.update">
+	<![CDATA[
+		UPDATE DOCUMENT_PROFILE
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PROFILE_GROUP = ${PROFILE_GROUP},
+		       PROFILE_ID = ${PROFILE_ID},
+		       PROFILE_NAME = ${PROFILE_NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="documentProfile.updateColumns">
+	<![CDATA[
+		UPDATE DOCUMENT_PROFILE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="documentProfile.delete">
+	<![CDATA[
+		DELETE DOCUMENT_PROFILE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

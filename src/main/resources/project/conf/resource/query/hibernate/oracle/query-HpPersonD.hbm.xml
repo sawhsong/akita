@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_PERSON_D - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpPersonD.getPersonDataSetByCriteria">
+	<![CDATA[
+		select person_id,
+		       person_number,
+		       surname,
+		       first_name,
+		       person_type,
+		       (select organisation_name from hp_organisation_d where organisation_id = hp_person_d.employment_company_org_id) as employment_org_name,
+		       payslip_email,
+		       (select count(*) from hp_assignments_d where person_id = hp_person_d.person_id) as number_of_assignment,
+		       (select count(*) from hp_assignments_d where asg_active = 'Y' and person_id = hp_person_d.person_id) as number_of_active_assignment,
+		       (select telephone_mobile from hp_address_contact_d where person_id = hp_person_d.person_id) as mobile
+		  from hp_person_d
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getPersonDataSetByPersonId">
+	<![CDATA[
+		select per.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'PREFIX' and lookup_code = per.prefix) as prefix_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'GENDER' and lookup_code = per.gender) as gender_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'SERVICE_STATUS' and lookup_code = per.service_status) as service_status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'SERVICE_TYPE' and lookup_code = per.service_type) as service_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = per.ecms_payroll_consultant_id) as ecms_payroll_consultant,
+		       (select meaning from sys_common_lookups where lookup_type = 'RESIGNATION_REASON' and lookup_code = per.ecms_payroll_consultant_id) as resignation_reason_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PREV_EMPLOY_MODEL' and lookup_code = per.previous_employment_model) as previous_emp_model_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'EMPLOYMENT_TYPE' and lookup_code = per.employment_type) as employment_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'MARITAL_STATUS' and lookup_code = per.marital_status) as marital_status_meaning,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.employment_company_org_id) as employment_company_org_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.referral_organisation_id) as referral_organisation_name,
+		       to_char(per.date_of_birth, '${dateFormat}') as date_of_birth_format,
+		       to_char(per.first_contact, '${dateFormat}') as first_contact_format,
+		       to_char(per.member_since, '${dateFormat}') as member_since_format,
+		       to_char(per.resignation_date, '${dateFormat}') as resignation_date_format,
+		       to_char(per.first_assignment_date, '${dateFormat}') as first_assignment_date_format,
+		       to_char(per.lafha_lease_expiry, '${dateFormat}') as lafha_lease_expiry_format,
+		       to_char(per.creation_date, '${dateFormat}') as creation_date_format,
+		       to_char(per.last_update_date, '${dateFormat}') as last_update_date_format,
+		       (select full_name from hp_person_d where person_id = per.referral_id) as referral_name,
+		       (select full_name from hp_person_d where person_id = per.ecms_account_mgr_id) as crm_name,
+		       (select full_name from hp_person_d where person_id = per.ecms_cs_consultant_id) as csm_name,
+		       (select full_name from hp_person_d where person_id = per.customer_support) as csa_name,
+		       (select full_name from hp_person_d where person_id = per.created_by) as created_by_name,
+		       (select full_name from hp_person_d where person_id = per.last_updated_by) as last_updated_by_name,
+		       (select long_to_varchar('hp_comments', 'description', rowid) from hp_comments where comment_id = per.resignation_comment_id) as resignation_comments,
+		       (select long_to_varchar('hp_comments', 'description', rowid) from hp_comments where comment_id = per.personal_comment_id) as personal_comments,
+		       case (select preferred from hp_address_contact_d where person_id = per.person_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = per.person_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = per.person_id)
+		            when 'B' then (select email_home||', '||email_work from hp_address_contact_d where person_id = per.person_id)
+		            else ''
+		       end as preferred_email,
+		       (select telephone_mobile from hp_address_contact_d where person_id = per.person_id) as mobile_number,
+		       (select count(*) from hp_assignments_d where person_id = per.person_id) as all_assignment_cnt,
+		       (select count(*) from hp_assignments_d where asg_active = 'Y' and person_id = per.person_id) as all_active_assignment_cnt,
+		       (select timecard_approval_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id) as primary_approver_id,
+		       (select full_name from hp_person_d where person_id = (select timecard_approval_id from hp_assignments_d where person_id = per.person_id and preferred = 'Y')) as primary_approver_name,
+		       (select to_char(max(date_earned), 'dd/mm/yyyy')
+		          from hp_assignments_d asg,
+		               (select assignment_id, max(date_earned) as date_earned
+		                  from hp_balance
+		                 group by assignment_id
+		               ) pay
+		         where asg.person_id = per.person_id
+		           and asg.assignment_id = pay.assignment_id(+)
+		       ) as last_paid_date
+		  from hp_person_d per
+		 where per.person_id = '${personId}'
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getPersonDataSetForQuickMenu">
+	<![CDATA[
+		select per.person_id,
+		       per.person_number,
+		       usr.user_id,
+		       usr.user_name,
+		       usr.email as user_email,
+		       per.payslip_email,
+		       per.surname,
+		       per.first_name,
+		       per.member_since,
+		       per.date_of_birth,
+		       per.person_type,
+		       per.employment_company_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.employment_company_org_id) as emp_org_name,
+		       usr.portal_security_role,
+		       (select billing_organisation_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id) as curr_billing_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = (select billing_organisation_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id)) as curr_billing_org_name,
+		       (select count(assignment_id) from hp_assignments_d where asg_active = 'Y' and person_id = per.person_id)||' / '||(select count(assignment_id) from hp_assignments_d where person_id = per.person_id) as asg_count,
+		       nvl(pay.cnt, 0) as payment_count,
+		       (select telephone_mobile from hp_address_contact_d where person_id = per.person_id) as mobile
+		  from hp_person_d per,
+		       sys_users usr,
+		       (select person_id,
+		               sum(cnt) as cnt
+		          from (select src.assignment_id,
+		                       (select person_id from hp_assignments_d where assignment_id = src.assignment_id) as person_id,
+		                       src.cnt
+		                  from (select pay.assignment_id as assignment_id,
+		                               count(*) as cnt
+		                          from hp_balance pay,
+		                               hp_assignments_d asg
+		                         where pay.assignment_id = asg.assignment_id(+)
+		                         group by pay.assignment_id
+		                       ) src
+		               )
+		         group by person_id
+		       ) pay
+		 where per.person_id = usr.person_id(+)
+		   and per.person_id = pay.person_id(+)
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getPersonNumberForAutoCompletion">
+	<![CDATA[
+		select person_id,
+		       person_number,
+		       full_name,
+		       full_name||' ('||person_number||')' as full_name_with_person_number
+		  from hp_person_d
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getEsEmployeeByNameForAutoCompletion">
+	<![CDATA[
+		select person_id,
+		       person_number,
+		       full_name,
+		       full_name||' ('||person_number||')' as full_name_with_person_number
+		  from hp_person_d
+		 where person_type = 'Entity Employee'
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getEsEmployeeLookup">
+	<![CDATA[
+		select person_id,
+		       person_number,
+		       full_name,
+		       title
+		  from hp_person_d
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getEcmsGeneralInfoByPersonId">
+	<![CDATA[
+		select per.employment_company_org_id as employment_company_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.employment_company_org_id) as employment_company_name,
+		       per.service_status,
+		       per.service_type,
+		       to_char(per.member_since, '${dateFormat}') as member_since,
+		       to_char(per.resignation_date, '${dateFormat}') as resignation_date,
+		       per.reference_no_2,
+		       per.reference_no_3,
+		       per.employment_type,
+		       per.ecms_account_mgr_id as crm_id,
+		       (select full_name from hp_person_d where person_id = per.ecms_account_mgr_id) as crm_name,
+		       per.ecms_cs_consultant_id as csm_id,
+		       (select full_name from hp_person_d where person_id = per.ecms_cs_consultant_id) as csm_name,
+		       per.customer_support as csa_id,
+		       (select full_name from hp_person_d where person_id = per.customer_support) as csa_name,
+		       per.ecms_payroll_consultant_id,
+		       per.resignation_reason,
+		       per.resignation_comment_id,
+		       (select long_to_varchar('hp_comments', 'description', rowid) from hp_comments where comment_id = per.resignation_comment_id) as resignation_comment_desc,
+		       per.lafha_eligible,
+		       per.lafha_amount,
+		       per.attribute8 as is_verified,
+		       per.payslip_email,
+		       pap.email_yn,
+		       pap.online_yn,
+		       pap.other_yn,
+		       pap.oth_desc
+		  from hp_person_d per,
+		       hp_pay_adv_prefrence pap
+		 where per.person_id = '${personId}'
+		   and per.person_id = pap.person_id(+)
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.getApproverDataSetByOrgIds">
+	<![CDATA[
+		select per.person_id,
+		       per.person_number,
+		       per.full_name,
+		       case (select preferred from hp_address_contact_d where person_id = per.person_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = per.person_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = per.person_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = per.person_id)
+		            else ''
+		       end as email
+		  from hp_person_d per
+		 where per.employment_company_org_id in (${organisationIds})
+		   and per.employment_company_org_id not in ('1811')
+		 order by per.full_name
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.shiftAccountFromOpportunity">
+	<![CDATA[
+		update hp_person_d
+		   set ecms_account_mgr_id = '${shiftToId}',
+		       ecms_cs_consultant_id = '${shiftToId}',
+		       last_update_date = sysdate,
+		       last_updated_by = '1'
+		 where person_id in (select person_id
+		                       from opportunity
+		                      where status = 'Open'
+		                        and opportunity_id in (select opportunity_id
+		                                                 from opportunity_assignment_details
+		                                                where billing_org in (select organisation_id
+		                                                                        from hp_organisation_d
+		                                                                       where organisation_id in (${organisationIds})
+		                                                                     )
+		                                              )
+		                    )
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpPersonD.shiftAccountFromAssignment">
+	<![CDATA[
+		update hp_person_d
+		   set ecms_account_mgr_id = '${shiftToId}',
+		       ecms_cs_consultant_id = '${shiftToId}',
+		       last_update_date = sysdate,
+		       last_updated_by = '1'
+		 where person_id in (select person_id from hp_assignments_d where asg_active = 'Y' and billing_organisation_id in (${organisationIds}))
+	]]>
+	</sql-query>
+</hibernate-mapping>

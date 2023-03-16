@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HR_DOCUMENT - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HrDocument.getDataSetByDocumentId">
+	<![CDATA[
+		select hrd.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_TYPE' and lookup_code = hrd.document_type) as document_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_SUB_TYPE' and lookup_code = hrd.document_sub_type) as document_sub_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS' and lookup_code = hrd.status) as status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hrd.status_detail) as status_detail_meaning,
+		       (select full_name from hp_person_d where person_id = hrd.person_id) as person_name,
+		       (select full_name from hp_person_d where person_id = hrd.assigned_to) as assigned_to_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = hrd.organisation_id) as organisation_name,
+		       (select full_name from hp_person_d where person_id = hrd.sent_by) as sent_by_name,
+		       to_char(hrd.sent_date, '${dateFormat}') as sent_date_format,
+		       (select full_name from hp_person_d where person_id = hrd.received_by) as received_by_name,
+		       to_char(hrd.received_date, '${dateFormat}') as received_date_format,
+		       (select full_name from hp_person_d where person_id = hrd.created_by) as created_by_name,
+		       to_char(hrd.creation_date, '${dateFormat}') as creation_date_format,
+		       (select full_name from hp_person_d where person_id = hrd.last_updated_by) as last_updated_by_name,
+		       to_char(hrd.last_update_date, '${dateFormat}') as last_update_date_format,
+		       to_char(hrd.due_date, '${dateFormat}') as due_date_format,
+		       to_char(hrd.follow_up_date, '${dateFormat}') as follow_up_date_format,
+		       to_char(hrd.expiry_date, '${dateFormat}') as expiry_date_format
+		  from hr_document hrd
+		 where hrd.is_active = 'Y'
+		   and hrd.document_id = '${documentId}'
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HrDocument.getPersonOutstandingDocumentByPersonId">
+	<![CDATA[
+		select hrd.person_id as person_id,
+		       hpd.person_number as person_number,
+		       hpd.full_name as person_name,
+		       hrd.assigned_to as assigned_to_id,
+		       (select full_name from hp_person_d where person_id = hrd.assigned_to) as assigned_to_name,
+		       hrd.document_id as document_id,
+		       hrd.document_name as document_name,
+		       hrd.description as document_description,
+		       to_char(hrd.due_date, '${dateFormat}') as due_date,
+		       'Opp : <a onclick=''showOpportunity('||nvl(to_char(opp.opportunity_id), '--')||')'' class=''aEn''>'||nvl(to_char(opp.opportunity_id), '--')||'</a>, Asg : <a onclick=''showAssignment('||nvl(to_char(had.assignment_id), '--')||')'' class=''aEn''>'||nvl(to_char(had.assignment_id), '--')||'</a>' as opp_asg_id,
+		       opp.opportunity_type as opportunity_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_TYPE' and lookup_code = opp.opportunity_type) as opportunity_type_meaning,
+		       had.billing_organisation_id as billing_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = had.billing_organisation_id) as billing_org_name,
+		       case when (tfv.opp_tf_id is null and tfv.asg_tf_id is null) then
+		                 'Not Created'
+		            when (tfv.opp_tf_id is not null and tfv.asg_tf_id is not null) then
+		                 (select decode(is_active, 'Y', 'Active', 'Inactive')||', '||
+		                         decode(status, 'T', 'Transformed', 'Not Transformed')||', '||
+		                         (select nvl(round(max((select count(*) from portal_user_tf_step where user_tf_id = least(tfv.opp_tf_id, tfv.asg_tf_id) and is_completed = 'Y') * 100 / (select count(*) from portal_user_tf_step where user_tf_id = least(tfv.opp_tf_id, tfv.asg_tf_id))), 0), 0)
+		                            from portal_user_tf_step
+		                           where user_tf_id = least(tfv.opp_tf_id, tfv.asg_tf_id)
+		                         )||'% Complete'
+		                    from portal_user_tf where user_tf_id = least(tfv.opp_tf_id, tfv.asg_tf_id)
+		                 )
+		       else (select decode(is_active, 'Y', 'Active', 'Inactive')||', '||
+		                    decode(status, 'T', 'Transformed', 'Not Transformed')||', '||
+		                    (select nvl(round(max((select count(*) from portal_user_tf_step where user_tf_id = greatest(nvl(tfv.opp_tf_id, 0), nvl(tfv.asg_tf_id, 0)) and is_completed = 'Y') * 100 / (select count(*) from portal_user_tf_step where user_tf_id = greatest(nvl(tfv.opp_tf_id, 0), nvl(tfv.asg_tf_id, 0)))), 0), 0)
+		                       from portal_user_tf_step
+		                      where user_tf_id = greatest(nvl(tfv.opp_tf_id, 0), nvl(tfv.asg_tf_id, 0))
+		                    )||'% Complete'
+		               from portal_user_tf where user_tf_id = greatest(nvl(tfv.opp_tf_id, 0), nvl(tfv.asg_tf_id, 0))
+		            )
+		       end as task_flow,
+		       tfv.opp_tf_id as opp_tf_id,
+		       tfv.asg_tf_id as asg_tf_id,
+		       substr(hpd.ecms_payroll_consultant_id, 1, instr(hpd.ecms_payroll_consultant_id, '_')-1) as state,
+		       to_char(hrd.follow_up_date, '${dateFormat}') as follow_up_date,
+		       hrd.status as document_status,
+		       hrd.status_detail as document_status_detail,
+		       case hrd.status
+		            when 'SENT' then
+		                 (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS' and lookup_code = hrd.status)
+		                 ||' '||
+		                 (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hrd.status_detail)
+		                 || ' on '
+		                 || to_char(hrd.sent_date, '${dateFormat}')
+		                 || ' by '
+		                 || (select full_name from hp_person_d where person_id = hrd.sent_by)
+		            when 'UNSENT' then
+		                 (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hrd.status_detail)
+		            else ''
+		       end as document_status_meaning,
+		       to_char(had.assignment_start_date, '${dateFormat}') as assignment_start_date,
+		       to_char(had.assignment_end_date, '${dateFormat}') as assignment_end_date,
+		       had.asg_active
+		  from hr_document hrd,
+		       opportunity opp,
+		       opportunity_docs_link odl,
+		       hp_assignments_d had,
+		       assignment_document_link adl,
+		       hp_person_d hpd,
+		       (select *
+		          from (select source_id as opp_tf_source_id, null as asg_tf_source_id, user_tf_id as opp_tf_id, null as asg_tf_id
+		                  from portal_user_tf
+		                 where source = 'OPPORTUNITY'
+		                union
+		                select null as opp_tf_source_id, source_id as asg_tf_source_id, null as opp_tf_id, user_tf_id as asg_tf_id
+		                  from portal_user_tf
+		                 where source = 'ASSIGNMENT'
+		               )
+		       ) tfv
+		 where hrd.person_id = '${personId}'
+		   and hrd.status not in ('PR', 'RECEIVED', 'NOT_REQUIRED')
+		   and hrd.document_id = odl.document_id(+)
+		   and odl.opportunity_id = opp.opportunity_id(+)
+		   and hrd.document_id = adl.document_id(+)
+		   and adl.assignment_id = had.assignment_id(+)
+		   and hrd.person_id = hpd.person_id
+		   and opp.opportunity_id = tfv.opp_tf_source_id(+)
+		   and had.assignment_id = tfv.asg_tf_source_id(+)
+		 order by hrd.person_id desc, hrd.follow_up_date asc, hrd.due_date asc, hrd.document_name asc
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HrDocument.getPersonReceivedDocumentByPersonId">
+	<![CDATA[
+		select hrd.person_id as person_id,
+		       hrd.document_id as document_id,
+		       hrd.document_name as document_name,
+		       hrd.organisation_id as copy_to_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = hrd.organisation_id) as copy_to_org_name,
+		       hrd.receive_comments as receive_comments,
+		       hrd.received_by as received_by_id,
+		       hpd.full_name as received_by_name,
+		       'Opp : <a onclick=''showOpportunity('||nvl(to_char(opp.opportunity_id), '--')||')'' class=''aEn''>'||nvl(to_char(opp.opportunity_id), '--')||'</a>, Asg : <a onclick=''showAssignment('||nvl(to_char(had.assignment_id), '--')||')'' class=''aEn''>'||nvl(to_char(had.assignment_id), '--')||'</a>' as opp_asg_id,
+		       had.billing_organisation_id as billing_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = had.billing_organisation_id) as billing_org_name,
+		       to_char(hrd.expiry_date, '${dateFormat}') as expiry_date,
+		       'Received by '||hpd.full_name||' on '||to_char(hrd.received_date, '${dateFormat}')||' '||replace((select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hrd.status_detail), 'Received', '') as document_status_meaning,
+		       decode(hrd.is_active, 'Y', 'Y', 'N', 'N', 'N') as is_active,
+		       case when hrd.document_sub_type in (select lookup_code from sys_common_lookups where lookup_type = 'UCM_DOC_SUB_TYPES') then 'Y'
+		            else 'N'
+		       end as is_available_on_eo
+		  from hr_document hrd,
+		       opportunity opp,
+		       opportunity_docs_link odl,
+		       hp_assignments_d had,
+		       assignment_document_link adl,
+		       hp_person_d hpd
+		 where hrd.person_id = '${personId}'
+		   ${auto_fill}
+		   and hrd.status in ('RECEIVED', 'PR')
+		   and hrd.document_id = odl.document_id(+)
+		   and odl.opportunity_id = opp.opportunity_id(+)
+		   and hrd.document_id = adl.document_id(+)
+		   and adl.assignment_id = had.assignment_id(+)
+		   and hrd.received_by = hpd.person_id(+)
+		 order by hrd.person_id desc, hrd.received_date desc, hrd.document_name asc
+	]]>
+	</sql-query>
+</hibernate-mapping>

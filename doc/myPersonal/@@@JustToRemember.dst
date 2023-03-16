@@ -1,0 +1,37 @@
+/*
+ * Code
+ */
+for (Enumeration emAttr = request.getAttributeNames(); emAttr.hasMoreElements();) {
+	String s = (String)emAttr.nextElement();
+	System.out.println("request.getAttribute[" + s + "] at setServletRequest() : " + request.getAttribute(s));
+}
+for (Enumeration emAttr = request.getHeaderNames(); emAttr.hasMoreElements();) {
+	String s = (String)emAttr.nextElement();
+	System.out.println("request.getHeader[" + s + "] at setServletRequest() : " + request.getHeader(s));
+}
+System.getenv().forEach((key, object)->{
+	System.out.println("System.env - [" + key + "] : " + object + "");
+});
+
+
+/*
+ * Eclipse shortcut
+ */
+Block Selection
+    Alt + Shift + A
+Show class detail
+    Shift + hover
+Show Code Block
+    Alt + Shift + arrowUp
+
+
+Sukiyaki
+Rouge no Dengon (A Message Left in Lipstick)
+
+Nakajima Miyuki - 銀の龍の背に乗って[Ginno-Ryuuno-seni-notte]
+Nakajima Miyuki / 吉田拓郎 (Takuro Yoshida) - 永遠の嘘をついてくれ [Eienno Usoo Tsuitekure]
+Ayumi Ishida
+Tanimura Shinji
+Monta brothers
+Satoko Ishimine
+ファイト！吉田拓郎 / Nakajima Miyuki

@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PAYMENT_ELEMENT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PaymentElement" table="PAYMENT_ELEMENT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="paymentElementId" column="PAYMENT_ELEMENT_ID" type="java.lang.Double"></id>
+
+		<property name="paymentId" column="PAYMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="alternateName" column="ALTERNATE_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="elementId" column="ELEMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="sequence" column="SEQUENCE" not-null="true" type="java.lang.Double"/>
+		<property name="calculatedAmount" column="CALCULATED_AMOUNT" type="java.lang.Double"/>
+		<property name="inputAmount" column="INPUT_AMOUNT" type="java.lang.Double"/>
+		<property name="period" column="PERIOD" type="java.lang.String" length="3"/>
+		<property name="source" column="SOURCE" type="java.lang.String" length="25"/>
+		<property name="sourceId" column="SOURCE_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="paymentElement.selectAll">
+	<![CDATA[
+		SELECT PAYMENT_ID,
+		       PAYMENT_ELEMENT_ID,
+		       ALTERNATE_NAME,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       ELEMENT_ID,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       SEQUENCE,
+		       CALCULATED_AMOUNT,
+		       INPUT_AMOUNT,
+		       PERIOD,
+		       SOURCE,
+		       SOURCE_ID
+		  FROM PAYMENT_ELEMENT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElement.insert">
+	<![CDATA[
+		INSERT INTO PAYMENT_ELEMENT (
+		       PAYMENT_ID,
+		       PAYMENT_ELEMENT_ID,
+		       ALTERNATE_NAME,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       ELEMENT_ID,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       SEQUENCE,
+		       CALCULATED_AMOUNT,
+		       INPUT_AMOUNT,
+		       PERIOD,
+		       SOURCE,
+		       SOURCE_ID
+		       )
+		VALUES (
+		       ${PAYMENT_ID},
+		       ${PAYMENT_ELEMENT_ID},
+		       ${ALTERNATE_NAME},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${ELEMENT_ID},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${SEQUENCE},
+		       ${CALCULATED_AMOUNT},
+		       ${INPUT_AMOUNT},
+		       ${PERIOD},
+		       ${SOURCE},
+		       ${SOURCE_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElement.update">
+	<![CDATA[
+		UPDATE PAYMENT_ELEMENT
+		   SET PAYMENT_ID = ${PAYMENT_ID},
+		       ALTERNATE_NAME = ${ALTERNATE_NAME},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       SEQUENCE = ${SEQUENCE},
+		       CALCULATED_AMOUNT = ${CALCULATED_AMOUNT},
+		       INPUT_AMOUNT = ${INPUT_AMOUNT},
+		       PERIOD = ${PERIOD},
+		       SOURCE = ${SOURCE},
+		       SOURCE_ID = ${SOURCE_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElement.updateColumns">
+	<![CDATA[
+		UPDATE PAYMENT_ELEMENT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElement.delete">
+	<![CDATA[
+		DELETE PAYMENT_ELEMENT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

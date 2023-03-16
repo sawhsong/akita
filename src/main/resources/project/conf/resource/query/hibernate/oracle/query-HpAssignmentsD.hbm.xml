@@ -1,0 +1,428 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_ASSIGNMENTS_D - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpAssignmentsD.getCostCentreForAutoCompletion">
+	<![CDATA[
+		select distinct cost_centre as cost_centre_id, cost_centre as cost_centre_name
+		  from hp_assignments_d
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpAssignmentsD.getAssignmentList">
+	<![CDATA[
+		with src as (
+			select asg.*,
+			       (select person_number from hp_person_d where person_id = asg.person_id) as person_number,
+			       (select full_name from hp_person_d where person_id = asg.person_id) as person_name,
+			       (select full_name from hp_person_d where person_id = asg.billing_organisation_person_id) as billing_org_person_name,
+			       (select full_name from hp_person_d where person_id = asg.eu_contact_person_id) as eu_org_person_name,
+			       (select full_name from hp_person_d where person_id = asg.timecard_approval_id) as timesheet_approver_1_name,
+			       (select full_name from hp_person_d where person_id = asg.timecard_secondary_approval_id) as timesheet_approver_2_name,
+			       (select full_name from hp_person_d where person_id = asg.timecard_tertiary_approval_id) as timesheet_approver_3_name,
+			       (select full_name from hp_person_d where person_id = asg.expense_approver_1) as expense_approver_1_name,
+			       (select full_name from hp_person_d where person_id = asg.expense_approver_2) as expense_approver_2_name,
+			       (select full_name from hp_person_d where person_id = asg.expense_approver_3) as expense_approver_3_name,
+			       (select full_name from hp_person_d where person_id = asg.deliverables_approver_1) as deliverables_approver_1_name,
+			       (select full_name from hp_person_d where person_id = asg.deliverables_approver_2) as deliverables_approver_2_name,
+			       (select full_name from hp_person_d where person_id = asg.deliverables_approver_3) as deliverables_approver_3_name,
+			       (select organisation_name from hp_organisation_d where organisation_id = asg.billing_organisation_id) as billing_organisation_name,
+			       (select organisation_name from hp_organisation_d where organisation_id = asg.eu_organisation_id) as eu_organisation_name,
+			       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = asg.working_state) as working_state_meaning,
+			       to_char(asg.assignment_start_date, '${dateFormat}') as asg_start_date_format,
+			       to_char(asg.assignment_end_date, '${dateFormat}') as asg_end_date_format,
+			       (select name from hp_payment_methods where pay_method_id = asg.pay_method_id) as payment_method_name,
+			       (select full_name from hp_person_d where person_id = asg.created_by) as created_by_name,
+			       to_char(asg.creation_date, '${dateFormat}') as creation_date_format,
+			       (select full_name from hp_person_d where person_id = asg.last_updated_by) as last_updated_name,
+			       to_char(asg.last_update_date, '${dateFormat}') as last_update_date_format,
+			       rate.element_id as pref_asg_rate_element_id,
+			       rate.amount as pref_asg_rate_amount,
+			       rate.period as pref_asg_rate_period,
+			       (select meaning from sys_common_lookups where lookup_type = 'PAY_BASIS' and lookup_code = rate.period) as pref_asg_rate_period_meaning,
+			       rate.alternate_name as pref_asg_rate_alt_name,
+			       decode(asg.wc_org_code_rate_link_id, null, 'N', 'Y') as has_wc,
+			       (select decode(nvl(count(*), 0), null, 'N', 0, 'N', 'Y') from prt_assignment_setup where assignment_id = asg.assignment_id) as has_prt,
+			       inv.invoice_date as last_invoice_date,
+			       pay.date_earned as last_paid_date
+			  from hp_assignments_d asg,
+			       (select source_id as assignment_id,
+			               to_char(max(invoice_date), '${dateFormat}') as invoice_date
+			          from hp_invoice
+			         where source = 'ASSIGNMENT'
+			         group by source_id
+			       ) inv,
+			       (select assignment_id, to_char(max(date_earned), '${dateFormat}') as date_earned
+			          from hp_balance
+			         group by assignment_id
+			       ) pay,
+			       (select *
+			          from hp_assignment_rates
+			         where preferred = 'Y'
+			       ) rate
+			 where asg.assignment_id = inv.assignment_id(+)
+			   and asg.assignment_id = pay.assignment_id(+)
+			   and asg.assignment_id = rate.assigment_id(+)
+		)
+		select *
+		  from src
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpAssignmentsD.getDataSetByAssignmentId">
+	<![CDATA[
+		select asg.*,
+		       (select person_number from hp_person_d where person_id = asg.person_id) as person_number,
+		       (select full_name from hp_person_d where person_id = asg.person_id) as person_name,
+		       (select full_name from hp_person_d where person_id = asg.billing_organisation_person_id) as billing_org_person_name,
+		       (select full_name from hp_person_d where person_id = asg.eu_contact_person_id) as eu_org_person_name,
+		       (select full_name from hp_person_d where person_id = asg.timecard_approval_id) as timesheet_approver_1_name,
+		       (select full_name from hp_person_d where person_id = asg.timecard_secondary_approval_id) as timesheet_approver_2_name,
+		       (select full_name from hp_person_d where person_id = asg.timecard_tertiary_approval_id) as timesheet_approver_3_name,
+		       (select full_name from hp_person_d where person_id = asg.expense_approver_1) as expense_approver_1_name,
+		       (select full_name from hp_person_d where person_id = asg.expense_approver_2) as expense_approver_2_name,
+		       (select full_name from hp_person_d where person_id = asg.expense_approver_3) as expense_approver_3_name,
+		       (select full_name from hp_person_d where person_id = asg.deliverables_approver_1) as deliverables_approver_1_name,
+		       (select full_name from hp_person_d where person_id = asg.deliverables_approver_2) as deliverables_approver_2_name,
+		       (select full_name from hp_person_d where person_id = asg.deliverables_approver_3) as deliverables_approver_3_name,
+		       case (select preferred from hp_address_contact_d where person_id = asg.timecard_approval_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.timecard_approval_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.timecard_approval_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.timecard_approval_id)
+		            else ''
+		       end as timesheet_approver_1_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.timecard_secondary_approval_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.timecard_secondary_approval_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.timecard_secondary_approval_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.timecard_secondary_approval_id)
+		            else ''
+		       end as timesheet_approver_2_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.timecard_tertiary_approval_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.timecard_tertiary_approval_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.timecard_tertiary_approval_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.timecard_tertiary_approval_id)
+		            else ''
+		       end as timesheet_approver_3_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.expense_approver_1)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.expense_approver_1)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.expense_approver_1)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.expense_approver_1)
+		            else ''
+		       end as expense_approver_1_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.expense_approver_2)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.expense_approver_2)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.expense_approver_2)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.expense_approver_2)
+		            else ''
+		       end as expense_approver_2_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.expense_approver_3)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.expense_approver_3)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.expense_approver_3)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.expense_approver_3)
+		            else ''
+		       end as expense_approver_3_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.deliverables_approver_1)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.deliverables_approver_1)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.deliverables_approver_1)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.deliverables_approver_1)
+		            else ''
+		       end as deliverables_approver_1_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.deliverables_approver_2)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.deliverables_approver_2)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.deliverables_approver_2)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.deliverables_approver_2)
+		            else ''
+		       end as deliverables_approver_2_email,
+		       case (select preferred from hp_address_contact_d where person_id = asg.deliverables_approver_3)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.deliverables_approver_3)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.deliverables_approver_3)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.deliverables_approver_3)
+		            else ''
+		       end as deliverables_approver_3_email,
+		       case when asg.ets_approval_notification_to is not null then
+		                 (select employment_company_org_id from hp_person_d where person_id = asg.ets_approval_notification_to)
+		            else null
+		       end as timesheet_noti_org_id,
+		       case when asg.ets_approval_notification_to is not null then
+		                 (select organisation_name from hp_organisation_d where organisation_id = (select employment_company_org_id from hp_person_d where person_id = asg.ets_approval_notification_to))
+		            else null
+		       end as timesheet_noti_org_name,
+		       case when asg.ets_approval_notification_to is not null then
+		                 (select full_name from hp_person_d where person_id = asg.ets_approval_notification_to)
+		            else null
+		       end as timesheet_noti_to_name,
+		       case when asg.ets_approval_notification_to is not null then
+		                 (case (select preferred from hp_address_contact_d where person_id = asg.ets_approval_notification_to)
+		                        when 'W' then (select email_work from hp_address_contact_d where person_id = asg.ets_approval_notification_to)
+		                        when 'H' then (select email_home from hp_address_contact_d where person_id = asg.ets_approval_notification_to)
+		                        when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.ets_approval_notification_to)
+		                        else ''
+		                  end
+		                 )
+		            else null
+		       end as timesheet_noti_to_email,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.expense_approval_noti_to_org) as expense_noti_to_org_name,
+		       (select full_name from hp_person_d where person_id = asg.expense_approval_noti_to_id) as expense_noti_to_name,
+		       case (select preferred from hp_address_contact_d where person_id = asg.expense_approval_noti_to_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.expense_approval_noti_to_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.expense_approval_noti_to_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.expense_approval_noti_to_id)
+		            else ''
+		       end as expense_noti_to_email,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.deliverables_appr_noti_to_org) as deliverables_noti_to_org_name,
+		       (select full_name from hp_person_d where person_id = asg.deliverables_appr_noti_to_id) as deliverables_noti_to_name,
+		       case (select preferred from hp_address_contact_d where person_id = asg.deliverables_appr_noti_to_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = asg.deliverables_appr_noti_to_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = asg.deliverables_appr_noti_to_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = asg.deliverables_appr_noti_to_id)
+		            else ''
+		       end as deliverables_noti_to_email,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.billing_organisation_id) as billing_organisation_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.reference_no_1) as reference_no_1_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.reference_no_2) as reference_no_2_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.reference_no_3) as reference_no_3_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.eu_organisation_id) as eu_organisation_name,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = asg.working_state) as working_state_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAY_BASIS' and lookup_code = asg.unit) as unit_meaning,
+		       to_char(asg.assignment_start_date, '${dateFormat}') as asg_start_date_format,
+		       to_char(asg.assignment_end_date, '${dateFormat}') as asg_end_date_format,
+		       (select name from hp_payment_methods where pay_method_id = asg.pay_method_id) as payment_method_name,
+		       (select full_name from hp_person_d where person_id = asg.created_by) as created_by_name,
+		       to_char(asg.creation_date, '${dateFormat}') as creation_date_format,
+		       (select full_name from hp_person_d where person_id = asg.last_updated_by) as last_updated_name,
+		       to_char(asg.last_update_date, '${dateFormat}') as last_update_date_format,
+		       case when instr(asg.work_start_time, ':') > 0 then regexp_substr(asg.work_start_time, '[^]+:[^]+', 1, 1)
+		            when instr(asg.work_start_time, ':') <= 0 then substr(asg.work_start_time, 1, 2)
+		            else ''
+		       end as work_start_hh,
+		       case when instr(asg.work_start_time, ':') > 0 then regexp_substr(asg.work_start_time, '[^]+:[^]+', 1, 2)
+		            when instr(asg.work_start_time, ':') <= 0 then substr(asg.work_start_time, 3, 4)
+		            else ''
+		       end as work_start_mm,
+		       case when instr(asg.work_end_time, ':') > 0 then regexp_substr(asg.work_end_time, '[^]+:[^]+', 1, 1)
+		            when instr(asg.work_end_time, ':') <= 0 then substr(asg.work_end_time, 1, 2)
+		            else ''
+		       end as work_end_hh,
+		       case when instr(asg.work_end_time, ':') > 0 then regexp_substr(asg.work_end_time, '[^]+:[^]+', 1, 2)
+		            when instr(asg.work_end_time, ':') <= 0 then substr(asg.work_end_time, 3, 4)
+		            else ''
+		       end as work_end_mm,
+		       (select invoice_template_code from hp_invoice_template where inv_template_id = hbc.inv_template_id) as invoice_template,
+		       (select to_char(max(invoice_date), '${dateFormat}')
+		          from hp_invoice
+		         where source = 'ASSIGNMENT'
+		           and source_id = asg.assignment_id
+		         group by source_id
+		       ) as last_invoice_date_format,
+		       (select to_char(max(date_earned), '${dateFormat}')
+		          from hp_balance
+		         where assignment_id = asg.assignment_id
+		         group by assignment_id
+		       ) as last_paid_date_format,
+		       hbc.terms as payment_terms,
+		       hbc.invoice_cycle,
+		       (select meaning from sys_common_lookups where lookup_type = 'PAY_BASIS' and lookup_code = hbc.invoice_cycle) as invoice_cycle_meaning,
+		       (select to_char(invoice_date, '${dateFormat}')
+		          from (select a.*, row_number() over (order by a.invoice_date) as myrow
+		                  from hp_invoice_period_dates a
+		                 where a.billing_code_id = hbc.billing_code_id
+		                   and trunc(a.invoice_date) > trunc(sysdate)
+		               )
+		         where myrow = 1
+		       ) as next_invoice_date_format,
+		       (select to_char(check_date, '${dateFormat}')
+		          from (select a.*, row_number() over (order by a.check_date) as myrow
+		                  from hp_billing_code_periods a
+		                 where a.billing_code_id = hbc.billing_code_id
+		                   and trunc(a.check_date) > trunc(sysdate)
+		               )
+		         where myrow = 1
+		       ) as next_payment_date_format,
+		       (select to_char(timesheet_date, '${dateFormat}')
+		          from (select a.*, row_number() over (order by a.timesheet_date) as myrow
+		                  from hp_timesheet_period_dates a
+		                 where a.billing_code_id = hbc.billing_code_id
+		                   and trunc(a.timesheet_date) > trunc(sysdate)
+		               )
+		         where myrow = 1
+		       ) as next_timesheet_date_format,
+		       hbc.relationship_consultant_id as csc_id,
+		       (select full_name from hp_person_d where person_id = hbc.relationship_consultant_id) as csc_name
+		  from hp_assignments_d asg,
+		       hp_billing_code hbc
+		 where asg.assignment_id = '${assignmentId}'
+		   and asg.billing_code_id = hbc.billing_code_id(+)
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HpAssignmentsD.getManagementFeeAndPayrollTaxByAssignmentId">
+	<![CDATA[
+		select src.*,
+		       case src.asg_tab_element_attr_type
+		            when 'Percentage' then src.asg_tab_element_attr_value
+		            when 'Rate' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		            when 'Flat Amount' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		       end as percentage
+		  from (select 'ManagementFee' as mgt_fee_payroll_tax_type,
+		               'DeductionTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and (aed.invoice_flag is null or aed.invoice_flag = 'N')
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Pre-Tax-Payback Deductions', 'Pre-Tax Deductions', 'Post-Tax Deductions', 'Tax Deductions', 'Cash Payments', 'Superannuation', 'EPS Superannuation', 'Super Sal Sac')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		        union
+		        select 'ManagementFee' as mgt_fee_payroll_tax_type,
+		               'InvoiceTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and aed.invoice_flag = 'Y'
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Earnings', 'Information', 'Others', 'Cash Payments')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		       ) src
+		 where src.asg_tab_element_name like '%Mgt Fee%'
+		union
+		select src.*,
+		       case src.asg_tab_element_attr_type
+		            when 'Percentage' then src.asg_tab_element_attr_value
+		            when 'Rate' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		            when 'Flat Amount' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		       end as percentage
+		  from (select 'PayrollTax' as mgt_fee_payroll_tax_type,
+		               'DeductionTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and (aed.invoice_flag is null or aed.invoice_flag = 'N')
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Pre-Tax-Payback Deductions', 'Pre-Tax Deductions', 'Post-Tax Deductions', 'Tax Deductions', 'Cash Payments', 'Superannuation', 'EPS Superannuation', 'Super Sal Sac')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		        union
+		        select 'PayrollTax' as mgt_fee_payroll_tax_type,
+		               'InvoiceTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and aed.invoice_flag = 'Y'
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Earnings', 'Information', 'Others', 'Cash Payments')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		       ) src
+		 where src.asg_tab_element_name like '%PRT%'
+	]]>
+	</sql-query>
+</hibernate-mapping>

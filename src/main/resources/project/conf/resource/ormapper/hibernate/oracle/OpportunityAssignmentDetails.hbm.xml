@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - OPPORTUNITY_ASSIGNMENT_DETAILS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.OpportunityAssignmentDetails" table="OPPORTUNITY_ASSIGNMENT_DETAILS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="opportunityAsgDetailsId" column="OPPORTUNITY_ASG_DETAILS_ID" not-null="true" type="java.lang.Double"/>
+		<property name="opportunityId" column="OPPORTUNITY_ID" not-null="true" type="java.lang.Double"/>
+		<property name="billingOrg" column="BILLING_ORG" type="java.lang.Double"/>
+		<property name="endUserOrg" column="END_USER_ORG" type="java.lang.Double"/>
+		<property name="approvedExpenses" column="APPROVED_EXPENSES" type="java.lang.String" length="4000"/>
+		<property name="assignmentEndDate" column="ASSIGNMENT_END_DATE" type="java.util.Date"/>
+		<property name="assignmentStartDate" column="ASSIGNMENT_START_DATE" type="java.util.Date"/>
+		<property name="contactPerson" column="CONTACT_PERSON" type="java.lang.Double"/>
+		<property name="contractValue" column="CONTRACT_VALUE" type="java.lang.Double"/>
+		<property name="endUserType" column="END_USER_TYPE" type="java.lang.String" length="100"/>
+		<property name="engagementContractType" column="ENGAGEMENT_CONTRACT_TYPE" type="java.lang.String" length="200"/>
+		<property name="equipmentDetails" column="EQUIPMENT_DETAILS" type="java.lang.String" length="4000"/>
+		<property name="equipmentRequiredYn" column="EQUIPMENT_REQUIRED_YN" type="java.lang.String" length="1"/>
+		<property name="iproFeeUpon" column="IPRO_FEE_UPON" type="java.lang.String" length="50"/>
+		<property name="jobTitle" column="JOB_TITLE" type="java.lang.String" length="1000"/>
+		<property name="managementFee" column="MANAGEMENT_FEE" type="java.lang.Double"/>
+		<property name="managementFeeComments" column="MANAGEMENT_FEE_COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="managementFeeType" column="MANAGEMENT_FEE_TYPE" type="java.lang.String" length="20"/>
+		<property name="modernAwardDescription" column="MODERN_AWARD_DESCRIPTION" type="java.lang.String" length="2000"/>
+		<property name="modernAwardId" column="MODERN_AWARD_ID" type="java.lang.Double"/>
+		<property name="paymentArrangment" column="PAYMENT_ARRANGMENT" type="java.lang.String" length="50"/>
+		<property name="payrollTaxResponsibilty" column="PAYROLL_TAX_RESPONSIBILTY" type="java.lang.Double"/>
+		<property name="rate" column="RATE" type="java.lang.Double"/>
+		<property name="restraintOfTrade" column="RESTRAINT_OF_TRADE" type="java.lang.String" length="4000"/>
+		<property name="serviceDescription" column="SERVICE_DESCRIPTION" type="java.lang.String" length="1000"/>
+		<property name="specialConditions" column="SPECIAL_CONDITIONS" type="java.lang.String" length="4000"/>
+		<property name="terminationNotice" column="TERMINATION_NOTICE" type="java.lang.String" length="5"/>
+		<property name="terminationNoticeUnit" column="TERMINATION_NOTICE_UNIT" type="java.lang.String" length="12"/>
+		<property name="unit" column="UNIT" type="java.lang.String" length="30"/>
+		<property name="wcOrganisationTypeFlag" column="WC_ORGANISATION_TYPE_FLAG" type="java.lang.String" length="10"/>
+		<property name="wcOrgCodeRateLinkId" column="WC_ORG_CODE_RATE_LINK_ID" type="java.lang.Double"/>
+		<property name="wcWorkingState" column="WC_WORKING_STATE" type="java.lang.String" length="30"/>
+		<property name="workingHoursBasis" column="WORKING_HOURS_BASIS" type="java.lang.String" length="50"/>
+		<property name="workEndTime" column="WORK_END_TIME" type="java.lang.String" length="5"/>
+		<property name="workStartTime" column="WORK_START_TIME" type="java.lang.String" length="5"/>
+	</class>
+
+	<sql-query name="opportunityAssignmentDetails.selectAll">
+	<![CDATA[
+		SELECT OPPORTUNITY_ASG_DETAILS_ID,
+		       OPPORTUNITY_ID,
+		       BILLING_ORG,
+		       END_USER_ORG,
+		       APPROVED_EXPENSES,
+		       TO_CHAR(ASSIGNMENT_END_DATE, 'yyyymmddhh24miss') AS ASSIGNMENT_END_DATE,
+		       TO_CHAR(ASSIGNMENT_START_DATE, 'yyyymmddhh24miss') AS ASSIGNMENT_START_DATE,
+		       CONTACT_PERSON,
+		       CONTRACT_VALUE,
+		       END_USER_TYPE,
+		       ENGAGEMENT_CONTRACT_TYPE,
+		       EQUIPMENT_DETAILS,
+		       EQUIPMENT_REQUIRED_YN,
+		       IPRO_FEE_UPON,
+		       JOB_TITLE,
+		       MANAGEMENT_FEE,
+		       MANAGEMENT_FEE_COMMENTS,
+		       MANAGEMENT_FEE_TYPE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
+		       PAYMENT_ARRANGMENT,
+		       PAYROLL_TAX_RESPONSIBILTY,
+		       RATE,
+		       RESTRAINT_OF_TRADE,
+		       SERVICE_DESCRIPTION,
+		       SPECIAL_CONDITIONS,
+		       TERMINATION_NOTICE,
+		       TERMINATION_NOTICE_UNIT,
+		       UNIT,
+		       WC_ORGANISATION_TYPE_FLAG,
+		       WC_ORG_CODE_RATE_LINK_ID,
+		       WC_WORKING_STATE,
+		       WORKING_HOURS_BASIS,
+		       WORK_END_TIME,
+		       WORK_START_TIME
+		  FROM OPPORTUNITY_ASSIGNMENT_DETAILS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentDetails.insert">
+	<![CDATA[
+		INSERT INTO OPPORTUNITY_ASSIGNMENT_DETAILS (
+		       OPPORTUNITY_ASG_DETAILS_ID,
+		       OPPORTUNITY_ID,
+		       BILLING_ORG,
+		       END_USER_ORG,
+		       APPROVED_EXPENSES,
+		       ASSIGNMENT_END_DATE,
+		       ASSIGNMENT_START_DATE,
+		       CONTACT_PERSON,
+		       CONTRACT_VALUE,
+		       END_USER_TYPE,
+		       ENGAGEMENT_CONTRACT_TYPE,
+		       EQUIPMENT_DETAILS,
+		       EQUIPMENT_REQUIRED_YN,
+		       IPRO_FEE_UPON,
+		       JOB_TITLE,
+		       MANAGEMENT_FEE,
+		       MANAGEMENT_FEE_COMMENTS,
+		       MANAGEMENT_FEE_TYPE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
+		       PAYMENT_ARRANGMENT,
+		       PAYROLL_TAX_RESPONSIBILTY,
+		       RATE,
+		       RESTRAINT_OF_TRADE,
+		       SERVICE_DESCRIPTION,
+		       SPECIAL_CONDITIONS,
+		       TERMINATION_NOTICE,
+		       TERMINATION_NOTICE_UNIT,
+		       UNIT,
+		       WC_ORGANISATION_TYPE_FLAG,
+		       WC_ORG_CODE_RATE_LINK_ID,
+		       WC_WORKING_STATE,
+		       WORKING_HOURS_BASIS,
+		       WORK_END_TIME,
+		       WORK_START_TIME
+		       )
+		VALUES (
+		       ${OPPORTUNITY_ASG_DETAILS_ID},
+		       ${OPPORTUNITY_ID},
+		       ${BILLING_ORG},
+		       ${END_USER_ORG},
+		       ${APPROVED_EXPENSES},
+		       ${ASSIGNMENT_END_DATE},
+		       ${ASSIGNMENT_START_DATE},
+		       ${CONTACT_PERSON},
+		       ${CONTRACT_VALUE},
+		       ${END_USER_TYPE},
+		       ${ENGAGEMENT_CONTRACT_TYPE},
+		       ${EQUIPMENT_DETAILS},
+		       ${EQUIPMENT_REQUIRED_YN},
+		       ${IPRO_FEE_UPON},
+		       ${JOB_TITLE},
+		       ${MANAGEMENT_FEE},
+		       ${MANAGEMENT_FEE_COMMENTS},
+		       ${MANAGEMENT_FEE_TYPE},
+		       ${MODERN_AWARD_DESCRIPTION},
+		       ${MODERN_AWARD_ID},
+		       ${PAYMENT_ARRANGMENT},
+		       ${PAYROLL_TAX_RESPONSIBILTY},
+		       ${RATE},
+		       ${RESTRAINT_OF_TRADE},
+		       ${SERVICE_DESCRIPTION},
+		       ${SPECIAL_CONDITIONS},
+		       ${TERMINATION_NOTICE},
+		       ${TERMINATION_NOTICE_UNIT},
+		       ${UNIT},
+		       ${WC_ORGANISATION_TYPE_FLAG},
+		       ${WC_ORG_CODE_RATE_LINK_ID},
+		       ${WC_WORKING_STATE},
+		       ${WORKING_HOURS_BASIS},
+		       ${WORK_END_TIME},
+		       ${WORK_START_TIME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentDetails.update">
+	<![CDATA[
+		UPDATE OPPORTUNITY_ASSIGNMENT_DETAILS
+		   SET OPPORTUNITY_ASG_DETAILS_ID = ${OPPORTUNITY_ASG_DETAILS_ID},
+		       OPPORTUNITY_ID = ${OPPORTUNITY_ID},
+		       BILLING_ORG = ${BILLING_ORG},
+		       END_USER_ORG = ${END_USER_ORG},
+		       APPROVED_EXPENSES = ${APPROVED_EXPENSES},
+		       ASSIGNMENT_END_DATE = ${ASSIGNMENT_END_DATE},
+		       ASSIGNMENT_START_DATE = ${ASSIGNMENT_START_DATE},
+		       CONTACT_PERSON = ${CONTACT_PERSON},
+		       CONTRACT_VALUE = ${CONTRACT_VALUE},
+		       END_USER_TYPE = ${END_USER_TYPE},
+		       ENGAGEMENT_CONTRACT_TYPE = ${ENGAGEMENT_CONTRACT_TYPE},
+		       EQUIPMENT_DETAILS = ${EQUIPMENT_DETAILS},
+		       EQUIPMENT_REQUIRED_YN = ${EQUIPMENT_REQUIRED_YN},
+		       IPRO_FEE_UPON = ${IPRO_FEE_UPON},
+		       JOB_TITLE = ${JOB_TITLE},
+		       MANAGEMENT_FEE = ${MANAGEMENT_FEE},
+		       MANAGEMENT_FEE_COMMENTS = ${MANAGEMENT_FEE_COMMENTS},
+		       MANAGEMENT_FEE_TYPE = ${MANAGEMENT_FEE_TYPE},
+		       MODERN_AWARD_DESCRIPTION = ${MODERN_AWARD_DESCRIPTION},
+		       MODERN_AWARD_ID = ${MODERN_AWARD_ID},
+		       PAYMENT_ARRANGMENT = ${PAYMENT_ARRANGMENT},
+		       PAYROLL_TAX_RESPONSIBILTY = ${PAYROLL_TAX_RESPONSIBILTY},
+		       RATE = ${RATE},
+		       RESTRAINT_OF_TRADE = ${RESTRAINT_OF_TRADE},
+		       SERVICE_DESCRIPTION = ${SERVICE_DESCRIPTION},
+		       SPECIAL_CONDITIONS = ${SPECIAL_CONDITIONS},
+		       TERMINATION_NOTICE = ${TERMINATION_NOTICE},
+		       TERMINATION_NOTICE_UNIT = ${TERMINATION_NOTICE_UNIT},
+		       UNIT = ${UNIT},
+		       WC_ORGANISATION_TYPE_FLAG = ${WC_ORGANISATION_TYPE_FLAG},
+		       WC_ORG_CODE_RATE_LINK_ID = ${WC_ORG_CODE_RATE_LINK_ID},
+		       WC_WORKING_STATE = ${WC_WORKING_STATE},
+		       WORKING_HOURS_BASIS = ${WORKING_HOURS_BASIS},
+		       WORK_END_TIME = ${WORK_END_TIME},
+		       WORK_START_TIME = ${WORK_START_TIME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentDetails.updateColumns">
+	<![CDATA[
+		UPDATE OPPORTUNITY_ASSIGNMENT_DETAILS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentDetails.delete">
+	<![CDATA[
+		DELETE OPPORTUNITY_ASSIGNMENT_DETAILS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

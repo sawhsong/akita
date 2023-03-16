@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!--/* Project Common */-->
+	<package name="common" extends="default" namespace="/common" strict-method-invocation="false">
+		<default-interceptor-ref name="ZebraDefaultStack"/>
+
+		<!--/* Auto Completion */-->
+		<action name="autoCompletion/*" class="project.common.module.autocompletion.AutoCompletionAction" method="{1}">
+		</action>
+
+		<!--/* Common Function */-->
+		<action name="commonFunction/*" class="project.common.module.commonfunction.CommonFunctionAction" method="{1}">
+			<result name="resetPassword" type="debugDispatcherResult">/project/common/module/commonfunction/ResetPasswordPop.jsp</result>
+			<result name="userProfile" type="debugDispatcherResult">/project/common/module/commonfunction/UserProfilePop.jsp</result>
+			<result name="changePassword" type="debugDispatcherResult">/project/common/module/commonfunction/ChangePasswordPop.jsp</result>
+			<result name="favoriteMenu" type="debugDispatcherResult">/project/common/module/commonfunction/FavoriteMenuPop.jsp</result>
+		</action>
+
+		<!--/* Feed */-->
+		<action name="feed/*" class="project.common.module.feed.FeedAction" method="{1}">
+		</action>
+
+		<!--/* Common Key Value Lookup */-->
+		<action name="lookup/*" class="project.common.module.commonlookup.CommonLookupAction" method="{1}">
+			<result name="employmentOrg" type="debugDispatcherResult">/project/common/module/commonlookup/EmploymentOrganisationLookupPop.jsp</result>
+			<result name="esEmployee" type="debugDispatcherResult">/project/common/module/commonlookup/EsEmployeeLookupPop.jsp</result>
+		</action>
+
+		<!--/* Payment */-->
+		<action name="payment/*" class="project.common.module.payment.PaymentAction" method="{1}">
+			<result name="previewPayslip" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipFrameContainerPop.jsp</result>
+			<result name="ICRCTI" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipICRCTIFrame.jsp</result>
+			<result name="ICRemittance" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipICRemittanceFrame.jsp</result>
+			<result name="STRCTI" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipSTRCTIFrame.jsp</result>
+			<result name="STRemittance" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipSTRemittanceFrame.jsp</result>
+			<result name="BCTI" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipBCTIFrame.jsp</result>
+			<result name="Remittance" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipRemittanceFrame.jsp</result>
+		</action>
+	</package>
+</struts>

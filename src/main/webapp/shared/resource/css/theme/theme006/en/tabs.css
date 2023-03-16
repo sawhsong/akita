@@ -1,0 +1,53 @@
+/**************************************************************************************************
+* Tabs CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * tab holder
+ */
+.tabHolder {padding-top:0px;}
+.tabHolder:after {content:".";display:block;line-height:0px;font-size:1px;clear:both;}
+
+/**
+ * tab list holder (ul)
+ */
+.tabListHolder {padding:0px 5px;}
+.tabList {font-weight:bold;}
+
+/**
+ * overriden from bootstrap
+ */
+.nav > li > a > img {}
+.nav-tabs > li {}
+.nav-tabs > li > a {margin-right:1px;padding:5px 14px;transition:all .3s;
+	color:#654B24;
+	border:1px solid #CBC7BD;
+	background:#F8F7F6 url("/shared/resource/css/jquery-ui/theme006/images/ui-bg_fine-grain_10_f8f7f6_60x60.png") 50% 50% repeat-x;
+}
+.nav-tabs > li > a:hover {cursor:pointer;transition:all .3s;
+	color:#FFFFFF;
+	border:1px solid #654B24;
+	background:#654B24 url("/shared/resource/css/jquery-ui/theme006/images/ui-bg_fine-grain_65_654b24_60x60.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.active > a {cursor:pointer;
+	color:#FFFFFF;
+	border:1px solid #654B24;
+	background:#654B24 url("/shared/resource/css/jquery-ui/theme006/images/ui-bg_fine-grain_65_654b24_60x60.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {cursor:pointer;
+	color:#FFFFFF;
+	border:1px solid #654B24;
+	background:#654B24 url("/shared/resource/css/jquery-ui/theme006/images/ui-bg_fine-grain_65_654b24_60x60.png") 50% 50% repeat-x;
+}
+
+.nav > li.disabled > a {opacity:0.6;}
+.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {opacity:0.6;
+	border:1px solid #CBC7BD;
+	background:#F8F7F6 url("/shared/resource/css/jquery-ui/theme006/images/ui-bg_fine-grain_10_f8f7f6_60x60.png") 50% 50% repeat-x;
+}
+.nav-tabs > li.disabled.active > a {opacity:0.6;}
+.nav-tabs > li.disabled.active > a, .nav-tabs > li.disabled.active > a:hover, .nav-tabs > li.disabled.active > a:focus {opacity:0.6;cursor:not-allowed;
+	border:1px solid #654B24;
+	background:#654B24 url("/shared/resource/css/jquery-ui/theme006/images/ui-bg_fine-grain_65_654b24_60x60.png") 50% 50% repeat-x;
+}

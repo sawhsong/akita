@@ -1,0 +1,562 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ASSIGNMENTS_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAssignmentsD" table="HP_ASSIGNMENTS_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<composite-id>
+			<key-property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+			<key-property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+			<key-property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		</composite-id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.Double"/>
+		<property name="billingOrganisationId" column="BILLING_ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="euOrganisationId" column="EU_ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="approvedExpenses" column="APPROVED_EXPENSES" type="java.lang.String" length="4000"/>
+		<property name="asgActive" column="ASG_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="assignmentEndDate" column="ASSIGNMENT_END_DATE" type="java.util.Date"/>
+		<property name="assignmentNumber" column="ASSIGNMENT_NUMBER" type="java.lang.String" length="200"/>
+		<property name="assignmentStartDate" column="ASSIGNMENT_START_DATE" type="java.util.Date"/>
+		<property name="attribute1" column="ATTRIBUTE1" type="java.lang.String" length="150"/>
+		<property name="attribute10" column="ATTRIBUTE10" type="java.lang.String" length="150"/>
+		<property name="attribute9" column="ATTRIBUTE9" type="java.lang.String" length="150"/>
+		<property name="automaticInvoice" column="AUTOMATIC_INVOICE" type="java.lang.String" length="1"/>
+		<property name="basicSalary" column="BASIC_SALARY" type="java.lang.String" length="1"/>
+		<property name="billingCode" column="BILLING_CODE" type="java.lang.String" length="30"/>
+		<property name="billingCodeId" column="BILLING_CODE_ID" type="java.lang.Double"/>
+		<property name="billingOrganisationPersonId" column="BILLING_ORGANISATION_PERSON_ID" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="costCentre" column="COST_CENTRE" type="java.lang.String" length="150"/>
+		<property name="createdAs" column="CREATED_AS" type="java.lang.String" length="25"/>
+		<property name="deliverablesApprover1" column="DELIVERABLES_APPROVER_1" type="java.lang.Double"/>
+		<property name="deliverablesApprover2" column="DELIVERABLES_APPROVER_2" type="java.lang.Double"/>
+		<property name="deliverablesApprover3" column="DELIVERABLES_APPROVER_3" type="java.lang.Double"/>
+		<property name="deliverablesApprNotiToId" column="DELIVERABLES_APPR_NOTI_TO_ID" type="java.lang.Double"/>
+		<property name="deliverablesApprNotiToOrg" column="DELIVERABLES_APPR_NOTI_TO_ORG" type="java.lang.Double"/>
+		<property name="deliverablesName" column="DELIVERABLES_NAME" type="java.lang.String" length="500"/>
+		<property name="element1" column="ELEMENT_1" type="java.lang.Double"/>
+		<property name="element2" column="ELEMENT_2" type="java.lang.Double"/>
+		<property name="element3" column="ELEMENT_3" type="java.lang.Double"/>
+		<property name="element4" column="ELEMENT_4" type="java.lang.Double"/>
+		<property name="element5" column="ELEMENT_5" type="java.lang.Double"/>
+		<property name="engagementContractType" column="ENGAGEMENT_CONTRACT_TYPE" type="java.lang.String" length="200"/>
+		<property name="equipmentDetails" column="EQUIPMENT_DETAILS" type="java.lang.String" length="4000"/>
+		<property name="equipmentRequiredYn" column="EQUIPMENT_REQUIRED_YN" type="java.lang.String" length="1"/>
+		<property name="etsApprovalNotificationTo" column="ETS_APPROVAL_NOTIFICATION_TO" type="java.lang.Double"/>
+		<property name="etsApprovalNotiTo2" column="ETS_APPROVAL_NOTI_TO_2" type="java.lang.Double"/>
+		<property name="euContactPersonId" column="EU_CONTACT_PERSON_ID" type="java.lang.Double"/>
+		<property name="expenseApprovalNotiToId" column="EXPENSE_APPROVAL_NOTI_TO_ID" type="java.lang.Double"/>
+		<property name="expenseApprovalNotiToOrg" column="EXPENSE_APPROVAL_NOTI_TO_ORG" type="java.lang.Double"/>
+		<property name="expenseApprover1" column="EXPENSE_APPROVER_1" type="java.lang.Double"/>
+		<property name="expenseApprover2" column="EXPENSE_APPROVER_2" type="java.lang.Double"/>
+		<property name="expenseApprover3" column="EXPENSE_APPROVER_3" type="java.lang.Double"/>
+		<property name="expenseName" column="EXPENSE_NAME" type="java.lang.String" length="100"/>
+		<property name="gstExempt" column="GST_EXEMPT" type="java.lang.String" length="1"/>
+		<property name="invoiceRecipientEmail" column="INVOICE_RECIPIENT_EMAIL" type="java.lang.String" length="200"/>
+		<property name="isBulkApproval" column="IS_BULK_APPROVAL" type="java.lang.String" length="1"/>
+		<property name="isBulkApprovalDeliverables" column="IS_BULK_APPROVAL_DELIVERABLES" type="java.lang.String" length="1"/>
+		<property name="isBulkApprovalExpense" column="IS_BULK_APPROVAL_EXPENSE" type="java.lang.String" length="1"/>
+		<property name="isDaily" column="IS_DAILY" type="java.lang.String" length="2"/>
+		<property name="isStartEndTime" column="IS_START_END_TIME" type="java.lang.String" length="2"/>
+		<property name="jobTitle" column="JOB_TITLE" type="java.lang.String" length="1000"/>
+		<property name="modernAwardDescription" column="MODERN_AWARD_DESCRIPTION" type="java.lang.String" length="2000"/>
+		<property name="modernAwardId" column="MODERN_AWARD_ID" type="java.lang.Double"/>
+		<property name="payrollNotes" column="PAYROLL_NOTES" type="java.lang.String" length="4000"/>
+		<property name="payslipEmail" column="PAYSLIP_EMAIL" type="java.lang.String" length="100"/>
+		<property name="payArrangement" column="PAY_ARRANGEMENT" type="java.lang.String" length="10"/>
+		<property name="payMethodId" column="PAY_METHOD_ID" type="java.lang.Double"/>
+		<property name="preferred" column="PREFERRED" type="java.lang.String" length="1"/>
+		<property name="prtStatus" column="PRT_STATUS" type="java.lang.String" length="30"/>
+		<property name="rate" column="RATE" type="java.lang.Double"/>
+		<property name="rate1" column="RATE1" type="java.lang.Double"/>
+		<property name="rate2" column="RATE2" type="java.lang.Double"/>
+		<property name="rate3" column="RATE3" type="java.lang.Double"/>
+		<property name="rate4" column="RATE4" type="java.lang.Double"/>
+		<property name="rate5" column="RATE5" type="java.lang.Double"/>
+		<property name="referenceAPo" column="REFERENCE_A_PO" type="java.lang.String" length="150"/>
+		<property name="referenceB" column="REFERENCE_B" type="java.lang.String" length="150"/>
+		<property name="referenceC" column="REFERENCE_C" type="java.lang.String" length="150"/>
+		<property name="referenceD" column="REFERENCE_D" type="java.lang.String" length="150"/>
+		<property name="referenceNo1" column="REFERENCE_NO_1" type="java.lang.String" length="200"/>
+		<property name="referenceNo2" column="REFERENCE_NO_2" type="java.lang.String" length="200"/>
+		<property name="referenceNo3" column="REFERENCE_NO_3" type="java.lang.String" length="200"/>
+		<property name="restraintOfTrade" column="RESTRAINT_OF_TRADE" type="java.lang.String" length="4000"/>
+		<property name="serviceDescription" column="SERVICE_DESCRIPTION" type="java.lang.String" length="1000"/>
+		<property name="specialConditions" column="SPECIAL_CONDITIONS" type="java.lang.String" length="4000"/>
+		<property name="terminationNotice" column="TERMINATION_NOTICE" type="java.lang.String" length="5"/>
+		<property name="terminationNoticeUnit" column="TERMINATION_NOTICE_UNIT" type="java.lang.String" length="12"/>
+		<property name="timecardApprovalId" column="TIMECARD_APPROVAL_ID" type="java.lang.Double"/>
+		<property name="timecardApprovalRateHidden" column="TIMECARD_APPROVAL_RATE_HIDDEN" type="java.lang.String" length="1"/>
+		<property name="timecardLayout" column="TIMECARD_LAYOUT" type="java.lang.String" length="30"/>
+		<property name="timecardRequired" column="TIMECARD_REQUIRED" type="java.lang.String" length="1"/>
+		<property name="timecardSecondaryApprovalId" column="TIMECARD_SECONDARY_APPROVAL_ID" type="java.lang.Double"/>
+		<property name="timecardTertiaryApprovalId" column="TIMECARD_TERTIARY_APPROVAL_ID" type="java.lang.Double"/>
+		<property name="timesheetName" column="TIMESHEET_NAME" type="java.lang.String" length="100"/>
+		<property name="timesheetUnits" column="TIMESHEET_UNITS" type="java.lang.String" length="5"/>
+		<property name="unit" column="UNIT" type="java.lang.String" length="15"/>
+		<property name="useAwardCalculation" column="USE_AWARD_CALCULATION" type="java.lang.String" length="1"/>
+		<property name="useDeliverables" column="USE_DELIVERABLES" type="java.lang.String" length="1"/>
+		<property name="useExpense" column="USE_EXPENSE" type="java.lang.String" length="1"/>
+		<property name="wcOrganisationTypeFlag" column="WC_ORGANISATION_TYPE_FLAG" type="java.lang.String" length="10"/>
+		<property name="wcOrgCodeRateLinkId" column="WC_ORG_CODE_RATE_LINK_ID" type="java.lang.Double"/>
+		<property name="workingState" column="WORKING_STATE" type="java.lang.String" length="30"/>
+		<property name="workEndTime" column="WORK_END_TIME" type="java.lang.String" length="5"/>
+		<property name="workStartTime" column="WORK_START_TIME" type="java.lang.String" length="5"/>
+	</class>
+
+	<sql-query name="hpAssignmentsD.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_ID,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       BILLING_ORGANISATION_ID,
+		       EU_ORGANISATION_ID,
+		       APPROVED_EXPENSES,
+		       ASG_ACTIVE,
+		       TO_CHAR(ASSIGNMENT_END_DATE, 'yyyymmddhh24miss') AS ASSIGNMENT_END_DATE,
+		       ASSIGNMENT_NUMBER,
+		       TO_CHAR(ASSIGNMENT_START_DATE, 'yyyymmddhh24miss') AS ASSIGNMENT_START_DATE,
+		       ATTRIBUTE1,
+		       ATTRIBUTE10,
+		       ATTRIBUTE9,
+		       AUTOMATIC_INVOICE,
+		       BASIC_SALARY,
+		       BILLING_CODE,
+		       BILLING_CODE_ID,
+		       BILLING_ORGANISATION_PERSON_ID,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       COST_CENTRE,
+		       CREATED_AS,
+		       DELIVERABLES_APPROVER_1,
+		       DELIVERABLES_APPROVER_2,
+		       DELIVERABLES_APPROVER_3,
+		       DELIVERABLES_APPR_NOTI_TO_ID,
+		       DELIVERABLES_APPR_NOTI_TO_ORG,
+		       DELIVERABLES_NAME,
+		       ELEMENT_1,
+		       ELEMENT_2,
+		       ELEMENT_3,
+		       ELEMENT_4,
+		       ELEMENT_5,
+		       ENGAGEMENT_CONTRACT_TYPE,
+		       EQUIPMENT_DETAILS,
+		       EQUIPMENT_REQUIRED_YN,
+		       ETS_APPROVAL_NOTIFICATION_TO,
+		       ETS_APPROVAL_NOTI_TO_2,
+		       EU_CONTACT_PERSON_ID,
+		       EXPENSE_APPROVAL_NOTI_TO_ID,
+		       EXPENSE_APPROVAL_NOTI_TO_ORG,
+		       EXPENSE_APPROVER_1,
+		       EXPENSE_APPROVER_2,
+		       EXPENSE_APPROVER_3,
+		       EXPENSE_NAME,
+		       GST_EXEMPT,
+		       INVOICE_RECIPIENT_EMAIL,
+		       IS_BULK_APPROVAL,
+		       IS_BULK_APPROVAL_DELIVERABLES,
+		       IS_BULK_APPROVAL_EXPENSE,
+		       IS_DAILY,
+		       IS_START_END_TIME,
+		       JOB_TITLE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
+		       PAYROLL_NOTES,
+		       PAYSLIP_EMAIL,
+		       PAY_ARRANGEMENT,
+		       PAY_METHOD_ID,
+		       PREFERRED,
+		       PRT_STATUS,
+		       RATE,
+		       RATE1,
+		       RATE2,
+		       RATE3,
+		       RATE4,
+		       RATE5,
+		       REFERENCE_A_PO,
+		       REFERENCE_B,
+		       REFERENCE_C,
+		       REFERENCE_D,
+		       REFERENCE_NO_1,
+		       REFERENCE_NO_2,
+		       REFERENCE_NO_3,
+		       RESTRAINT_OF_TRADE,
+		       SERVICE_DESCRIPTION,
+		       SPECIAL_CONDITIONS,
+		       TERMINATION_NOTICE,
+		       TERMINATION_NOTICE_UNIT,
+		       TIMECARD_APPROVAL_ID,
+		       TIMECARD_APPROVAL_RATE_HIDDEN,
+		       TIMECARD_LAYOUT,
+		       TIMECARD_REQUIRED,
+		       TIMECARD_SECONDARY_APPROVAL_ID,
+		       TIMECARD_TERTIARY_APPROVAL_ID,
+		       TIMESHEET_NAME,
+		       TIMESHEET_UNITS,
+		       UNIT,
+		       USE_AWARD_CALCULATION,
+		       USE_DELIVERABLES,
+		       USE_EXPENSE,
+		       WC_ORGANISATION_TYPE_FLAG,
+		       WC_ORG_CODE_RATE_LINK_ID,
+		       WORKING_STATE,
+		       WORK_END_TIME,
+		       WORK_START_TIME
+		  FROM HP_ASSIGNMENTS_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentsD.insert">
+	<![CDATA[
+		INSERT INTO HP_ASSIGNMENTS_D (
+		       ASSIGNMENT_ID,
+		       FROM_DATE,
+		       TO_DATE,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       BILLING_ORGANISATION_ID,
+		       EU_ORGANISATION_ID,
+		       APPROVED_EXPENSES,
+		       ASG_ACTIVE,
+		       ASSIGNMENT_END_DATE,
+		       ASSIGNMENT_NUMBER,
+		       ASSIGNMENT_START_DATE,
+		       ATTRIBUTE1,
+		       ATTRIBUTE10,
+		       ATTRIBUTE9,
+		       AUTOMATIC_INVOICE,
+		       BASIC_SALARY,
+		       BILLING_CODE,
+		       BILLING_CODE_ID,
+		       BILLING_ORGANISATION_PERSON_ID,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       COST_CENTRE,
+		       CREATED_AS,
+		       DELIVERABLES_APPROVER_1,
+		       DELIVERABLES_APPROVER_2,
+		       DELIVERABLES_APPROVER_3,
+		       DELIVERABLES_APPR_NOTI_TO_ID,
+		       DELIVERABLES_APPR_NOTI_TO_ORG,
+		       DELIVERABLES_NAME,
+		       ELEMENT_1,
+		       ELEMENT_2,
+		       ELEMENT_3,
+		       ELEMENT_4,
+		       ELEMENT_5,
+		       ENGAGEMENT_CONTRACT_TYPE,
+		       EQUIPMENT_DETAILS,
+		       EQUIPMENT_REQUIRED_YN,
+		       ETS_APPROVAL_NOTIFICATION_TO,
+		       ETS_APPROVAL_NOTI_TO_2,
+		       EU_CONTACT_PERSON_ID,
+		       EXPENSE_APPROVAL_NOTI_TO_ID,
+		       EXPENSE_APPROVAL_NOTI_TO_ORG,
+		       EXPENSE_APPROVER_1,
+		       EXPENSE_APPROVER_2,
+		       EXPENSE_APPROVER_3,
+		       EXPENSE_NAME,
+		       GST_EXEMPT,
+		       INVOICE_RECIPIENT_EMAIL,
+		       IS_BULK_APPROVAL,
+		       IS_BULK_APPROVAL_DELIVERABLES,
+		       IS_BULK_APPROVAL_EXPENSE,
+		       IS_DAILY,
+		       IS_START_END_TIME,
+		       JOB_TITLE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
+		       PAYROLL_NOTES,
+		       PAYSLIP_EMAIL,
+		       PAY_ARRANGEMENT,
+		       PAY_METHOD_ID,
+		       PREFERRED,
+		       PRT_STATUS,
+		       RATE,
+		       RATE1,
+		       RATE2,
+		       RATE3,
+		       RATE4,
+		       RATE5,
+		       REFERENCE_A_PO,
+		       REFERENCE_B,
+		       REFERENCE_C,
+		       REFERENCE_D,
+		       REFERENCE_NO_1,
+		       REFERENCE_NO_2,
+		       REFERENCE_NO_3,
+		       RESTRAINT_OF_TRADE,
+		       SERVICE_DESCRIPTION,
+		       SPECIAL_CONDITIONS,
+		       TERMINATION_NOTICE,
+		       TERMINATION_NOTICE_UNIT,
+		       TIMECARD_APPROVAL_ID,
+		       TIMECARD_APPROVAL_RATE_HIDDEN,
+		       TIMECARD_LAYOUT,
+		       TIMECARD_REQUIRED,
+		       TIMECARD_SECONDARY_APPROVAL_ID,
+		       TIMECARD_TERTIARY_APPROVAL_ID,
+		       TIMESHEET_NAME,
+		       TIMESHEET_UNITS,
+		       UNIT,
+		       USE_AWARD_CALCULATION,
+		       USE_DELIVERABLES,
+		       USE_EXPENSE,
+		       WC_ORGANISATION_TYPE_FLAG,
+		       WC_ORG_CODE_RATE_LINK_ID,
+		       WORKING_STATE,
+		       WORK_END_TIME,
+		       WORK_START_TIME
+		       )
+		VALUES (
+		       ${ASSIGNMENT_ID},
+		       ${FROM_DATE},
+		       ${TO_DATE},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PERSON_ID},
+		       ${BILLING_ORGANISATION_ID},
+		       ${EU_ORGANISATION_ID},
+		       ${APPROVED_EXPENSES},
+		       ${ASG_ACTIVE},
+		       ${ASSIGNMENT_END_DATE},
+		       ${ASSIGNMENT_NUMBER},
+		       ${ASSIGNMENT_START_DATE},
+		       ${ATTRIBUTE1},
+		       ${ATTRIBUTE10},
+		       ${ATTRIBUTE9},
+		       ${AUTOMATIC_INVOICE},
+		       ${BASIC_SALARY},
+		       ${BILLING_CODE},
+		       ${BILLING_CODE_ID},
+		       ${BILLING_ORGANISATION_PERSON_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${COMMENTS},
+		       ${COST_CENTRE},
+		       ${CREATED_AS},
+		       ${DELIVERABLES_APPROVER_1},
+		       ${DELIVERABLES_APPROVER_2},
+		       ${DELIVERABLES_APPROVER_3},
+		       ${DELIVERABLES_APPR_NOTI_TO_ID},
+		       ${DELIVERABLES_APPR_NOTI_TO_ORG},
+		       ${DELIVERABLES_NAME},
+		       ${ELEMENT_1},
+		       ${ELEMENT_2},
+		       ${ELEMENT_3},
+		       ${ELEMENT_4},
+		       ${ELEMENT_5},
+		       ${ENGAGEMENT_CONTRACT_TYPE},
+		       ${EQUIPMENT_DETAILS},
+		       ${EQUIPMENT_REQUIRED_YN},
+		       ${ETS_APPROVAL_NOTIFICATION_TO},
+		       ${ETS_APPROVAL_NOTI_TO_2},
+		       ${EU_CONTACT_PERSON_ID},
+		       ${EXPENSE_APPROVAL_NOTI_TO_ID},
+		       ${EXPENSE_APPROVAL_NOTI_TO_ORG},
+		       ${EXPENSE_APPROVER_1},
+		       ${EXPENSE_APPROVER_2},
+		       ${EXPENSE_APPROVER_3},
+		       ${EXPENSE_NAME},
+		       ${GST_EXEMPT},
+		       ${INVOICE_RECIPIENT_EMAIL},
+		       ${IS_BULK_APPROVAL},
+		       ${IS_BULK_APPROVAL_DELIVERABLES},
+		       ${IS_BULK_APPROVAL_EXPENSE},
+		       ${IS_DAILY},
+		       ${IS_START_END_TIME},
+		       ${JOB_TITLE},
+		       ${MODERN_AWARD_DESCRIPTION},
+		       ${MODERN_AWARD_ID},
+		       ${PAYROLL_NOTES},
+		       ${PAYSLIP_EMAIL},
+		       ${PAY_ARRANGEMENT},
+		       ${PAY_METHOD_ID},
+		       ${PREFERRED},
+		       ${PRT_STATUS},
+		       ${RATE},
+		       ${RATE1},
+		       ${RATE2},
+		       ${RATE3},
+		       ${RATE4},
+		       ${RATE5},
+		       ${REFERENCE_A_PO},
+		       ${REFERENCE_B},
+		       ${REFERENCE_C},
+		       ${REFERENCE_D},
+		       ${REFERENCE_NO_1},
+		       ${REFERENCE_NO_2},
+		       ${REFERENCE_NO_3},
+		       ${RESTRAINT_OF_TRADE},
+		       ${SERVICE_DESCRIPTION},
+		       ${SPECIAL_CONDITIONS},
+		       ${TERMINATION_NOTICE},
+		       ${TERMINATION_NOTICE_UNIT},
+		       ${TIMECARD_APPROVAL_ID},
+		       ${TIMECARD_APPROVAL_RATE_HIDDEN},
+		       ${TIMECARD_LAYOUT},
+		       ${TIMECARD_REQUIRED},
+		       ${TIMECARD_SECONDARY_APPROVAL_ID},
+		       ${TIMECARD_TERTIARY_APPROVAL_ID},
+		       ${TIMESHEET_NAME},
+		       ${TIMESHEET_UNITS},
+		       ${UNIT},
+		       ${USE_AWARD_CALCULATION},
+		       ${USE_DELIVERABLES},
+		       ${USE_EXPENSE},
+		       ${WC_ORGANISATION_TYPE_FLAG},
+		       ${WC_ORG_CODE_RATE_LINK_ID},
+		       ${WORKING_STATE},
+		       ${WORK_END_TIME},
+		       ${WORK_START_TIME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentsD.update">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENTS_D
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PERSON_ID = ${PERSON_ID},
+		       BILLING_ORGANISATION_ID = ${BILLING_ORGANISATION_ID},
+		       EU_ORGANISATION_ID = ${EU_ORGANISATION_ID},
+		       APPROVED_EXPENSES = ${APPROVED_EXPENSES},
+		       ASG_ACTIVE = ${ASG_ACTIVE},
+		       ASSIGNMENT_END_DATE = ${ASSIGNMENT_END_DATE},
+		       ASSIGNMENT_NUMBER = ${ASSIGNMENT_NUMBER},
+		       ASSIGNMENT_START_DATE = ${ASSIGNMENT_START_DATE},
+		       ATTRIBUTE1 = ${ATTRIBUTE1},
+		       ATTRIBUTE10 = ${ATTRIBUTE10},
+		       ATTRIBUTE9 = ${ATTRIBUTE9},
+		       AUTOMATIC_INVOICE = ${AUTOMATIC_INVOICE},
+		       BASIC_SALARY = ${BASIC_SALARY},
+		       BILLING_CODE = ${BILLING_CODE},
+		       BILLING_CODE_ID = ${BILLING_CODE_ID},
+		       BILLING_ORGANISATION_PERSON_ID = ${BILLING_ORGANISATION_PERSON_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       COMMENTS = ${COMMENTS},
+		       COST_CENTRE = ${COST_CENTRE},
+		       CREATED_AS = ${CREATED_AS},
+		       DELIVERABLES_APPROVER_1 = ${DELIVERABLES_APPROVER_1},
+		       DELIVERABLES_APPROVER_2 = ${DELIVERABLES_APPROVER_2},
+		       DELIVERABLES_APPROVER_3 = ${DELIVERABLES_APPROVER_3},
+		       DELIVERABLES_APPR_NOTI_TO_ID = ${DELIVERABLES_APPR_NOTI_TO_ID},
+		       DELIVERABLES_APPR_NOTI_TO_ORG = ${DELIVERABLES_APPR_NOTI_TO_ORG},
+		       DELIVERABLES_NAME = ${DELIVERABLES_NAME},
+		       ELEMENT_1 = ${ELEMENT_1},
+		       ELEMENT_2 = ${ELEMENT_2},
+		       ELEMENT_3 = ${ELEMENT_3},
+		       ELEMENT_4 = ${ELEMENT_4},
+		       ELEMENT_5 = ${ELEMENT_5},
+		       ENGAGEMENT_CONTRACT_TYPE = ${ENGAGEMENT_CONTRACT_TYPE},
+		       EQUIPMENT_DETAILS = ${EQUIPMENT_DETAILS},
+		       EQUIPMENT_REQUIRED_YN = ${EQUIPMENT_REQUIRED_YN},
+		       ETS_APPROVAL_NOTIFICATION_TO = ${ETS_APPROVAL_NOTIFICATION_TO},
+		       ETS_APPROVAL_NOTI_TO_2 = ${ETS_APPROVAL_NOTI_TO_2},
+		       EU_CONTACT_PERSON_ID = ${EU_CONTACT_PERSON_ID},
+		       EXPENSE_APPROVAL_NOTI_TO_ID = ${EXPENSE_APPROVAL_NOTI_TO_ID},
+		       EXPENSE_APPROVAL_NOTI_TO_ORG = ${EXPENSE_APPROVAL_NOTI_TO_ORG},
+		       EXPENSE_APPROVER_1 = ${EXPENSE_APPROVER_1},
+		       EXPENSE_APPROVER_2 = ${EXPENSE_APPROVER_2},
+		       EXPENSE_APPROVER_3 = ${EXPENSE_APPROVER_3},
+		       EXPENSE_NAME = ${EXPENSE_NAME},
+		       GST_EXEMPT = ${GST_EXEMPT},
+		       INVOICE_RECIPIENT_EMAIL = ${INVOICE_RECIPIENT_EMAIL},
+		       IS_BULK_APPROVAL = ${IS_BULK_APPROVAL},
+		       IS_BULK_APPROVAL_DELIVERABLES = ${IS_BULK_APPROVAL_DELIVERABLES},
+		       IS_BULK_APPROVAL_EXPENSE = ${IS_BULK_APPROVAL_EXPENSE},
+		       IS_DAILY = ${IS_DAILY},
+		       IS_START_END_TIME = ${IS_START_END_TIME},
+		       JOB_TITLE = ${JOB_TITLE},
+		       MODERN_AWARD_DESCRIPTION = ${MODERN_AWARD_DESCRIPTION},
+		       MODERN_AWARD_ID = ${MODERN_AWARD_ID},
+		       PAYROLL_NOTES = ${PAYROLL_NOTES},
+		       PAYSLIP_EMAIL = ${PAYSLIP_EMAIL},
+		       PAY_ARRANGEMENT = ${PAY_ARRANGEMENT},
+		       PAY_METHOD_ID = ${PAY_METHOD_ID},
+		       PREFERRED = ${PREFERRED},
+		       PRT_STATUS = ${PRT_STATUS},
+		       RATE = ${RATE},
+		       RATE1 = ${RATE1},
+		       RATE2 = ${RATE2},
+		       RATE3 = ${RATE3},
+		       RATE4 = ${RATE4},
+		       RATE5 = ${RATE5},
+		       REFERENCE_A_PO = ${REFERENCE_A_PO},
+		       REFERENCE_B = ${REFERENCE_B},
+		       REFERENCE_C = ${REFERENCE_C},
+		       REFERENCE_D = ${REFERENCE_D},
+		       REFERENCE_NO_1 = ${REFERENCE_NO_1},
+		       REFERENCE_NO_2 = ${REFERENCE_NO_2},
+		       REFERENCE_NO_3 = ${REFERENCE_NO_3},
+		       RESTRAINT_OF_TRADE = ${RESTRAINT_OF_TRADE},
+		       SERVICE_DESCRIPTION = ${SERVICE_DESCRIPTION},
+		       SPECIAL_CONDITIONS = ${SPECIAL_CONDITIONS},
+		       TERMINATION_NOTICE = ${TERMINATION_NOTICE},
+		       TERMINATION_NOTICE_UNIT = ${TERMINATION_NOTICE_UNIT},
+		       TIMECARD_APPROVAL_ID = ${TIMECARD_APPROVAL_ID},
+		       TIMECARD_APPROVAL_RATE_HIDDEN = ${TIMECARD_APPROVAL_RATE_HIDDEN},
+		       TIMECARD_LAYOUT = ${TIMECARD_LAYOUT},
+		       TIMECARD_REQUIRED = ${TIMECARD_REQUIRED},
+		       TIMECARD_SECONDARY_APPROVAL_ID = ${TIMECARD_SECONDARY_APPROVAL_ID},
+		       TIMECARD_TERTIARY_APPROVAL_ID = ${TIMECARD_TERTIARY_APPROVAL_ID},
+		       TIMESHEET_NAME = ${TIMESHEET_NAME},
+		       TIMESHEET_UNITS = ${TIMESHEET_UNITS},
+		       UNIT = ${UNIT},
+		       USE_AWARD_CALCULATION = ${USE_AWARD_CALCULATION},
+		       USE_DELIVERABLES = ${USE_DELIVERABLES},
+		       USE_EXPENSE = ${USE_EXPENSE},
+		       WC_ORGANISATION_TYPE_FLAG = ${WC_ORGANISATION_TYPE_FLAG},
+		       WC_ORG_CODE_RATE_LINK_ID = ${WC_ORG_CODE_RATE_LINK_ID},
+		       WORKING_STATE = ${WORKING_STATE},
+		       WORK_END_TIME = ${WORK_END_TIME},
+		       WORK_START_TIME = ${WORK_START_TIME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentsD.updateColumns">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENTS_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentsD.delete">
+	<![CDATA[
+		DELETE HP_ASSIGNMENTS_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

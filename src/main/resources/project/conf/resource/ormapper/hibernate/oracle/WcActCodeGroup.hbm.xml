@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WC_ACT_CODE_GROUP - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WcActCodeGroup" table="WC_ACT_CODE_GROUP" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="codeGroupId" column="CODE_GROUP_ID" type="java.lang.Double"/>
+		<property name="codeGroupName" column="CODE_GROUP_NAME" type="java.lang.String" length="150"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="4000"/>
+		<property name="division" column="DIVISION" type="java.lang.String" length="150"/>
+		<property name="groupClass" column="GROUP_CLASS" type="java.lang.String" length="50"/>
+		<property name="groupName" column="GROUP_NAME" type="java.lang.String" length="100"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="subDivision" column="SUB_DIVISION" type="java.lang.String" length="150"/>
+	</class>
+
+	<sql-query name="wcActCodeGroup.selectAll">
+	<![CDATA[
+		SELECT CODE_GROUP_ID,
+		       CODE_GROUP_NAME,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DESCRIPTION,
+		       DIVISION,
+		       GROUP_CLASS,
+		       GROUP_NAME,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       SUB_DIVISION
+		  FROM WC_ACT_CODE_GROUP
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="wcActCodeGroup.insert">
+	<![CDATA[
+		INSERT INTO WC_ACT_CODE_GROUP (
+		       CODE_GROUP_ID,
+		       CODE_GROUP_NAME,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DESCRIPTION,
+		       DIVISION,
+		       GROUP_CLASS,
+		       GROUP_NAME,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       SUB_DIVISION
+		       )
+		VALUES (
+		       ${CODE_GROUP_ID},
+		       ${CODE_GROUP_NAME},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DESCRIPTION},
+		       ${DIVISION},
+		       ${GROUP_CLASS},
+		       ${GROUP_NAME},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${SUB_DIVISION}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="wcActCodeGroup.update">
+	<![CDATA[
+		UPDATE WC_ACT_CODE_GROUP
+		   SET CODE_GROUP_ID = ${CODE_GROUP_ID},
+		       CODE_GROUP_NAME = ${CODE_GROUP_NAME},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       DIVISION = ${DIVISION},
+		       GROUP_CLASS = ${GROUP_CLASS},
+		       GROUP_NAME = ${GROUP_NAME},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       SUB_DIVISION = ${SUB_DIVISION}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcActCodeGroup.updateColumns">
+	<![CDATA[
+		UPDATE WC_ACT_CODE_GROUP
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcActCodeGroup.delete">
+	<![CDATA[
+		DELETE WC_ACT_CODE_GROUP
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

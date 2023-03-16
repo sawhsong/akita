@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WC_QLD_CODE_RATE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WcQldCodeRate" table="WC_QLD_CODE_RATE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="codeDescription" column="CODE_DESCRIPTION" type="java.lang.String" length="4000"/>
+		<property name="codeGroupId" column="CODE_GROUP_ID" type="java.lang.Double"/>
+		<property name="codeName" column="CODE_NAME" type="java.lang.String" length="150"/>
+		<property name="codePrimaryActivity" column="CODE_PRIMARY_ACTIVITY" type="java.lang.String" length="4000"/>
+		<property name="codeRateId" column="CODE_RATE_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="wic" column="WIC" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="wcQldCodeRate.selectAll">
+	<![CDATA[
+		SELECT CODE_DESCRIPTION,
+		       CODE_GROUP_ID,
+		       CODE_NAME,
+		       CODE_PRIMARY_ACTIVITY,
+		       CODE_RATE_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       WIC
+		  FROM WC_QLD_CODE_RATE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcQldCodeRate.insert">
+	<![CDATA[
+		INSERT INTO WC_QLD_CODE_RATE (
+		       CODE_DESCRIPTION,
+		       CODE_GROUP_ID,
+		       CODE_NAME,
+		       CODE_PRIMARY_ACTIVITY,
+		       CODE_RATE_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       WIC
+		       )
+		VALUES (
+		       ${CODE_DESCRIPTION},
+		       ${CODE_GROUP_ID},
+		       ${CODE_NAME},
+		       ${CODE_PRIMARY_ACTIVITY},
+		       ${CODE_RATE_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${WIC}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="wcQldCodeRate.update">
+	<![CDATA[
+		UPDATE WC_QLD_CODE_RATE
+		   SET CODE_DESCRIPTION = ${CODE_DESCRIPTION},
+		       CODE_GROUP_ID = ${CODE_GROUP_ID},
+		       CODE_NAME = ${CODE_NAME},
+		       CODE_PRIMARY_ACTIVITY = ${CODE_PRIMARY_ACTIVITY},
+		       CODE_RATE_ID = ${CODE_RATE_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       WIC = ${WIC}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcQldCodeRate.updateColumns">
+	<![CDATA[
+		UPDATE WC_QLD_CODE_RATE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="wcQldCodeRate.delete">
+	<![CDATA[
+		DELETE WC_QLD_CODE_RATE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

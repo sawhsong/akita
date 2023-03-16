@@ -1,0 +1,21 @@
+/**************************************************************************************************
+* Body Location Path Area CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * Location Path Area Contents
+ */
+#divLocationPathContainer {}
+.locationPathContainer {padding:10px 10px;font-weight:bold;opacity:1.0;
+	border-bottom:1px solid #E0CFC3;
+}
+.locationPathContainerIcon {
+	color:#3F3731;
+}
+.locationPathContainer a, .locationPathContainer a:visited, .locationPathContainer a:active {cursor:pointer;text-decoration:none;
+	color:#3F3731;
+}
+.locationPathContainer a:hover {cursor:pointer;text-decoration:underline;
+	color:#B85700;
+}

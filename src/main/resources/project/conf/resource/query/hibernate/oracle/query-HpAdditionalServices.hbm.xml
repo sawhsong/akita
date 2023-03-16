@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_ADDITIONAL_SERVICES - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpAdditionalServices.getAdditionalServiceByPersonId">
+	<![CDATA[
+		select has.add_service_id as service_id,
+		       per.full_name as person_name,
+		       org.organisation_name as service_provider_name,
+		       to_char(has.referral_date, '${dateFormat}') as referral_date,
+		       (select full_name from hp_person_d where person_id = has.entity_employee_id) as entity_employee_name,
+		       hcm.description,
+		       to_char(has.creation_date, '${dateFormat}') as created_date,
+		       (select full_name from hp_person_d where person_id = has.created_by) as created_by_name
+		  from hp_additional_services has,
+		       hp_organisation_d org,
+		       hp_person_d per,
+		       hp_comments hcm
+		 where has.person_id = '${personId}'
+		   and has.service_provider_id = org.organisation_id(+)
+		   and has.person_id = per.person_id(+)
+		   and has.comment_id = hcm.comment_id(+)
+		 order by 1 desc
+	]]>
+	</sql-query>
+</hibernate-mapping>

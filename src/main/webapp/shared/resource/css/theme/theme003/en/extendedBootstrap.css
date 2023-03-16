@@ -1,0 +1,31 @@
+/**************************************************************************************************
+* Extended Bootstrap CSS
+**************************************************************************************************/
+@charset "utf-8";
+
+/**
+ * Panel
+ */
+.panel {margin-bottom:10px;
+	box-shadow:0px 1px 1px rgba(0, 0, 0, .1);
+}
+.panel-heading {padding:10px 10px;}
+.panel-title {font-size:1.1em;}
+.panel-body {padding:10px 10px;}
+.panel-footer {
+	border-top:1px solid #CCCCCC;
+	background:#FFFFFF;
+}
+.panel-default {
+	border:1px solid #CCCCCC;
+}
+.panel-default .panel-heading {
+	color:#1C94C4;
+	border-bottom:1px solid #CCCCCC;
+	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
+}
+
+/**
+ * Tabs
+ */
+.nav-tabs {border-bottom:1px solid #CCCCCC;}

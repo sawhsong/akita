@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_INVOICE - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpInvoice.getInvoiceList">
+	<![CDATA[
+		select inv.invoice_id,
+		       inv.invoice_number,
+		       inv_group.parent_invoice_id as parent_invoice_id,
+		       to_char(inv.invoice_date, '${dateFormat}') as invoice_date,
+		       to_char(inv.creation_date, '${dateFormat}') as creation_date,
+		       to_char(inv.last_update_date, '${dateFormat}') as last_update_date,
+		       (select full_name from hp_person_d where person_id = inv.created_by) as created_by,
+		       (select full_name from hp_person_d where person_id = inv.last_updated_by) as last_updated_by,
+		       inv.invoice_type,
+		       inv.invoice_amount,
+		       inv.gst_amount,
+		       inv.person_id,
+		       per.person_number,
+		       per.full_name as person_name,
+		       inv.pay_to_organisation_id as pay_to_org_id,
+		       org.organisation_name as pay_to_org_name,
+		       inv.status,
+		       (select meaning from sys_common_lookups where lookup_type = 'INVOICE_STATUS' and lookup_code = inv.status) as status_meaning,
+		       to_char(inv.con_period_start_date, '${dateFormat}') as con_period_start_date,
+		       to_char(inv.con_period_end_date, '${dateFormat}') as con_period_end_date,
+		       inv.inv_cr_status as generation_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'INVOICE_GENERATE_TYPE' and lookup_code = inv.inv_cr_status) as generation_type_meaning,
+		       inv.source,
+		       inv.source_id,
+		       grouping_cnt.cnt_by_group_id as cnt_grouping
+		  from hp_invoice inv,
+		       hp_person_d per,
+		       hp_organisation_d org,
+		       (select group_id,
+		               nvl(count(*), 0) as cnt_by_group_id
+		          from invoice_group
+		         group by group_id
+		       ) grouping_cnt,
+		       (select a.invoice_id as parent_invoice_id,
+		               b.invoice_id as child_invoice_id
+		          from hp_invoice a,
+		               invoice_group b
+		         where a.invoice_number = b.group_id
+		       ) inv_group
+		 where inv.person_id = per.person_id(+)
+		   and inv.pay_to_organisation_id = org.organisation_id(+)
+		   and inv.invoice_number = grouping_cnt.group_id(+)
+		   and inv.invoice_id = inv_group.child_invoice_id(+)
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+</hibernate-mapping>

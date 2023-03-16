@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="default" name="qm" namespace="/qm" strict-method-invocation="false">
+        <default-interceptor-ref name="ZebraDefaultStack"/>
+        <!--Qm10 - Select Database-->
+        <action class="project.app.qm.qm10.Qm10Action" method="{1}" name="10/*">
+            <result name="list" type="debugDispatcherResult">/project/app/qm/qm10/Qm10ListPop.jsp</result>
+        </action>
+        <!--Qm20 - Find Person-->
+        <action class="project.app.qm.qm20.Qm20Action" method="{1}" name="20/*">
+            <result name="list" type="debugDispatcherResult">/project/app/qm/qm20/Qm20ListPop.jsp</result>
+        </action>
+        <!--Qm30 - Find Organisation-->
+        <action class="project.app.qm.qm30.Qm30Action" method="{1}" name="30/*">
+            <result name="list" type="debugDispatcherResult">/project/app/qm/qm30/Qm30ListPop.jsp</result>
+        </action>
+        <!--Qm40 - Find Assignment-->
+        <action class="project.app.qm.qm40.Qm40Action" method="{1}" name="40/*">
+            <result name="list" type="debugDispatcherResult">/project/app/qm/qm40/Qm40ListPop.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ASSIGNMENT_RATES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAssignmentRates" table="HP_ASSIGNMENT_RATES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="assignmentRateId" column="ASSIGNMENT_RATE_ID" type="java.lang.Double"></id>
+
+		<property name="amount" column="AMOUNT" not-null="true" type="java.lang.Double"/>
+		<property name="units" column="UNITS" not-null="true" type="java.lang.Double"/>
+		<property name="alternateName" column="ALTERNATE_NAME" type="java.lang.String" length="100"/>
+		<property name="assigmentId" column="ASSIGMENT_ID" type="java.lang.Double"/>
+		<property name="chargePeriod" column="CHARGE_PERIOD" type="java.lang.String" length="50"/>
+		<property name="chargeRate" column="CHARGE_RATE" type="java.lang.Double"/>
+		<property name="dayType" column="DAY_TYPE" type="java.lang.String" length="30"/>
+		<property name="displayOnExpense" column="DISPLAY_ON_EXPENSE" type="java.lang.String" length="1"/>
+		<property name="displayOnTimesheet" column="DISPLAY_ON_TIMESHEET" type="java.lang.String" length="1"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="enableFlag" column="ENABLE_FLAG" type="java.lang.String" length="1"/>
+		<property name="endTime" column="END_TIME" type="java.lang.String" length="10"/>
+		<property name="gstExempt" column="GST_EXEMPT" type="java.lang.String" length="1"/>
+		<property name="overTimeEnd" column="OVER_TIME_END" type="java.lang.String" length="10"/>
+		<property name="overTimeStart" column="OVER_TIME_START" type="java.lang.String" length="10"/>
+		<property name="period" column="PERIOD" type="java.lang.String" length="50"/>
+		<property name="preferred" column="PREFERRED" type="java.lang.String" length="1"/>
+		<property name="rateName" column="RATE_NAME" type="java.lang.String" length="50"/>
+		<property name="recurringRate" column="RECURRING_RATE" type="java.lang.String" length="1"/>
+		<property name="startTime" column="START_TIME" type="java.lang.String" length="10"/>
+		<property name="taxablePercentage" column="TAXABLE_PERCENTAGE" type="java.lang.Double"/>
+		<property name="useAward" column="USE_AWARD" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="hpAssignmentRates.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_RATE_ID,
+		       AMOUNT,
+		       UNITS,
+		       ALTERNATE_NAME,
+		       ASSIGMENT_ID,
+		       CHARGE_PERIOD,
+		       CHARGE_RATE,
+		       DAY_TYPE,
+		       DISPLAY_ON_EXPENSE,
+		       DISPLAY_ON_TIMESHEET,
+		       ELEMENT_ID,
+		       ENABLE_FLAG,
+		       END_TIME,
+		       GST_EXEMPT,
+		       OVER_TIME_END,
+		       OVER_TIME_START,
+		       PERIOD,
+		       PREFERRED,
+		       RATE_NAME,
+		       RECURRING_RATE,
+		       START_TIME,
+		       TAXABLE_PERCENTAGE,
+		       USE_AWARD
+		  FROM HP_ASSIGNMENT_RATES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentRates.insert">
+	<![CDATA[
+		INSERT INTO HP_ASSIGNMENT_RATES (
+		       ASSIGNMENT_RATE_ID,
+		       AMOUNT,
+		       UNITS,
+		       ALTERNATE_NAME,
+		       ASSIGMENT_ID,
+		       CHARGE_PERIOD,
+		       CHARGE_RATE,
+		       DAY_TYPE,
+		       DISPLAY_ON_EXPENSE,
+		       DISPLAY_ON_TIMESHEET,
+		       ELEMENT_ID,
+		       ENABLE_FLAG,
+		       END_TIME,
+		       GST_EXEMPT,
+		       OVER_TIME_END,
+		       OVER_TIME_START,
+		       PERIOD,
+		       PREFERRED,
+		       RATE_NAME,
+		       RECURRING_RATE,
+		       START_TIME,
+		       TAXABLE_PERCENTAGE,
+		       USE_AWARD
+		       )
+		VALUES (
+		       ${ASSIGNMENT_RATE_ID},
+		       ${AMOUNT},
+		       ${UNITS},
+		       ${ALTERNATE_NAME},
+		       ${ASSIGMENT_ID},
+		       ${CHARGE_PERIOD},
+		       ${CHARGE_RATE},
+		       ${DAY_TYPE},
+		       ${DISPLAY_ON_EXPENSE},
+		       ${DISPLAY_ON_TIMESHEET},
+		       ${ELEMENT_ID},
+		       ${ENABLE_FLAG},
+		       ${END_TIME},
+		       ${GST_EXEMPT},
+		       ${OVER_TIME_END},
+		       ${OVER_TIME_START},
+		       ${PERIOD},
+		       ${PREFERRED},
+		       ${RATE_NAME},
+		       ${RECURRING_RATE},
+		       ${START_TIME},
+		       ${TAXABLE_PERCENTAGE},
+		       ${USE_AWARD}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentRates.update">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_RATES
+		   SET AMOUNT = ${AMOUNT},
+		       UNITS = ${UNITS},
+		       ALTERNATE_NAME = ${ALTERNATE_NAME},
+		       ASSIGMENT_ID = ${ASSIGMENT_ID},
+		       CHARGE_PERIOD = ${CHARGE_PERIOD},
+		       CHARGE_RATE = ${CHARGE_RATE},
+		       DAY_TYPE = ${DAY_TYPE},
+		       DISPLAY_ON_EXPENSE = ${DISPLAY_ON_EXPENSE},
+		       DISPLAY_ON_TIMESHEET = ${DISPLAY_ON_TIMESHEET},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       ENABLE_FLAG = ${ENABLE_FLAG},
+		       END_TIME = ${END_TIME},
+		       GST_EXEMPT = ${GST_EXEMPT},
+		       OVER_TIME_END = ${OVER_TIME_END},
+		       OVER_TIME_START = ${OVER_TIME_START},
+		       PERIOD = ${PERIOD},
+		       PREFERRED = ${PREFERRED},
+		       RATE_NAME = ${RATE_NAME},
+		       RECURRING_RATE = ${RECURRING_RATE},
+		       START_TIME = ${START_TIME},
+		       TAXABLE_PERCENTAGE = ${TAXABLE_PERCENTAGE},
+		       USE_AWARD = ${USE_AWARD}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentRates.updateColumns">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_RATES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentRates.delete">
+	<![CDATA[
+		DELETE HP_ASSIGNMENT_RATES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

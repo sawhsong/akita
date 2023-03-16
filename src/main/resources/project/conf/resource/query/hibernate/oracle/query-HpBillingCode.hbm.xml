@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_BILLING_CODE - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpBillingCode.getBillingCodeByCodeForAutoCompletion">
+	<![CDATA[
+		select billing_code_id,
+		       billing_code,
+		       billing_organisation_id,
+		       billing_organisation_name,
+		       billing_code||' ('||billing_code_id||')'||' ('||billing_organisation_name||')' as display_column,
+		       billing_code||' ('||billing_code_id||')'||' ('||billing_org_name_abbr||')' as display_column_abbr
+		  from (select src.*,
+		               case when length(billing_organisation_name) > 25 then substr(billing_organisation_name, 1, 25) || '...'
+		                    else billing_organisation_name
+		               end as billing_org_name_abbr
+		          from (select billing_code_id,
+		                       billing_code,
+		                       billing_organization_id as billing_organisation_id,
+		                       (select organisation_name from hp_organisation_d where organisation_id = hp_billing_code.billing_organization_id) as billing_organisation_name
+		                  from hp_billing_code
+		               ) src
+		       ) data
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+</hibernate-mapping>

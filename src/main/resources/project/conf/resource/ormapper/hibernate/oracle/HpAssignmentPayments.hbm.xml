@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ASSIGNMENT_PAYMENTS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAssignmentPayments" table="HP_ASSIGNMENT_PAYMENTS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="asgPaymentId" column="ASG_PAYMENT_ID" type="java.lang.Double"></id>
+
+		<property name="asgPayMethodId" column="ASG_PAY_METHOD_ID" not-null="true" type="java.lang.Double"/>
+		<property name="assignmentProcessId" column="ASSIGNMENT_PROCESS_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="payMethodId" column="PAY_METHOD_ID" not-null="true" type="java.lang.Double"/>
+		<property name="amount" column="AMOUNT" type="java.lang.Double"/>
+		<property name="bankFileId" column="BANK_FILE_ID" type="java.lang.Double"/>
+		<property name="paymentId" column="PAYMENT_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpAssignmentPayments.selectAll">
+	<![CDATA[
+		SELECT ASG_PAY_METHOD_ID,
+		       ASG_PAYMENT_ID,
+		       ASSIGNMENT_PROCESS_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PAY_METHOD_ID,
+		       AMOUNT,
+		       BANK_FILE_ID,
+		       PAYMENT_ID
+		  FROM HP_ASSIGNMENT_PAYMENTS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentPayments.insert">
+	<![CDATA[
+		INSERT INTO HP_ASSIGNMENT_PAYMENTS (
+		       ASG_PAY_METHOD_ID,
+		       ASG_PAYMENT_ID,
+		       ASSIGNMENT_PROCESS_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PAY_METHOD_ID,
+		       AMOUNT,
+		       BANK_FILE_ID,
+		       PAYMENT_ID
+		       )
+		VALUES (
+		       ${ASG_PAY_METHOD_ID},
+		       ${ASG_PAYMENT_ID},
+		       ${ASSIGNMENT_PROCESS_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PAY_METHOD_ID},
+		       ${AMOUNT},
+		       ${BANK_FILE_ID},
+		       ${PAYMENT_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentPayments.update">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_PAYMENTS
+		   SET ASG_PAY_METHOD_ID = ${ASG_PAY_METHOD_ID},
+		       ASSIGNMENT_PROCESS_ID = ${ASSIGNMENT_PROCESS_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PAY_METHOD_ID = ${PAY_METHOD_ID},
+		       AMOUNT = ${AMOUNT},
+		       BANK_FILE_ID = ${BANK_FILE_ID},
+		       PAYMENT_ID = ${PAYMENT_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentPayments.updateColumns">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_PAYMENTS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentPayments.delete">
+	<![CDATA[
+		DELETE HP_ASSIGNMENT_PAYMENTS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

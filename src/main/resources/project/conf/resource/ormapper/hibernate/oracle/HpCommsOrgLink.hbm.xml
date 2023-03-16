@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_COMMS_ORG_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpCommsOrgLink" table="HP_COMMS_ORG_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="contactId" column="CONTACT_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="isPrimary" column="IS_PRIMARY" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="linkId" column="LINK_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpCommsOrgLink.selectAll">
+	<![CDATA[
+		SELECT CONTACT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       IS_PRIMARY,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LINK_ID,
+		       ORGANISATION_ID
+		  FROM HP_COMMS_ORG_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsOrgLink.insert">
+	<![CDATA[
+		INSERT INTO HP_COMMS_ORG_LINK (
+		       CONTACT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       IS_PRIMARY,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LINK_ID,
+		       ORGANISATION_ID
+		       )
+		VALUES (
+		       ${CONTACT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${IS_PRIMARY},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LINK_ID},
+		       ${ORGANISATION_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsOrgLink.update">
+	<![CDATA[
+		UPDATE HP_COMMS_ORG_LINK
+		   SET CONTACT_ID = ${CONTACT_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       IS_PRIMARY = ${IS_PRIMARY},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LINK_ID = ${LINK_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsOrgLink.updateColumns">
+	<![CDATA[
+		UPDATE HP_COMMS_ORG_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsOrgLink.delete">
+	<![CDATA[
+		DELETE HP_COMMS_ORG_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

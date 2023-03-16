@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - OPPORTUNITY - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.Opportunity" table="OPPORTUNITY" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="opportunityId" column="OPPORTUNITY_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="opportunityType" column="OPPORTUNITY_TYPE" not-null="true" type="java.lang.String" length="100"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="assignedPersonId" column="ASSIGNED_PERSON_ID" type="java.lang.Double"/>
+		<property name="closeAs" column="CLOSE_AS" type="java.lang.String" length="100"/>
+		<property name="closeBy" column="CLOSE_BY" type="java.lang.Double"/>
+		<property name="closeDate" column="CLOSE_DATE" type="java.util.Date"/>
+		<property name="closeNotes" column="CLOSE_NOTES" type="java.lang.String" length="4000"/>
+		<property name="closeReason" column="CLOSE_REASON" type="java.lang.String" length="100"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="customerReferenceDescription" column="CUSTOMER_REFERENCE_DESCRIPTION" type="java.lang.String" length="4000"/>
+		<property name="customerReferenceNumber" column="CUSTOMER_REFERENCE_NUMBER" type="java.lang.String" length="100"/>
+		<property name="customerRelationshipMgrId" column="CUSTOMER_RELATIONSHIP_MGR_ID" type="java.lang.Double"/>
+		<property name="customerSupportMgrId" column="CUSTOMER_SUPPORT_MGR_ID" type="java.lang.Double"/>
+		<property name="dueDate" column="DUE_DATE" type="java.util.Date"/>
+		<property name="estimatedRevenue" column="ESTIMATED_REVENUE" type="java.lang.Double"/>
+		<property name="priority" column="PRIORITY" type="java.lang.String" length="100"/>
+		<property name="serviceStatus" column="SERVICE_STATUS" type="java.lang.String" length="100"/>
+		<property name="serviceType" column="SERVICE_TYPE" type="java.lang.String" length="100"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="opportunity.selectAll">
+	<![CDATA[
+		SELECT OPPORTUNITY_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       OPPORTUNITY_TYPE,
+		       PERSON_ID,
+		       ASSIGNED_PERSON_ID,
+		       CLOSE_AS,
+		       CLOSE_BY,
+		       TO_CHAR(CLOSE_DATE, 'yyyymmddhh24miss') AS CLOSE_DATE,
+		       CLOSE_NOTES,
+		       CLOSE_REASON,
+		       COMMENTS,
+		       CUSTOMER_REFERENCE_DESCRIPTION,
+		       CUSTOMER_REFERENCE_NUMBER,
+		       CUSTOMER_RELATIONSHIP_MGR_ID,
+		       CUSTOMER_SUPPORT_MGR_ID,
+		       TO_CHAR(DUE_DATE, 'yyyymmddhh24miss') AS DUE_DATE,
+		       ESTIMATED_REVENUE,
+		       PRIORITY,
+		       SERVICE_STATUS,
+		       SERVICE_TYPE,
+		       STATUS
+		  FROM OPPORTUNITY
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunity.insert">
+	<![CDATA[
+		INSERT INTO OPPORTUNITY (
+		       OPPORTUNITY_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       OPPORTUNITY_TYPE,
+		       PERSON_ID,
+		       ASSIGNED_PERSON_ID,
+		       CLOSE_AS,
+		       CLOSE_BY,
+		       CLOSE_DATE,
+		       CLOSE_NOTES,
+		       CLOSE_REASON,
+		       COMMENTS,
+		       CUSTOMER_REFERENCE_DESCRIPTION,
+		       CUSTOMER_REFERENCE_NUMBER,
+		       CUSTOMER_RELATIONSHIP_MGR_ID,
+		       CUSTOMER_SUPPORT_MGR_ID,
+		       DUE_DATE,
+		       ESTIMATED_REVENUE,
+		       PRIORITY,
+		       SERVICE_STATUS,
+		       SERVICE_TYPE,
+		       STATUS
+		       )
+		VALUES (
+		       ${OPPORTUNITY_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${OPPORTUNITY_TYPE},
+		       ${PERSON_ID},
+		       ${ASSIGNED_PERSON_ID},
+		       ${CLOSE_AS},
+		       ${CLOSE_BY},
+		       ${CLOSE_DATE},
+		       ${CLOSE_NOTES},
+		       ${CLOSE_REASON},
+		       ${COMMENTS},
+		       ${CUSTOMER_REFERENCE_DESCRIPTION},
+		       ${CUSTOMER_REFERENCE_NUMBER},
+		       ${CUSTOMER_RELATIONSHIP_MGR_ID},
+		       ${CUSTOMER_SUPPORT_MGR_ID},
+		       ${DUE_DATE},
+		       ${ESTIMATED_REVENUE},
+		       ${PRIORITY},
+		       ${SERVICE_STATUS},
+		       ${SERVICE_TYPE},
+		       ${STATUS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunity.update">
+	<![CDATA[
+		UPDATE OPPORTUNITY
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       OPPORTUNITY_TYPE = ${OPPORTUNITY_TYPE},
+		       PERSON_ID = ${PERSON_ID},
+		       ASSIGNED_PERSON_ID = ${ASSIGNED_PERSON_ID},
+		       CLOSE_AS = ${CLOSE_AS},
+		       CLOSE_BY = ${CLOSE_BY},
+		       CLOSE_DATE = ${CLOSE_DATE},
+		       CLOSE_NOTES = ${CLOSE_NOTES},
+		       CLOSE_REASON = ${CLOSE_REASON},
+		       COMMENTS = ${COMMENTS},
+		       CUSTOMER_REFERENCE_DESCRIPTION = ${CUSTOMER_REFERENCE_DESCRIPTION},
+		       CUSTOMER_REFERENCE_NUMBER = ${CUSTOMER_REFERENCE_NUMBER},
+		       CUSTOMER_RELATIONSHIP_MGR_ID = ${CUSTOMER_RELATIONSHIP_MGR_ID},
+		       CUSTOMER_SUPPORT_MGR_ID = ${CUSTOMER_SUPPORT_MGR_ID},
+		       DUE_DATE = ${DUE_DATE},
+		       ESTIMATED_REVENUE = ${ESTIMATED_REVENUE},
+		       PRIORITY = ${PRIORITY},
+		       SERVICE_STATUS = ${SERVICE_STATUS},
+		       SERVICE_TYPE = ${SERVICE_TYPE},
+		       STATUS = ${STATUS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunity.updateColumns">
+	<![CDATA[
+		UPDATE OPPORTUNITY
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunity.delete">
+	<![CDATA[
+		DELETE OPPORTUNITY
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - PRT_ASSIGNMENT_SETUP - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.PrtAssignmentSetup.getByAssignmentId">
+	<![CDATA[
+		select prt_assignment_setup_id,
+		       assignment_id,
+		       prt_organisation_id,
+		       prt_coh_scenario_id,
+		       prt_working_state,
+		       created_by,
+		       to_char(creation_date, '${dateFormat}') as creation_date,
+		       is_active
+		  from prt_assignment_setup
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.PrtAssignmentSetup.getByAssignmentIdsForUnlockPrt">
+	<![CDATA[
+		select asg.assignment_id,
+		       asg.assignment_number,
+		       inv.invoice_date as last_invoice_date,
+		       pay.date_earned as last_paid_date,
+		       pas.prt_assignment_setup_id,
+		       (select organisation_name||' ('||pas.prt_organisation_id||')' from hp_organisation_d where organisation_id = pas.prt_organisation_id) as prt_organisation,
+		       pas.prt_coh_scenario_id,
+		       (select scenario from prt_coh_scenario where prt_coh_scenario_id = pas.prt_coh_scenario_id) as prt_scenario,
+		       pas.prt_working_state,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = pas.prt_working_state) as prt_working_state_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PRT_STATUS' and lookup_code = asg.prt_status) as prt_status_meaning,
+		       (select rate_percentage from prt_rate where state_code = pas.prt_working_state and trunc(sysdate) between trunc(fin_year_start_date) and trunc(fin_year_end_date)) as prt_percentage,
+		       pas.created_by,
+		       (select full_name from hp_person_d where person_id = pas.created_by) as created_by_name,
+		       to_char(pas.creation_date, '${dateFormat}') as creation_date,
+		       pas.is_active
+		  from hp_assignments_d asg,
+		       prt_assignment_setup pas,
+		       (select source_id as assignment_id,
+		               to_char(max(invoice_date), '${dateFormat}') as invoice_date
+		          from hp_invoice
+		         where source = 'ASSIGNMENT'
+		         group by source_id
+		       ) inv,
+		       (select assignment_id, to_char(max(date_earned), '${dateFormat}') as date_earned
+		          from hp_balance
+		         group by assignment_id
+		       ) pay
+		 where 1 = 1
+		   and asg.assignment_id = pas.assignment_id(+)
+		   and asg.assignment_id = inv.assignment_id(+)
+		   and asg.assignment_id = pay.assignment_id(+)
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
+	<sql-query name="query.PrtAssignmentSetup.getLatestDataSetByAssignmentId">
+	<![CDATA[
+		select src.*,
+		       pcs.scenario,
+		       pcs.organisation_liable,
+		       pcs.evidence_description,
+		       pcs.description,
+		       pcs.state_code,
+		       (select organisation_name from hp_organisation_d where organisation_id = src.prt_organisation_id) as prt_organisation_name,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = src.prt_working_state) as prt_working_state_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = pcs.state_code) as state_code_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PRT_ORG_MAPPING' and lookup_code = pcs.organisation_liable) as organisation_liable_meaning,
+		       case when src.prt_coh_scenario_id is not null then
+		                 case when src.prt_organisation_id > 0 then (select organisation_name from hp_organisation_d where organisation_id = src.prt_organisation_id)
+		                      else 'Not Liable'
+		                 end
+		            else 'Not Applicable'
+		       end as prt_responsible_description,
+		       (select rate_percentage from prt_rate where state_code = src.prt_working_state and trunc(sysdate) between trunc(fin_year_start_date) and trunc(fin_year_end_date)) as prt_rate,
+		       (select full_name from hp_person_d where person_id = src.created_by) as created_by_name,
+		       to_char(src.creation_date, '${dateFormat}') as creation_date_format
+		  from (select prt_assignment_setup.*,
+		               row_number() over (partition by assignment_id order by prt_assignment_setup_id desc) as myrow
+		          from prt_assignment_setup
+		         where assignment_id = '${assignmentId}'
+		           and is_active = 'Y'
+		       ) src,
+		       prt_coh_scenario pcs
+		 where src.myrow = 1
+		   and pcs.is_active = 'Y'
+		   and src.prt_coh_scenario_id = pcs.prt_coh_scenario_id(+)
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Query hbm Source
+ * - HP_COMMS_ORG_LINK - 
+ */-->
+<hibernate-mapping>
+	<sql-query name="query.HpCommsOrgLink.getDataSetByContactId">
+	<![CDATA[
+		select hp_comms_org_link.*,
+		       (select organisation_name from hp_organisation_d where organisation_id = hp_comms_org_link.organisation_id) as organisation_name
+		  from hp_comms_org_link
+		 where contact_id in (${contactId})
+	]]>
+	</sql-query>
+</hibernate-mapping>

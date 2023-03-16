@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--SysCommonCode - Common Code-->
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCommonCode.SysCommonCodeAction" id="sysCommonCodeAction" name="sysCommonCodeAction"/>
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCommonCode.SysCommonCodeBizImpl" id="sysCommonCodeBiz" name="sysCommonCodeBiz" parent="baseBiz"/>
+    <!--SysCountryCurrency - Country / Currency-->
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyAction" id="sysCountryCurrencyAction" name="sysCountryCurrencyAction"/>
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyBizImpl" id="sysCountryCurrencyBiz" name="sysCountryCurrencyBiz" parent="baseBiz"/>
+    <!--SysMenu - Menu-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuAction" id="sysMenuAction" name="sysMenuAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuBizImpl" id="sysMenuBiz" name="sysMenuBiz" parent="baseBiz"/>
+    <!--SysAuthGroup - Authority Group-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupAction" id="sysAuthGroupAction" name="sysAuthGroupAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupBizImpl" id="sysAuthGroupBiz" name="sysAuthGroupBiz" parent="baseBiz"/>
+    <!--SysMenuAuth - Menu Authority Group-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthAction" id="sysMenuAuthAction" name="sysMenuAuthAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthBizImpl" id="sysMenuAuthBiz" name="sysMenuAuthBiz" parent="baseBiz"/>
+    <!--SysUser - User-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysUser.SysUserAction" id="sysUserAction" name="sysUserAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysUser.SysUserBizImpl" id="sysUserBiz" name="sysUserBiz" parent="baseBiz"/>
+    <!--SysItSupportAssignment - Assignment-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentAction" id="sysItSupportAssignmentAction" name="sysItSupportAssignmentAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentBizImpl" id="sysItSupportAssignmentBiz" name="sysItSupportAssignmentBiz" parent="baseBiz"/>
+    <!--SysItSupportInvoice - Invoice-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceAction" id="sysItSupportInvoiceAction" name="sysItSupportInvoiceAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceBizImpl" id="sysItSupportInvoiceBiz" name="sysItSupportInvoiceBiz" parent="baseBiz"/>
+    <!--SysItSupportEtc - ETC-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcAction" id="sysItSupportEtcAction" name="sysItSupportEtcAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcBizImpl" id="sysItSupportEtcBiz" name="sysItSupportEtcBiz" parent="baseBiz"/>
+    <!--SysPerciSourceGenerator - PERCI Source Generator-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorAction" id="sysPerciSourceGeneratorAction" name="sysPerciSourceGeneratorAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorBizImpl" id="sysPerciSourceGeneratorBiz" name="sysPerciSourceGeneratorBiz" parent="baseBiz"/>
+    <!--SysDbSessionMonitor - Databse Session Monitor-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorAction" id="sysDbSessionMonitorAction" name="sysDbSessionMonitorAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorBizImpl" id="sysDbSessionMonitorBiz" name="sysDbSessionMonitorBiz" parent="baseBiz"/>
+    <!--SysSiteRunningTest - Site Running Test-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestAction" id="sysSiteRunningTestAction" name="sysSiteRunningTestAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestBizImpl" id="sysSiteRunningTestBiz" name="sysSiteRunningTestBiz" parent="baseBiz"/>
+    <!--SysNotice - Notice-->
+    <bean class="${name.package.project}.app.sys.sysBbs.sysNotice.SysNoticeAction" id="sysNoticeAction" name="sysNoticeAction"/>
+    <bean class="${name.package.project}.app.sys.sysBbs.sysNotice.SysNoticeBizImpl" id="sysNoticeBiz" name="sysNoticeBiz" parent="baseBiz"/>
+    <!--SysFreeBoard - Free Board-->
+    <bean class="${name.package.project}.app.sys.sysBbs.sysFreeBoard.SysFreeBoardAction" id="sysFreeBoardAction" name="sysFreeBoardAction"/>
+    <bean class="${name.package.project}.app.sys.sysBbs.sysFreeBoard.SysFreeBoardBizImpl" id="sysFreeBoardBiz" name="sysFreeBoardBiz" parent="baseBiz"/>
+    <!--SysWcAct - ACT-->
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcAct.SysWcActAction" id="sysWcActAction" name="sysWcActAction"/>
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcAct.SysWcActBizImpl" id="sysWcActBiz" name="sysWcActBiz" parent="baseBiz"/>
+    <!--SysWcNsw - NSW-->
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcNsw.SysWcNswAction" id="sysWcNswAction" name="sysWcNswAction"/>
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcNsw.SysWcNswBizImpl" id="sysWcNswBiz" name="sysWcNswBiz" parent="baseBiz"/>
+</beans>
