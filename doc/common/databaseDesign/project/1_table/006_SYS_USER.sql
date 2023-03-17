@@ -93,54 +93,11 @@ comment on column sys_user.update_date                                          
  */
 delete sys_user;
 
-insert into sys_user values('0', 'Dustin', 'dustin', 'dustin', '0', '0', 'EN', 'THEME000', 'INTERNAL', 'dsa@entitysolutions.com.au', 50, 5, 'NU',
+insert into sys_user values('0', 'Dustin', 'dustin', 'dustin', '0', '0', 'EN', 'THEME000', 'INTERNAL', 'sawhsong@gmail.com', 50, 5, 'NU',
 	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'System Admin - Dustin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1', null,
 	'0', sysdate, null, null
 );
-insert into sys_user values('1', 'Admin', 'admin', 'admin', '1', '1', 'EN', 'THEME000', 'INTERNAL', 'dsa@entitysolutions.com.au', 50, 5, 'NU',
+insert into sys_user values('1', 'Admin', 'admin', 'admin', '1', '1', 'EN', 'THEME000', 'INTERNAL', 'sawhsong@gmail.com', 50, 5, 'NU',
 	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'General Admin - Admin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1', null,
 	'0', sysdate, null, null
 );
-
--- From PERCI
-/*
-insert into sys_user
-select user_id as user_id,
-       user_name as user_name,
-       user_name as login_id,
-       password as login_password,
-       person_id as person_id,
-       'Z' as auth_group_id,
-       'EN' as language,
-       'THEME000' as theme_type,
-       'INTERNAL' as user_type,
-       email as email,
-       50 as max_row_per_page,
-       5 as page_num_per_page,
-       'NU' as user_status,
-       '/shared/resource/image/photo/DefaultUser_128_Black.png' as photo_path,
-       '/index/dashboard.do',
-       decode(is_active, null, 'Y', is_active) as is_active,
-       description as description,
-       prop_to_portal as prop_to_portal,
-       pin as pin,
-       disabled_date as disabled_date,
-       security_question_1 as security_question_1,
-       security_question_answer_1 as security_question_answer_1,
-       security_question_2 as security_question_2,
-       security_question_answer_2 as security_question_answer_2,
-       portal_skin as portal_skin,
-       portal_security_role as portal_security_role,
-       reset_password as reset_password,
-       reset_term_condition as reset_term_condition,
-       is_portal_user as is_portal_user,
-       portal_org_profile_id as portal_org_profile_id,
-       null as authentication_secret_key,
-       '0' as insert_user_id,
-       sysdate as insert_date,
-       null as update_user_id,
-       null update_date
-  from sys_users@perci
- where user_id not in ('0', '1')
- order by login_id, login_password
-;

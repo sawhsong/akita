@@ -7,7 +7,7 @@ admin
  * User
  */
 -- akita
-create user akita identified by akita;
+create user akita identified by sawh_MyPrj44;
 grant connect, resource to akita;
 grant create synonym, create view, create database link, create public synonym, drop public synonym, create tablespace, alter database to akita;
 grant unlimited tablespace to akita;
