@@ -101,3 +101,8 @@ insert into sys_user values('1', 'Admin', 'admin', 'admin', '1', '1', 'EN', 'THE
 	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'General Admin - Admin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1', null,
 	'0', sysdate, null, null
 );
+
+
+update sys_user
+   set login_password = crypto.crypto_enc(login_password)
+;
