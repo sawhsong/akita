@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Bobcat Z Deploy" default="all" basedir=".">
+<project name="Akita Z Deploy" default="0. initDir" basedir=".">
 	<property file="deploy-OracleCloud.properties"/>
 
-	<target name="all"
-		depends="0-init-dir,
-				 1-change-properties,
-				 2-upload-buildset,
-				 3-upload-webapp"
-		description="Create buildset and webapp"
-	/>
-
-	<target name="0-init-dir">
-		<delete dir="${dir.local.buildset}/${name.project}"/>
+	<target name="0. initDir">
+		<delete dir="${dir.local.buildset}/${name.project}" verbose="true"/>
 		<mkdir dir="${dir.local.buildset}/${name.project}"/>
-		<copy todir="${dir.local.buildset}/${name.project}">
+		<copy todir="${dir.local.buildset}/${name.project}" verbose="true">
 			<fileset dir="${dir.local.src}"/>
 		</copy>
 
@@ -21,66 +13,57 @@
 			username="${server.id}"
 			keyfile="${file.key}"
 			trust="true"
-			command="rm -rf ${dir.server.buildset}"
+			verbose="true"
+			command="rm -rf ${dir.server.buildset};
+					 mkdir ${dir.server.buildset};
+					 mkdir ${dir.server.buildset}/${name.project}"
 		/>
 
 		<sshexec host="${server.ip}"
 			username="${server.id}"
 			keyfile="${file.key}"
 			trust="true"
-			command="mkdir ${dir.server.buildset}"
-		/>
-
-		<sshexec host="${server.ip}"
-			username="${server.id}"
-			keyfile="${file.key}"
-			trust="true"
-			command="mkdir ${dir.server.buildset}/${name.project}"
-		/>
-
-		<sshexec host="${server.ip}"
-			username="${server.id}"
-			keyfile="${file.key}"
-			trust="true"
-			command="rm -rf ${dir.server.tomcat}/${name.project}"
-		/>
-		<sshexec host="${server.ip}"
-			username="${server.id}"
-			keyfile="${file.key}"
-			trust="true"
-			command="mkdir ${dir.server.tomcat}/${name.project}"
+			verbose="true"
+			command="rm -rf ${dir.server.tomcat}/${name.project};
+					 mkdir ${dir.server.tomcat}/${name.project}"
 		/>
 	</target>
+	<target name="1. changeProperties">
+		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/config.properties" verbose="true"/>
+		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/log4j2.xml" verbose="true"/>
 
-	<target name="1-change-properties">
-		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/config.properties"/>
-		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/log4j2.xml"/>
-
-		<copy todir="${dir.local.buildset}/${name.project}/${dir.class}">
+		<copy todir="${dir.local.buildset}/${name.project}/${dir.class}" verbose="true">
 			<fileset file="${dir.local.prop}/config.properties"/>
 			<fileset file="${dir.local.prop}/log4j2.xml"/>
 		</copy>
 	</target>
+	<target name="2. uploadAllToBuildSet">
+		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.buildset}/${name.project}" trust="true" keyfile="${file.key}" verbose="true">
+			<fileset dir="${dir.local.buildset}/${name.project}"/>
+		</scp>
+	</target>
 
-	<target name="2-upload-buildset">
+	<target name="3. uploadAllToBuildSet">
+		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.buildset}/${name.project}" trust="true" keyfile="${file.key}" verbose="true">
+			<fileset dir="${dir.local.buildset}/${name.project}"/>
+		</scp>
+	</target>
+
+	<target name="4. uploadAllToTomcat">
+<!--		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.tomcat}/${name.project}" trust="true" keyfile="${file.key}" verbose="true">-->
+<!--			<fileset dir="${dir.local.buildset}/${name.project}"/>-->
+<!--		</scp>-->
+	</target>
+
+	<target name="8. uploadWar">
 <!--
 		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.buildset}"
 			file="${dir.local.war}"
 			trust="true"
+			verbose="true"
 			keyfile="${file.key}"
 		/>
 -->
-<!--
-		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.buildset}/${name.project}" trust="true" keyfile="${file.key}">
-			<fileset dir="${dir.local.buildset}/${name.project}" excludes="**/CVS/**, **/cvs/**"/>
-		</scp>
--->
-	</target>
-
-	<target name="3-upload-webapp">
-		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.tomcat}/${name.project}" trust="true" keyfile="${file.key}">
-			<fileset dir="${dir.local.buildset}/${name.project}" excludes="**/CVS/**, **/cvs/**"/>
-		</scp>
 	</target>
 
 	<!-- upload webapp only - not delete or create buildset in the server -->
@@ -89,41 +72,44 @@
 			username="${server.id}"
 			keyfile="${file.key}"
 			trust="true"
+			verbose="true"
 			command="
 				export JAVA_HOME=${dir.server.jdkHome};
 				bash ${server.cmd.shutdown}"
 		/>
 
 		<!-- init dirs -->
-		<delete dir="${dir.local.buildset}/${name.project}"/>
+		<delete dir="${dir.local.buildset}/${name.project}" verbose="true"/>
 		<mkdir dir="${dir.local.buildset}/${name.project}"/>
-		<copy todir="${dir.local.buildset}/${name.project}">
+		<copy todir="${dir.local.buildset}/${name.project}" verbose="true">
 			<fileset dir="${dir.local.src}"/>
 		</copy>
 		<sshexec host="${server.ip}"
 			username="${server.id}"
 			keyfile="${file.key}"
 			trust="true"
+			verbose="true"
 			command="rm -rf ${dir.server.tomcat}/${name.project}"
 		/>
 		<sshexec host="${server.ip}"
 			username="${server.id}"
 			keyfile="${file.key}"
 			trust="true"
+			verbose="true"
 			command="mkdir ${dir.server.tomcat}/${name.project}"
 		/>
 
 		<!-- change properties -->
-		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/config.properties"/>
-		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/log4j2.xml"/>
+		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/config.properties" verbose="true"/>
+		<delete file="${dir.local.buildset}/${name.project}/${dir.class}/log4j2.xml" verbose="true"/>
 
-		<copy todir="${dir.local.buildset}/${name.project}/${dir.class}">
+		<copy todir="${dir.local.buildset}/${name.project}/${dir.class}" verbose="true">
 			<fileset file="${dir.local.prop}/config.properties"/>
 			<fileset file="${dir.local.prop}/log4j2.xml"/>
 		</copy>
 
 		<!-- upload webapp -->
-		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.tomcat}/${name.project}" trust="true" keyfile="${file.key}">
+		<scp todir="${server.id}:${server.pw}@${server.ip}:${dir.server.tomcat}/${name.project}" trust="true" keyfile="${file.key}" verbose="true">
 			<fileset dir="${dir.local.buildset}/${name.project}" excludes="**/CVS/**, **/cvs/**"/>
 		</scp>
 
@@ -131,6 +117,7 @@
 			username="${server.id}"
 			keyfile="${file.key}"
 			trust="true"
+			verbose="true"
 			command="export JAVA_HOME=${dir.server.jdkHome};
 					 bash ${server.cmd.startup}"
 		/>
