@@ -46,7 +46,6 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
@@ -152,7 +151,7 @@ public class HDao extends HibernateDaoSupport {
 	protected DataSet selectAsDataSetBySQLQuery(String sqlQuery) throws Exception {
 		setSessionFactoryForMultiDatasource();
 		query = session.createSQLQuery(sqlQuery);
-		return new DataSet(query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+		return new DataSet(query.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 	}
 
 	/*!
@@ -440,13 +439,13 @@ public class HDao extends HibernateDaoSupport {
 		if (queryAdvisor.isPagination()) {
 			Query countQuery = session.createSQLQuery(getCountQuery(query.getQueryString()));
 
-			dataSet = new DataSet(countQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+			dataSet = new DataSet(countQuery.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 			queryAdvisor.setTotalResultRows(CommonUtil.toInt(dataSet.getValue(0, 0)));
 
 			setPagination(queryAdvisor);
-			dataSet = new DataSet(query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+			dataSet = new DataSet(query.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 		} else {
-			dataSet = new DataSet(query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+			dataSet = new DataSet(query.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 			queryAdvisor.setTotalResultRows(dataSet.getRowCnt());
 		}
 
@@ -465,13 +464,13 @@ public class HDao extends HibernateDaoSupport {
 		if (queryAdvisor.isPagination()) {
 			Query countQuery = session.createSQLQuery(getCountQuery(query.getQueryString()));
 
-			dataSet = new DataSet(countQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+			dataSet = new DataSet(countQuery.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 			queryAdvisor.setTotalResultRows(CommonUtil.toInt(dataSet.getValue(0, 0)));
 
 			setPagination(queryAdvisor);
-			dataSet = new DataSet(query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+			dataSet = new DataSet(query.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 		} else {
-			dataSet = new DataSet(query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).list());
+			dataSet = new DataSet(query.setResultTransformer(ZebraAliasToEntityMapResultTransformer.INSTANCE).list());
 			queryAdvisor.setTotalResultRows(dataSet.getRowCnt());
 		}
 
